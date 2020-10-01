@@ -1,0 +1,16 @@
+fdname;fddesc;fddesc_en;datatype;tabdecod;refyear;munit
+idpunto;identificativo del punto di campionamento;NFI-plot number;character;-1;2005;-1
+LAT_ND_W84;latitudine nodo S-O maglia reticolo inventariale contenente punto C, sistema geodetico WGS84 ;latitude of the S-W node of the NFI grid, WGS84 datum;numeric;-1;2005;Ddec
+LON_ND_W84;latitudine nodo S-O maglia reticolo inventariale contenente punto C, sistema geodetico WGS84;longitude of the S-W node of NFI grid, WGS84 datum;numeric;-1;2005;Ddec
+NORD_ND_GB;coordinata N nodo S-O maglia reticolo inventariale contenente punto C, sistema cartografico nazionale Gauss-Boaga;North coordinate of the S-W node of NFI grid, Gauss-Boaga projection ;numeric;-1;2005;m
+EST_ND_GB;coordinata E nodo S-O maglia reticolo inventariale contenente punto C, sistema cartografico nazionale Gauss-Boaga;East coordinate of the S-W node of NFI grid, Gauss-Boaga projection ;numeric;-1;2005;m
+FUSO;fuso di appartenenza punto C, nel sistema nazionale Gauss-Boaga;zone (Est=East, Ovest=West), Gauss-Boaga projection ;character;-1;2005;-1
+codISTAT05;codice Istat distretto (regione, provincia autonoma) INFC2005;administrative region, Italian National Statistics code;character;-1;2005;-1
+nomedist05;nome distretto (regione, provincia autonoma) INFC2005;administrative region, name;character;-1;2005;-1
+codcfor;codice categoria forestale;forest category, code;character;d1_05_cfor;2005;-1
+Wnef_ha;necromassa  (peso secco) legno morto fine a terra, per ettaro;dry weight of fine woody debris, per hectare;numeric;-1;2005;Mgha-1
+Cnef_ha;carbonio organico legno morto fine a terra, per ettaro;organic carbon stock of fine woody debris, per hectare;numeric;-1;2005;Mgha-1
+Clt_ha;carbonio organico lettiera, per ettaro;organic carbon stock of litter, per hectare;numeric;-1;2005;Mgha-1
+Cor_ha;carbonio organico orizzonti organici, per ettaro;organic carbon stock of organic soil layer, per hectare;numeric;-1;2005;Mgha-1
+Css_ha;carbonio organico strato minerale superficiale, per ettaro;organic carbon stock of upper (0-10 cm) mineral soil layer, per hectare;numeric;-1;2005;Mgha-1
+Csp_ha;carbonio organico strato minerale profondo, per ettaro;organic carbon stock of deep (10-30 cm) mineral soil layer, per hectare;numeric;-1;2005;Mgha-1

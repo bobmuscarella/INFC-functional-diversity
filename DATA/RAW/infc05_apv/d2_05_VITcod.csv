@@ -1,0 +1,26 @@
+fdname;fdcod;fddesc1;fddesc2;fddesc1_en;fddesc2_en
+VITcod;1;individuo vivo ed integro;individuo vivo e privo di evidenti parti secche, danneggiate o mancanti della chioma;tree or shrub alive and intact;---
+VITcod;2;individuo vivo, con leggere menomazioni;individuo vivo con parti secche, danneggiate o mancanti che interessano meno di 1/3 della chioma;tree or shrub alive, crown and almost intact;less than 1/3 of the crown is damaged, dead or missing
+VITcod;3;individuo vivo con moderate menomazioni;individuo vivo con parti secche, danneggiate o mancanti comprese tra 1/3 e 2/3 della chioma;tree or shrub alive, crown partially damaged;from 1/3 to 2/3 of the crown is damaged, dead or missing
+VITcod;4;individuo vivo con forti menomazioni ;Individuo vivo, ma fortemente compromesso, con parti secche, danneggiate o mancanti per oltre 2/3 della chioma;tree or shrub alive, crown severily damaged;more than 2/3 of the crown is damaged, dead or missing
+VITcod;5;individuo vivo ma troncato;individuo ancora vivo per la presenza di getti o parti verdi, nonostante presenti il fusto troncato ;tree or shrub alive but stem broken;green crown (if any) due to adventitious shoots  
+VITcod;6;individuo morto (secco) ma integro ;individuo morto, completamente secco in piedi, ma sostanzialmente integro  ;tree or shrub dead and standing but still intact ;---
+VITcod;7;individuo morto e troncato ;individuo morto, completamente secco, con il fusto troncato ;tree or shrub dead and broken;---
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;

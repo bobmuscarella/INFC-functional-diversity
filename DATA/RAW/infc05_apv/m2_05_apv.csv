@@ -1,0 +1,15 @@
+tabname;fdname;fddesc;fddesc_en;datatype;tabdecod;refyear;fdpubb_16mm;munit
+t2_05_apv;idpunto;identificativo del punto di campionamento;NFI-plot number;character;-1;2005;1;-1
+t2_05_apv;idapv;identificativo dell'albero vivo;living tree identification number;character;-1;2005;1;-1
+t2_05_apv;SPcod;codice della specie ;species code;character;d2_05_SPcod;2005;1;-1
+t2_05_apv;VITcod;vitalita' /integrita' dell'albero vivo;vitality/integrity code;character;d2_05_VITcod;2005;1;-1
+t2_05_apv;FEha;fattore di espansione all'ettaro;expansion factor to hectare;numeric;-1;2005;1;-1
+t2_05_apv;Dapv;diametro a 1,30 m da terra dell'albero vivo;diameter at breast height of the living tree;numeric;-1;2005;1;cm
+t2_05_apv;Hapv;altezza totale dell'albero vivo;total height of the living tree;numeric;-1;2005;1;m
+t2_05_apv;Gapv;area basimetrica dell'albero vivo;basal area of the living tree;numeric;-1;2005;1;m2
+t2_05_apv;Vapv;volume fusto e rami grossi dell'albero vivo;volume of the living tree (stem+large branches) ;numeric;-1;2005;1;m3
+t2_05_apv;W1apv;fitomassa (peso secco) fusto e rami grossi dell'albero vivo;dry weight of stem+large branches of the living tree ;numeric;-1;2005;1;Mg
+t2_05_apv;W2apv;fitomassa (peso secco) ramaglia dell'albero vivo;dry weight of small branches of the living tree;numeric;-1;2005;1;Mg
+t2_05_apv;W3apv;fitomassa (peso secco) ceppaia dell'albero vivo;dry weight of the stump of the living tree;numeric;-1;2005;1;Mg
+t2_05_apv;W4apv;fitomassa  (peso secco) arborea epigea albero vivo;dry weight of total above-ground biomass of the living tree;numeric;-1;2005;1;Mg
+t2_05_apv;ICVapv;incremento corrente (annuo) di volume dell'albero vivo;current annual volume increment of the living tree;numeric;-1;2005;1;m3

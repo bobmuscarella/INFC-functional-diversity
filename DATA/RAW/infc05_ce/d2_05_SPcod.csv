@@ -1,0 +1,270 @@
+fdname;fdcod;fddesc1;fddesc1_lat;fddesc2;fddesc2_en
+SPcod;10;abete bianco;Abies alba;albero;tree
+SPcod;11;abete dei Nebrodi;Abies nebrodensis;albero;tree
+SPcod;12;abete greco;Abies cephalonica;albero;tree
+SPcod;9;abete (altre sp. di Abies);Abies sp.;albero;tree
+SPcod;20;abete rosso;Picea abies;albero;tree
+SPcod;19;abete (altre sp. di Picea);Picea sp.;albero;tree
+SPcod;695;acacia;Acacia sp.;arbusto;shrub
+SPcod;200;acero americano;Acer negundo;albero;tree
+SPcod;201;acero campestre;Acer campestre;albero;tree
+SPcod;204;acero d' Ungheria;Acer gr. opalus;albero;tree
+SPcod;202;acero di Lobelius;Acer lobelii;albero;tree
+SPcod;203;acero di monte;Acer pseudoplatanus;albero;tree
+SPcod;205;acero minore;Acer monspessulanum;albero;tree
+SPcod;207;acero riccio;Acer platanoides;albero;tree
+SPcod;700;agnocasto;Vitex agnus-castus;arbusto;shrub
+SPcod;470;agrifoglio (arboreo);Ilex aquifolium;albero;tree
+SPcod;471;agrifoglio (arbustivo);Ilex aquifolium;arbusto;shrub
+SPcod;210;ailanto;Ailanthus altissima;albero;tree
+SPcod;647;alaterno;Rhamnus alaternus;arbusto;shrub
+SPcod;215;albero della canfora;Cinnamomum camphora;albero;tree
+SPcod;220;albero di Giuda;Cercis siliquastrum;albero;tree
+SPcod;539;alimo;Atriplex halimus;arbusto;shrub
+SPcod;480;alloro (arboreo);Laurus nobilis;albero;tree
+SPcod;481;alloro (arbustivo);Laurus nobilis;arbusto;shrub
+SPcod;537;assenzio arbustivo;Artemisia arborescens;arbusto;shrub
+SPcod;230;bagolaro;Celtis sp.;albero;tree
+SPcod;240;betulla verrucosa;Betula pendula;albero;tree
+SPcod;241;betulla pubescente;Betula pubescens;albero;tree
+SPcod;239;betulla (altre sp.);Betula sp.;albero;tree
+SPcod;540;biancospino;Crataegus sp.;arbusto;shrub
+SPcod;544;bosso;Buxus sp.;arbusto;shrub
+SPcod;550;brugo;Calluna vulgaris;arbusto;shrub
+SPcod;552;buddleja;Buddleja davidii;arbusto;shrub
+SPcod;553;bupleuro cespuglioso;Bupleurum fruticosum;arbusto;shrub
+SPcod;557;canna comune;Arundo donax;arbusto;shrub
+SPcod;558;cannuccia di palude;Phragmites australis;arbusto;shrub
+SPcod;555;caprifoglio;Lonicera sp.;arbusto;shrub
+SPcod;250;carpino bianco;Carpinus betulus;albero;tree
+SPcod;260;carpino nero;Ostrya carpinifolia;albero;tree
+SPcod;251;carpino orientale;Carpinus orientalis;albero;tree
+SPcod;270;carrubo (arboreo);Ceratonia siliqua;albero;tree
+SPcod;271;carrubo (arbustivo);Ceratonia siliqua;arbusto;shrub
+SPcod;280;castagno;Castanea sativa;albero;tree
+SPcod;285;catalpa;Catalpa bignonioides;albero;tree
+SPcod;30;cedro;Cedrus sp.;albero;tree
+SPcod;40;cembro;Pinus cembra;albero;tree
+SPcod;290;ceraso;Prunus cerasifera;albero;tree
+SPcod;300;cerro;Quercus cerris;albero;tree
+SPcod;310;cerrosughera;Quercus crenata;albero;tree
+SPcod;320;ciavardello;Sorbus torminalis;albero;tree
+SPcod;291;ciliegio selvatico;Prunus avium;albero;tree
+SPcod;60;cipresso;Cupressus sempervirens;albero;tree
+SPcod;61;cipresso dell'Arizona;Cupressus arizonica;albero;tree
+SPcod;65;cipresso delle paludi;Taxodium distichum;albero;tree
+SPcod;70;cipresso di Lawson;Chamaecyparis lawsoniana;albero;tree
+SPcod;59;cipresso (altre sp.);Cupressus sp.;albero;tree
+SPcod;705;cisto;Cistus sp.;arbusto;shrub
+SPcod;590;citiso;Cytisus sp.;arbusto;shrub
+SPcod;709;citiso di Montpellier;Teline sp.;arbusto;shrub
+SPcod;708;citiso scuro;Lembotropis nigricans;arbusto;shrub
+SPcod;703;clematide;Clematis sp.;arbusto;shrub
+SPcod;316;coccifera (arborea);Quercus gr. coccifera;albero;tree
+SPcod;317;coccifera (arbustiva);Quercus gr. coccifera;arbusto;shrub
+SPcod;294;cocomilio;Prunus cocomilia;arbusto;shrub
+SPcod;711;corbezzolo (arboreo);Arbutus unedo;albero;tree
+SPcod;710;corbezzolo (arbustivo);Arbutus unedo;arbusto;shrub
+SPcod;560;coriaria;Coriaria myrtifolia;arbusto;shrub
+SPcod;562;cornetta;Coronilla sp.;arbusto;shrub
+SPcod;565;corniolo sanguinello;Cornus sanguinea;arbusto;shrub
+SPcod;566;corniolo maschio;Cornus mas;arbusto;shrub
+SPcod;568;cotognastro;Cotoneaster sp.;arbusto;shrub
+SPcod;569;crespino;Berberis sp.;arbusto;shrub
+SPcod;75;criptomeria del Giappone;Cryptomeria japonica;albero;tree
+SPcod;571;dafne;Daphne sp.;arbusto;shrub
+SPcod;513;dulcamara;Solanum dulcamara;arbusto;shrub
+SPcod;572;edera;Hedera helix;arbusto;shrub
+SPcod;573;efedra;Ephedra sp.;arbusto;shrub
+SPcod;598;erba medica arborea;Medicago arborea;arbusto;shrub
+SPcod;715;erica arborea;Erica arborea;arbusto;shrub
+SPcod;716;erica multiflora;Erica multiflora;arbusto;shrub
+SPcod;717;erica scoparia;Erica scoparia;arbusto;shrub
+SPcod;714;erica (altre sp.);Erica sp.;arbusto;shrub
+SPcod;490;eucalipti;Eucalyptus sp.;albero;tree
+SPcod;720;euforbia arborescente;Euphorbia dendroides;arbusto;shrub
+SPcod;719;euforbie (cespugliose);Euphorbia sp.;arbusto;shrub
+SPcod;330;faggio;Fagus sylvatica;albero;tree
+SPcod;301;farnetto;Quercus frainetto;albero;tree
+SPcod;302;farnia;Quercus robur;albero;tree
+SPcod;340;fico;Ficus carica;albero;tree
+SPcod;764;fico d'India;Opuntia ficus-indica;arbusto;shrub
+SPcod;303;fragno;Quercus trojana;albero;tree
+SPcod;574;frangola;Frangula sp.;arbusto;shrub
+SPcod;350;frassino maggiore;Fraxinus excelsior;albero;tree
+SPcod;351;frassino ossifillo;Fraxinus oxycarpa;albero;tree
+SPcod;580;fusaria;Euonymus sp.;arbusto;shrub
+SPcod;354;gelso;Morus sp.;albero;tree
+SPcod;355;gelso da carta;Broussonetia papyrifera;albero;tree
+SPcod;523;ginepro coccolone;Juniperus oxycedrus;arbusto;shrub
+SPcod;522;ginepro comune;Juniperus communis;arbusto;shrub
+SPcod;526;ginepro della Virginia;Juniperus virginiana;arbusto;shrub
+SPcod;524;ginepro fenicio;Juniperus phoenicea;arbusto;shrub
+SPcod;520;ginepro nano;Juniperus nana;arbusto;shrub
+SPcod;585;ginestra comune;Spartium junceum;arbusto;shrub
+SPcod;596;ginestra ghiandolosa;Adenocarpus complicatus;arbusto;shrub
+SPcod;595;ginestra (arborea);Genista sp.;albero;tree
+SPcod;594;ginestra (arbustiva);Genista sp.;arbusto;shrub
+SPcod;597;ginestrella;Osyris alba;arbusto;shrub
+SPcod;600;ginestrone;Ulex europaeus;arbusto;shrub
+SPcod;727;ibisco;Hibiscus syriacus;arbusto;shrub
+SPcod;733;ilatro comune (arboreo);Phillyrea latifolia;albero;tree
+SPcod;732;ilatro comune (arbustivo);Phillyrea latifolia;arbusto;shrub
+SPcod;731;ilatro sottile (arboreo);Phillyrea angustifolia;albero;tree
+SPcod;730;ilatro sottile (arbustivo);Phillyrea angustifolia;arbusto;shrub
+SPcod;637;indaco;Amorpha fruticosa;arbusto;shrub
+SPcod;638;iperico;Hypericum sp.;arbusto;shrub
+SPcod;495;ippocastano;Aesculus hippocastanum;albero;tree
+SPcod;636;jucca;Yucca aloifolia;arbusto;shrub
+SPcod;655;lampone;Rubus idaeus;arbusto;shrub
+SPcod;80;larice;Larix decidua;albero;tree
+SPcod;81;larice giapponese;Larix kaempferi (L. leptolepis);albero;tree
+SPcod;608;lauroceraso;Prunus laurocerasus;arbusto;shrub
+SPcod;607;lauro-tino;Viburnum tinus;arbusto;shrub
+SPcod;735;lavanda;Lavandula sp.;arbusto;shrub
+SPcod;311;leccio (arboreo);Quercus ilex;albero;tree
+SPcod;314;leccio (arbustivo);Quercus ilex;arbusto;shrub
+SPcod;639;legno-puzzo;Anagyris foetida;arbusto;shrub
+SPcod;681;lentisco;Pistacia lentiscus;arbusto;shrub
+SPcod;610;ligustro;Ligustrum vulgare;arbusto;shrub
+SPcod;357;liriodendro;Liriodendron tulipifera;albero;tree
+SPcod;612;luppolo;Humulus lupulus;arbusto;shrub
+SPcod;365;maclura;Maclura pomifera;albero;tree
+SPcod;614;maggiociondolo;Laburnum sp.;arbusto;shrub
+SPcod;295;malebbo;Prunus mahaleb;arbusto;shrub
+SPcod;617;malvone;Lavatera sp.;arbusto;shrub
+SPcod;620;marruca;Paliurus spina-christi;arbusto;shrub
+SPcod;360;melo;Malus sp.;albero;tree
+SPcod;367;melograno;Punica granatum;albero;tree
+SPcod;743;mirtillo;Vaccinium sp.;arbusto;shrub
+SPcod;745;mirto;Myrtus communis;arbusto;shrub
+SPcod;53;mugo;Pinus mugo;arbusto;shrub
+SPcod;370;nespolo (arboreo);Mespilus germanica;albero;tree
+SPcod;371;nespolo (arbustivo);Mespilus germanica;arbusto;shrub
+SPcod;625;nocciolo;Corylus sp.;arbusto;shrub
+SPcod;380;noce;Juglans regia;albero;tree
+SPcod;381;noce nero;Juglans nigra;albero;tree
+SPcod;750;oleandro;Nerium oleander;arbusto;shrub
+SPcod;756;oleastro (arboreo);Olea europaea;albero;tree
+SPcod;755;oleastro (arbustivo);Olea europaea;arbusto;shrub
+SPcod;760;olivagno (arbustivo);Elaeagnus angustifolia;arbusto;shrub
+SPcod;761;olivagno (arboreo);Elaeagnus angustifolia;albero;tree
+SPcod;630;olivello spinoso;Hippophae rhamnoides;arbusto;shrub
+SPcod;390;olmo comune;Ulmus minor;albero;tree
+SPcod;391;olmo di montagna;Ulmus glabra;albero;tree
+SPcod;389;olmo (altre sp.);Ulmus sp.;albero;tree
+SPcod;763;ononide;Ononis sp.;arbusto;shrub
+SPcod;400;ontano bianco;Alnus incana;albero;tree
+SPcod;401;ontano napoletano;Alnus cordata;albero;tree
+SPcod;402;ontano nero;Alnus glutinosa;albero;tree
+SPcod;403;ontano verde;Alnus viridis;arbusto;shrub
+SPcod;352;orniello;Fraxinus ornus;albero;tree
+SPcod;292;pado (arboreo);Prunus padus;albero;tree
+SPcod;298;pado (arbustivo);Prunus padus;arbusto;shrub
+SPcod;606;palle di neve;Viburnum opalus;arbusto;shrub
+SPcod;765;palma nana;Chamaerops humilis;arbusto;shrub
+SPcod;405;paulownia;Paulownia tomentosa;albero;tree
+SPcod;767;periploca;Periploca graeca;arbusto;shrub
+SPcod;409;pero;Pyrus sp.;albero;tree
+SPcod;635;pero corvino;Amelanchier ovalis;arbusto;shrub
+SPcod;41;pino bruzio;Pinus brutia;albero;tree
+SPcod;42;pino d' Aleppo;Pinus halepensis;albero;tree
+SPcod;55;pino delle Canarie;Pinus canariensis;albero;tree
+SPcod;43;pino domestico;Pinus pinea;albero;tree
+SPcod;44;pino eccelso;Pinus excelsa (P.wallichiana);albero;tree
+SPcod;45;pino laricio;Pinus  laricio;albero;tree
+SPcod;46;pino loricato;Pinus leucodermis;albero;tree
+SPcod;47;pino marittimo;Pinus pinaster;albero;tree
+SPcod;48;pino montano;Pinus uncinata;albero;tree
+SPcod;49;pino nero;Pinus nigra;albero;tree
+SPcod;54;pino pumilio;Pinus pumilio;arbusto;shrub
+SPcod;50;pino radiato;Pinus radiata;albero;tree
+SPcod;51;pino silvestre;Pinus sylvestris;albero;tree
+SPcod;52;pino strobo;Pinus strobus;albero;tree
+SPcod;39;pino (altre sp.);Pinus sp.;albero;tree
+SPcod;419;pioppi (esotici e ibridi);Populus sp.;albero;tree
+SPcod;420;pioppo bianco;Populus alba;albero;tree
+SPcod;421;pioppo canescente;Populus canescens;albero;tree
+SPcod;105;tuia;Thuja sp.;albero;tree
+SPcod;535;uva ursina;Arctostaphylos uva-ursi;arbusto;shrub
+SPcod;309;vallonea;Quercus macrolepis;albero;tree
+SPcod;685;vescicaria;Colutea arborescens;arbusto;shrub
+SPcod;605;viburno lantana;Viburnum lantana;arbusto;shrub
+SPcod;690;vite;Vitis sp.;arbusto;shrub
+SPcod;692;vite del Canada;Parthenocissus sp.;arbusto;shrub
+SPcod;422;pioppo ibrido;Populus xcanadensis;albero;tree
+SPcod;423;pioppo nero;Populus nigra;albero;tree
+SPcod;424;pioppo tremulo;Populus tremula;albero;tree
+SPcod;640;piracanta;Pyracantha coccinea;arbusto;shrub
+SPcod;641;pittosporo;Pittosporum tobira;arbusto;shrub
+SPcod;430;platano ibrido;Platanus hybrida;albero;tree
+SPcod;431;platano orientale;Platanus orientalis;albero;tree
+SPcod;296;prugnolo;Prunus spinosa;arbusto;shrub
+SPcod;293;prugnolo tardivo;Prunus serotina;albero;tree
+SPcod;289;pruno (altre sp.);Prunus sp.;arbusto;shrub
+SPcod;297;pruno del Delfinato;Prunus brigantiaca;arbusto;shrub
+SPcod;90;pseudotsuga;Pseudotsuga menziesii;albero;tree
+SPcod;656;pungitopo;Ruscus aculeatus;arbusto;shrub
+SPcod;306;quercia rossa;Quercus rubra;albero;tree
+SPcod;299;quercia (altre sp.);Quercus sp.;albero;tree
+SPcod;645;ramno alpino;Rhamnus alpinus;arbusto;shrub
+SPcod;644;ramno (altre sp.);Rhamnus sp.;arbusto;shrub
+SPcod;770;retama;Retama raetam;arbusto;shrub
+SPcod;772;ribes;Ribes sp.;arbusto;shrub
+SPcod;774;robbia;Rubia peregrina;arbusto;shrub
+SPcod;440;robinia;Robinia pseudacacia;albero;tree
+SPcod;530;rododendro irsuto;Rhododendron hirsutum;arbusto;shrub
+SPcod;531;rododendro rosso;Rhododendron ferrugineum;arbusto;shrub
+SPcod;650;rosa;Rosa sp.;arbusto;shrub
+SPcod;775;rosmarino;Rosmarinus officinalis;arbusto;shrub
+SPcod;307;rovere;Quercus petraea;albero;tree
+SPcod;308;roverella;Quercus pubescens;albero;tree
+SPcod;654;rovo;Rubus sp.;arbusto;shrub
+SPcod;521;sabina;Juniperus sabina;arbusto;shrub
+SPcod;451;salice bianco;Salix alba;albero;tree
+SPcod;450;salici arborei (altre sp.);Salix sp.;albero;tree
+SPcod;455;salici arbustivi;Salix sp.;arbusto;shrub
+SPcod;452;salicone;Salix caprea;albero;tree
+SPcod;657;salvione;Phlomis sp.;arbusto;shrub
+SPcod;660;sambuco comune;Sambucus nigra;arbusto;shrub
+SPcod;661;sambuco rosso;Sambucus racemosa;arbusto;shrub
+SPcod;665;scotano;Cotinus coggygria;arbusto;shrub
+SPcod;95;sequoia;Sequoia sempervirens;albero;tree
+SPcod;666;serenella;Syringa vulgaris;arbusto;shrub
+SPcod;667;sommacco;Rhus sp.;arbusto;shrub
+SPcod;325;sorbo alpino;Sorbus chamaemespilus;arbusto;shrub
+SPcod;321;sorbo degli uccellatori;Sorbus aucuparia;albero;tree
+SPcod;322;sorbo domestico;Sorbus domestica;albero;tree
+SPcod;324;sorbo farinaccio (arboreo);Sorbus aria;albero;tree
+SPcod;323;sorbo farinaccio (arbustivo);Sorbus aria;arbusto;shrub
+SPcod;319;sorbo (altre sp.);Sorbus sp.;albero;tree
+SPcod;725;sparzio;Calicotome sp.;arbusto;shrub
+SPcod;726;spazzaforno;Thymelaea sp.;arbusto;shrub
+SPcod;669;spinaporci;Sarcopoterium spinosum;arbusto;shrub
+SPcod;668;spina santa comune;Lycium europaeum;arbusto;shrub
+SPcod;670;spino di Giuda;Gleditsia triacanthos;arbusto;shrub
+SPcod;646;spino cervino;Rhamnus catharticus;arbusto;shrub
+SPcod;675;stafilea;Staphylea pinnata;arbusto;shrub
+SPcod;678;storace;Styrax officinalis;arbusto;shrub
+SPcod;676;stracciabrache;Smilax aspera;arbusto;shrub
+SPcod;677;stregonia;Sideritis sp.;arbusto;shrub
+SPcod;313;sughera;Quercus suber;albero;tree
+SPcod;781;tamerice (arboreo);Tamarix sp.;albero;tree
+SPcod;780;tamerice (arbustivo);Tamarix sp.;arbusto;shrub
+SPcod;778;tamerice alpino;Myricaria germanica;arbusto;shrub
+SPcod;100;tasso;Taxus baccata;albero;tree
+SPcod;680;terebinto;Pistacia terebinthus;arbusto;shrub
+SPcod;784;teucrio;Teucrium sp.;arbusto;shrub
+SPcod;786;the siciliano;Prasium majus;arbusto;shrub
+SPcod;462;tiglio nostrano;Tilia platyphyllos;albero;tree
+SPcod;461;tiglio selvatico;Tilia cordata;albero;tree
+SPcod;460;tiglio (altre sp.);Tilia sp.;albero;tree
+SPcod;787;timelea;Cneorum tricoccon;arbusto;shrub
+SPcod;103;tsuga;Tsuga sp.;albero;tree
+SPcod;642;vulneraria;Anthyllis barba-jovis;arbusto;shrub
+SPcod;110;altra conifera;;albero;tree
+SPcod;120;conifera ignota;;albero;tree
+SPcod;500;altra latifoglia arborea;;albero;tree
+SPcod;510;latifoglia ignota;;albero;tree
+SPcod;800;altra specie arbustiva;;arbusto;shrub
+SPcod;810;specie arbustiva ignota;;arbusto;shrub

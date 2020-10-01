@@ -1,0 +1,66 @@
+fdname;fddesc;fddesc_en;datatype;tabdecod;refyear;munit
+idpunto;identificativo del punto di campionamento;NFI-plot number;character;-1;2005;-1
+LAT_ND_W84;latitudine nodo S-O maglia reticolo inventariale contenente punto C, sistema geodetico WGS84 ;latitude of the S-W node of the NFI grid, WGS84 datum;numeric;-1;2005;Ddec
+LON_ND_W84;latitudine nodo S-O maglia reticolo inventariale contenente punto C, sistema geodetico WGS84;longitude of the S-W node of NFI grid, WGS84 datum;numeric;-1;2005;Ddec
+NORD_ND_GB;coordinata N nodo S-O maglia reticolo inventariale contenente punto C, sistema cartografico nazionale Gauss-Boaga;North coordinate of the S-W node of NFI grid, Gauss-Boaga projection ;numeric;-1;2005;m
+EST_ND_GB;coordinata E nodo S-O maglia reticolo inventariale contenente punto C, sistema cartografico nazionale Gauss-Boaga;East coordinate of the S-W node of NFI grid, Gauss-Boaga projection ;numeric;-1;2005;m
+FUSO;fuso di appartenenza punto C, nel sistema nazionale Gauss-Boaga;zone (Est=East, Ovest=West), Gauss-Boaga projection ;character;-1;2005;-1
+codISTAT05;codice Istat distretto (regione, provincia autonoma) INFC2005;administrative region, Italian National Statistics code;character;-1;2005;-1
+nomedist05;nome distretto (regione, provincia autonoma) INFC2005;administrative region, name;character;-1;2005;-1
+codcfor;codice categoria forestale;forest category, code;character;d1_05_codcfor;2005;-1
+Napv_ha;numero alberi vivi, per ettaro;number of living trees, per hectare;numeric;-1;2005;numha-1
+Gapv_ha;area basimetrica alberi vivi, per ettaro;basal area of living trees, per hectare;numeric;-1;2005;m2ha-1
+Vapv_ha;volume fusto e rami grossi alberi vivi, per ettaro;volume of living trees (stem+large branches), per hectare;numeric;-1;2005;m3ha-1
+W1apv_ha;fitomassa (peso secco) fusto e rami grossi alberi vivi, per ettaro;dry weight of stem+large branches of living trees, per hectare ;numeric;-1;2005;Mgha-1
+W2apv_ha;fitomassa  (peso secco) ramaglia alberi vivi, per ettaro;dry weight of small branches of living trees, per hectare;numeric;-1;2005;Mgha-1
+W3apv_ha;fitomassa  (peso secco) ceppaia alberi vivi, per ettaro;dry weight of stumps of living trees, per hectare;numeric;-1;2005;Mgha-1
+W4apv_ha;fitomassa  (peso secco) arborea epigea alberi vivi, per ettaro;dry weight of total above-ground biomass of living trees, per hectare;numeric;-1;2005;Mgha-1
+Capv_ha;carbonio organico alberi vivi, per ettaro;organic carbon stock of total above-ground biomass of living trees, per hectare;numeric;-1;2005;Mgha-1
+Napm_ha;numero alberi morti in piedi, per ettaro;number of standing dead trees, per hectare;numeric;-1;2005;numha-1
+Gapm_ha;area basimetrica alberi morti in piedi, per ettaro;basal area of standing dead trees, per hectare;numeric;-1;2005;m2ha-1
+Vapm_ha;volume epigeo alberi morti in piedi, per ettaro;volume of standing dead trees (total above-ground), per hectare;numeric;-1;2005;m3ha-1
+W4apm_ha;fitomassa  (peso secco) arborea epigea alberi morti in piedi, per ettaro;dry weight of the above-ground biomass of standing dead trees, per hectare;numeric;-1;2005;Mgha-1
+Capm_ha;carbonio organico alberi morti in piedi, per ettaro;organic carbon stock of the total above-ground biomass of standing dead trees, per hectare;numeric;-1;2005;Mgha-1
+ICVapv_ha;incremento corrente (annuo) di volume degli alberi vivi, per ettaro;current annual volume increment of living trees, per hectare;numeric;-1;2005;m3ha-1
+ICWapv_ha;produzione annua fitomassa (peso secco) per accrescimento alberi vivi, per ettaro;dry weight correspondent to the current annual volume increment of living trees, per hectare;numeric;-1;2005;Mgha-1
+ICCapv_ha;produzione annua carbonio organico per accrescimento alberi vivi, per ettaro;organic carbon stock correspondent to the current annual volume increment of living trees, per hectare;numeric;-1;2005;Mgha-1
+Nce_ha;numero ceppaie residue, per ettaro;number of stumps, per hectare;numeric;-1;2005;numha-1
+Vce_ha;volume ceppaie residue, per ettaro;volume of stumps, per hectare;numeric;-1;2005;m3ha-1
+Wce_ha;fitomassa  (peso secco) ceppaie residue, per ettaro;dry weight of stumps, per hectare;numeric;-1;2005;Mgha-1
+Cce_ha;carbonio organico ceppaie residue, per ettaro;organic carbon stock of stumps, per hectare;numeric;-1;2005;Mgha-1
+Vne_ha;volume legno morto grosso a terra, per ettaro;volume of coarse woody debris on the ground, per hectare;numeric;-1;2005;m3ha-1
+Wne_ha;necromassa  (peso secco) legno morto grosso a terra, per ettaro;dry weight of coarse woody debris on the ground, per hectare;numeric;-1;2005;Mgha-1
+Cne_ha;carbonio organico legno morto grosso a terra, per ettaro;organic carbon stock of the coarse woody debris on the ground, per hectare;numeric;-1;2005;Mgha-1
+Nrin1_ha;numero soggetti rinnovazione, classe 1 (h=50-130 cm), per ettaro;number of regeneration individuals class 1 (h=50-130 cm), per hectare;numeric;-1;2005;numha-1
+Wrin1_ha;fitomassa (peso secco) soggetti rinnovazione, classe 1 (h=50-130 cm), per ettaro;dry weight of regeneration individuals class 1 (h=50-130 cm), per hectare;numeric;-1;2005;Mgha-1
+Crin1_ha;carbonio organico (peso secco) soggetti rinnovazione, classe 1 (h=50-130 cm), per ettaro;organic carbon stock of regeneration individuals class 1 (h=50-130 cm), per hectare;numeric;-1;2005;Mgha-1
+Nrin2_ha;numero soggetti rinnovazione, classe 2 (h>130 cm, d=0-2.4 cm), per ettaro;number of regeneration individuals class 2 (h>130 cm d=0-2.4 cm), per hectare;numeric;-1;2005;numha-1
+Wrin2_ha;fitomassa (peso secco) soggetti rinnovazione, classe 2 (h>130 cm, d=0-2.4 cm), per ettaro;dry weight of regeneration individuals class 2 (h>130 cm d=0-2.4 cm), per hectare ;numeric;-1;2005;Mgha-1
+Crin2_ha;carbonio organico soggetti rinnovazione, classe 2 (h>130 cm, d=0-2.4 cm), per ettaro;organic carbon stock of regeneration individuals class 2 (h>130 cm d=0-2.4 cm), per hectare;numeric;-1;2005;Mgha-1
+Nrin3_ha;numero soggetti rinnovazione, classe 3 (h>130 cm, d=2.5-4.4 cm), per ettaro;number of regeneration individuals class 3 (h>130 cm d=2.5-4.4 cm), per hectare;numeric;-1;2005;numha-1
+Wrin3_ha;fitomassa (peso secco) soggetti rinnovazione, classe 3 (h>130 cm, d=2.5-4.4 cm), per ettaro;dry weight of regeneration individuals class 3 (h>130 cm d=2.5-4.4 cm), per hectare;numeric;-1;2005;Mgha-1
+Crin3_ha;carbonio organico soggetti rinnovazione, classe 3 (h>130 cm, d=2.5-4.4 cm), per ettaro;organic carbon stock of regeneration individuals class 3 (h>130 cm d=2.5-4.4 cm), per hectare;numeric;-1;2005;Mgha-1
+Warb1_ha;fitomassa (peso secco) soggetti arbusti, classe 1 (h=50-130 cm), per ettaro;dry weight of shrubs - class 1 (h=50-130 cm), per hectare;numeric;-1;2005;Mgha-1
+Carb1_ha;carbonio organico (peso secco) soggetti arbusti, classe 1 (h=50-130 cm), per ettaro;organic carbon stock of shrubs - class 1 (h=50-130 cm), per hectare;numeric;-1;2005;Mgha-1
+Warb2_ha;fitomassa (peso secco) soggetti arbusti, classe 2 (h>130 cm, d=0-2.4 cm), per ettaro;dry weight of shrubs - class 2 (h>130 cm d=0-2.4 cm), per hectare;numeric;-1;2005;Mgha-1
+Carb2_ha;carbonio organico soggetti arbusti, classe 2 (h>130 cm, d=0-2.4 cm), per ettaro;organic carbon stock of shrubs - class 2 (h>130 cm d=0-2.4 cm), per hectare;numeric;-1;2005;Mgha-1
+Warb3_ha;fitomassa (peso secco) soggetti arbusti, classe 3 (h>130 cm, d=2.5-4.4 cm), per ettaro;dry weight of shrubs - class 3 (h>130 cm d=2.5-4.4 cm), per hectare;numeric;-1;2005;Mgha-1
+Carb3_ha;carbonio organico soggetti arbusti, classe 3 (h>130 cm, d=2.5-4.4 cm), per ettaro;organic carbon stock of shrubs - class 3 (h>130 cm d=2.5-4.4 cm), per hectare;numeric;-1;2005;Mgha-1
+Vut_ha;volume asportato con utilizzazioni nei 12 mesi precedenti il rilievo, per ettaro;volume of wood (stem+large branches) exploited in the 12 months preeceding the NFI survey, per hectare;numeric;-1;2005;m3ha-1
+Wut_ha;fitomassa (peso secco) asportata con utilizzazioni nei 12 mesi precedenti il rilievo, per ettaro;dry weight of wood (stem+large branches) exploited in the 12 months preeceding the NFI survey, per hectare;numeric;-1;2005;Mgha-1
+Cut_ha;carbonio organico asportato con utilizzazioni nei 12 mesi precedenti il rilievo, per ettaro;organic carbon stock of wood (total above-ground biomass) exploited in the 12 months preeceding the NFI survey, per hectare;numeric;-1;2005;Mgha-1
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;

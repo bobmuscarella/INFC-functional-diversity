@@ -1,0 +1,12 @@
+fdname;fddesc;fddesc_en;datatype;tabdecod;refyear;fdpubb_16mm;munit
+idpunto;identificativo del punto di campionamento;NFI-plot number;character;-1;2005;1;-1
+idapm;identificativo dell'albero morto;dead tree identification number;character;-1;2005;1;-1
+SPcod;codice della specie ;species code;character;d2_05_SPcod;2005;1;-1
+VITcod;vitalita' /integrita' dell'albero morto;vitality/integrity code;character;d2_05_VITcod;2005;1;-1
+DEcod;codice del grado di decadimento;decay class ;character;d2_05_Decod;2005;1;-1
+FEha;fattore di espansione all'ettaro;expansion factor to hectare;numeric;-1;2005;1;-1
+Dapm;diametro a 1,30 m da terra dell'albero morto;DBH of the dead tree;numeric;-1;2005;1;cm
+Hapm;altezza totale dell'albero morto;total height of the dead tree;numeric;-1;2005;1;m
+Gapm;area basimetrica dell'albero morto;basal area of the dead tree;numeric;-1;2005;1;m2
+Vapm;volume fusto e rami grossi dell'albero morto;volume of the dead tree (stem+large branches) ;numeric;-1;2005;1;m3
+W4apm;fitomassa  (peso secco) arborea epigea dell'albero morto;dry weight of the above-ground biomass of the dead tree;numeric;-1;2005;1;Mg

@@ -1,0 +1,11 @@
+fdname;fddesc;fddesc_en;datatype;tabdecod;refyear;fdpubb_16mm;munit
+idpunto;identificativo del punto di campionamento;NFI-plot number;character;-1;2005;1;-1
+idce;identificativo della ceppaia;stump identification number;character;-1;2005;1;-1
+SPcod;codice della specie ;species code;character;d2_05_SPcod;2005;1;-1
+ETAce;eta' della ceppaia;time of the cut;character;d2_05_ETAce;2005;1;-1
+DEcod;codice del grado di decadimento;decay class ;character;d2_05_Decod;2005;1;-1
+FEha;fattore di espansione all'ettaro;expansion factor to hectare;numeric;-1;2005;1;-1
+Dce;diametro della ceppaia alla sezione di abbattimento;cut section diameter of the stump;numeric;-1;2005;1;cm
+Hce;altezza della ceppaia ;stump height;numeric;-1;2005;1;m
+Vce;volume della ceppaia residua;stump volume;numeric;-1;2005;1;m3
+Wce;necromassa  (peso secco) della ceppaia;dry weight of the stump;numeric;-1;2005;1;Mg

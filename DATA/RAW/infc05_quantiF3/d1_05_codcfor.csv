@@ -1,0 +1,22 @@
+fdname;fdcod;fddesc1;fddesc1_en
+codcfor;1;boschi di larice e cembro;larch and stone pine forests
+codcfor;2;boschi di abete rosso;norway spruce  forests
+codcfor;3;boschi di abete bianco;fir forests
+codcfor;4;pinete di pino silvestre e montano;scots pine and mountain pine forests
+codcfor;5;pinete di pino nero, laricio e loricato;black pines forests
+codcfor;6;pinete di pini mediterranei;mediterranean pines forests
+codcfor;7;altri boschi di conifere, pure o miste;other coniferous forests
+codcfor;8;faggete;beech forests
+codcfor;9;boschi a rovere, roverella e farnia;temperate oaks forests
+codcfor;10;cerrete, boschi di farnetto, fragno, vallonea;mediterranean oaks forests
+codcfor;11;castagneti;chestnut forests
+codcfor;12;ostrieti, carpineti;hornbeam and hophornbeam forests
+codcfor;13;boschi igrofili;hygrophilous forests        
+codcfor;14;altri boschi caducifogli;other deciduous broadleaved forests
+codcfor;15;leccete;holm oak forests
+codcfor;16;sugherete;coark oak forests
+codcfor;17;boschi di altre latifoglie sempreverdi;other deciduous broadleaved forests
+codcfor;18;pioppeti artificiali;poplar plantations
+codcfor;19;piantagioni di altre latifoglie;other broadleaved plantations
+codcfor;20;piantagioni di conifere;coniferous plantations
+codcfor;24;aree temporaneamente prive di soprassuolo per cause antropiche o naturali;temporarily unstocked area

@@ -1,0 +1,3 @@
+fdname;fdcod;fddesc1;fddesc1_en
+ETAce;1;tempo intercorso dal momento del taglio al momento del rilievo inferiore o uguale a 12 mesi;time span between the tree cut and the NFI survey in the plot shorter than or equal to 12 months
+ETAce;2;tempo intercorso dal momento del taglio al momento del rilievo superiore a  12 mesi;time span between the tree cut and the NFI survey in the plot longer than 12 months
