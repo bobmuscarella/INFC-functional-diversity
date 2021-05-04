@@ -370,10 +370,15 @@ CombinedDataset$FdispU <- FdispU$`DBFDUnweighted$FDis`[match(CombinedDataset$IDP
 CombinedDataset$FdispW <- FdispW$`DBFDWeighted$FDis`[match(CombinedDataset$IDPlot, FdispW$IDPlot)]
 CombinedDataset$RaoU <- RaoU$`DBFDUnweighted$RaoQ`[match(CombinedDataset$IDPlot, RaoU$IDPlot)]
 CombinedDataset$RaoW <- RaoW$`DBFDWeighted$RaoQ`[match(CombinedDataset$IDPlot, RaoW$IDPlot)]
-CombinedDataset$CWMU <- CWMU$Wood.density[match(CombinedDataset$IDPlot, CWMU$IDPlot)]
-CombinedDataset$CWMW <- CWMW$Wood.density[match(CombinedDataset$IDPlot, CWMW$IDPlot)]
-CombinedDataset$CWMU <- as.numeric(as.character(CombinedDataset$CWMU))
-CombinedDataset$CWMW <- as.numeric(as.character(CombinedDataset$CWMW))
+CombinedDataset$CWMW_StemDensity <- CWMW$StemDensity[match(CombinedDataset$IDPlot, CWMW$IDPlot)]
+CombinedDataset$CWMW_Seedmass <- CWMW$Seedmass[match(CombinedDataset$IDPlot, CWMW$IDPlot)]
+CombinedDataset$CWMW_SLA <- CWMW$SLA[match(CombinedDataset$IDPlot, CWMW$IDPlot)]
+CombinedDataset$CWMW_Height <- CWMW$Height[match(CombinedDataset$IDPlot, CWMW$IDPlot)]
+
+CombinedDataset$CWMW_StemDensity <- as.numeric(as.character(CombinedDataset$CWMW_StemDensity))
+CombinedDataset$CWMW_Seedmass <- as.numeric(as.character(CombinedDataset$CWMW_Seedmass))
+CombinedDataset$CWMW_SLA <- as.numeric(as.character(CombinedDataset$CWMW_SLA))
+CombinedDataset$CWMW_Height <- as.numeric(as.character(CombinedDataset$CWMW_Height))
 
 ### Environmental data
 CombinedDataset$MeanAnnualPrecipation <- Precipation$MeanAnnualPrecipation[match(CombinedDataset$IDPlot, Precipation$Plotdata.idpunto)]
@@ -408,6 +413,8 @@ summary(CombinedDataset)
 # Climate -> 19 NA and not every value is 0 or 1
 # Increment -> 565 NA
 # ORGC/WC/CNRatio -> 43 NA
+# delete Functional richness column due to NA values
+CombinedDataset <- CombinedDataset[, -c(2)]
 Combinedataset_NA <- na.omit(CombinedDataset)
 ## Total loose 601 plots
 ### Take out ID plot 124816 (Outlier)
