@@ -6,10 +6,10 @@ plot <- read.csv("DATA/RAW/infc05_quantiF3/t1_05_quantiF3.csv", sep=";")
 plot <- plot[plot$codcfor < 17,] # Filter unwanted Forest codes out
 
 # Add environmental data
-plot$vpd <- extract(raster("DATA/TerraClimate19812010_vpd.nc"), 
+plot$vpd <- extract(readRDS("DATA/vpd.RDS"), 
                     plot[,c("LON_ND_W84","LAT_ND_W84")])
 
-plot$soilmoisture <- extract(raster("DATA/TerraClimate19812010_soil.nc"), 
+plot$soilmoisture <- extract(readRDS("DATA/soil.RDS"),
                     plot[,c("LON_ND_W84","LAT_ND_W84")])
 
 # Load + extract climate classification raster layer
