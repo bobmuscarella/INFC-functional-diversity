@@ -1,3 +1,5 @@
 .DS_Store
 .Rproj.user
 .httr-oauth
+DATA/TerraClimate19812010_vpd.nc
+DATA/TerraClimate19812010_soil.nc
