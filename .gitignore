@@ -3,3 +3,5 @@
 .httr-oauth
 DATA/TerraClimate19812010_vpd.nc
 DATA/TerraClimate19812010_soil.nc
+.Rhistory
+DATA/RAW/.DS_Store
