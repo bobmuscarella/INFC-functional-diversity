@@ -5,12 +5,29 @@ library(readxl)
 plot <- read.csv("DATA/RAW/infc05_quantiF3/t1_05_quantiF3.csv", sep=";")
 plot <- plot[plot$codcfor < 17,] # Filter unwanted Forest codes out
 
-# Add environmental data
-plot$vpd <- extract(readRDS("DATA/vpd.RDS"), 
-                    plot[,c("LON_ND_W84","LAT_ND_W84")])
+# REMOVE PLOTS WITH SOME EXPLOITATION?
+# sum(plot$Vut_ha>0, na.rm=T)
+plot <- plot[plot$Vut_ha == 0 | is.na(plot$Vut_ha),]
 
-plot$soilmoisture <- extract(readRDS("DATA/soil.RDS"),
-                    plot[,c("LON_ND_W84","LAT_ND_W84")])
+# Remove unused columns in plot data
+plot <- plot[,colnames(plot) %in% c("idpunto","codcfor",
+                                   "LAT_ND_W84","LON_ND_W84",
+                                   "ICCapv_ha","ICWapv_ha","ICVapv_ha",
+                                   "Capv_ha","Capm_ha")]
+
+### Add environmental data
+plot$vpd <- raster::extract(raster("DATA/TerraClimate19812010_vpd_italy.nc"), 
+                            plot[,c("LON_ND_W84","LAT_ND_W84")])
+
+plot$soilmoisture <- raster::extract(raster("DATA/TerraClimate19812010_soil_italy.nc"), 
+                                     plot[,c("LON_ND_W84","LAT_ND_W84")])
+
+# Topographic 
+italy_elev <- raster::getData('alt',country="ITA", path = "DATA")
+plot$slope <- raster::extract(terrain(italy_elev, opt=c('slope'), unit='degrees'), 
+                           plot[,c("LON_ND_W84","LAT_ND_W84")])
+plot$aspect <- raster::extract(terrain(italy_elev, opt=c('aspect'), unit='degrees'), 
+                               plot[,c("LON_ND_W84","LAT_ND_W84")])
 
 # Load + extract climate classification raster layer
 load("DATA/ClimateB.Rdata")
@@ -22,51 +39,74 @@ tree <- tree[tree$idpunto %in% plot$idpunto,]
 
 # Read trait data
 trait <- as.data.frame(read_excel("DATA/TraitDataFrame.xlsx", 
-                                  sheet = "5 traits + 1NA", 
+                                  sheet = "AllTraits", 
                                   col_types = c("text", 
                                                 "text", 
                                                 "numeric", 
                                                 "numeric", 
                                                 "numeric", 
                                                 "numeric", 
+                                                "numeric",
+                                                "numeric",
                                                 "numeric"), na = "na"))
+# Remove vessel traits & species not in plots
+trait <- trait[trait$`Species Code` %in% tree$SPcod, -c(8:9)]
+rownames(trait) <- trait$`Species Code`
 
-# Match SPcod of the trait dataset to tree data
-tree <- tree[tree$SPcod %in% trait$`Species Code`,]
+# Log-transform some variables
+trait$SeedMass_log <- log(trait$SeedMass)
+trait$Height_log <- log(trait$Height)
+trait$SLA_log <- log(trait$SLA)
+
+# Subset to 5 traits and only 1 NA per row for Fdisp
+fd_trait <- trait[rowSums(is.na(trait[,c(3:7)])) < 2 , -c(1:4,6)]
 
 # Make a community abundance matrix
 tree_comm <- as.matrix(as.data.frame.matrix(table(tree$idpunto, tree$SPcod)))
-tree_comm_pa <- 1 * (tree_comm > 0)
-  
-# Confirm match of names in abundance matrix and trait data
-trait$`Species Code`==colnames(tree_comm)
-rownames(trait) <- trait$`Species Code`
-trait <- trait[,-c(1,2)]
-
-# Log-transform some variables
-trait$SeedMass_log <- log10(trait$SeedMass)
-trait$Height_log <- log10(trait$Height)
-trait$SLA_log <- log10(trait$SLA)
 
 # Functional indices
-dbfd <- FD::dbFD(trait[,!colnames(trait) %in% c("SeedMass","Height","SLA")], 
-                 tree_comm, w.abun=TRUE, corr = "cailliez")
-
+fd_tree_comm <- tree_comm[,colnames(tree_comm) %in% rownames(fd_trait)]
+fd_tree_comm <- fd_tree_comm[rowSums(fd_tree_comm) > 0,]
+dbfd <- FD::dbFD(fd_trait, fd_tree_comm, w.abun=T, corr = "cailliez", 
+                 calc.CWM=F, calc.FRic=F, calc.FGR=F, calc.FDiv=F)
 dbfd <- do.call(cbind, dbfd)
 plot <- cbind(plot, dbfd[match(plot$idpunto, rownames(dbfd)),])
 
+# Community-mean traits
+cwm_tree_comm <- tree_comm[,colnames(tree_comm) %in% rownames(trait)]
+cwm_tree_comm <- cwm_tree_comm[rowSums(cwm_tree_comm) > 0,]
+cwm <- FD::functcomp(trait[,c(3:7)], cwm_tree_comm)
+colnames(cwm) <- paste0("cwm_", colnames(cwm))
+plot <- cbind(plot, cwm[match(plot$idpunto, rownames(cwm)),])
 
-### PLOTTING 
-# 
-# library(maps)
-# map(xlim=c(5,20), ylim=c(35,48))
-# axis(1); axis(2)
-# points(plot[,c("LON_ND_W84","LAT_ND_W84")], col=cut(plot$FDis,5))
-# 
-# plot(plot$vpd, plot$CWM.XylemVulnerability, 
-#      col=plot$climate_classification+1, cex=0.5)
+head(plot)
 
 
+
+
+
+
+# VARIABLES OF INTEREST
+
+# Annual increment
+plot$ICCapv_ha # Current annual volume increment of living trees
+plot$ICWapv_ha # Dry weight correspondent to the current annual volume increment of living trees
+plot$ICVapv_ha # Organic carbon stock correspondent to the current annual volume increment of living trees
+
+# Stock (sum?)
+plot$Capv_ha # Organic carbon stock of total above-ground biomass of living trees
+plot$Capm_ha # Organic carbon stock of the total above-ground biomass of standing dead trees
+
+# Climate
+Forest type
+Climate classification
+VPD
+
+# How are functional composition (CWM) and diversity (FDisp) related to climate?
+# Do plots with higher *response variable* have higher/lower CWM values?
+# Do plots with higher *response variable* have higher functional diversity?
+# Does this relationship differ between Mediterranean and temperate climates?
+# Do other climate variables mediate the relationship between FD and *response*?
 
 
 
