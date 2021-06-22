@@ -1,0 +1,3 @@
+<?xml version="1.0"?>
+<!--<!DOCTYPE metadata SYSTEM "http://www.esri.com/metadata/esriprof80.dtd">-->
+<metadata xml:lang="it"><Esri><MetaID>{619BF2AE-88DA-478F-8FC7-0D5BCD5A43B3}</MetaID><CreaDate>20161214</CreaDate><CreaTime>13104200</CreaTime><SyncOnce>TRUE</SyncOnce><DataProperties><lineage><Process Name="Con_1" ToolSource="C:\Programmi\ArcGIS\ArcToolBox\Toolboxes\Spatial Analyst Tools.tbx\Con" Date="20161214" Time="131042">Con "C:\Documents and Settings\Cartografia\Documenti\Google Drive\Bioclimatic maps\2016\maskalpi2" mb "D:\Buck-up\wordclim\ITAclim\2016\tagliate\suppl data\mb" # "VALUE = 0"</Process></lineage></DataProperties></Esri></metadata>
