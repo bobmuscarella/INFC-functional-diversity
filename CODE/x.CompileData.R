@@ -24,14 +24,31 @@ plot$soilmoisture <- raster::extract(raster("DATA/TerraClimate19812010_soil_ital
 
 # Topographic 
 italy_elev <- raster::getData('alt',country="ITA", path = "DATA")
-plot$slope <- raster::extract(terrain(italy_elev, opt=c('slope'), unit='degrees'), 
-                           plot[,c("LON_ND_W84","LAT_ND_W84")])
-plot$aspect <- raster::extract(terrain(italy_elev, opt=c('aspect'), unit='degrees'), 
-                               plot[,c("LON_ND_W84","LAT_ND_W84")])
+slp <- terrain(italy_elev, opt=c('slope'), unit='degrees')
+asp <- terrain(italy_elev, opt=c('aspect'), unit='degrees')
+plot$slope <- raster::extract(slp, plot[,c("LON_ND_W84","LAT_ND_W84")])
+
+pts <- SpatialPoints(plot[is.na(plot$slope),c("LON_ND_W84","LAT_ND_W84")], 
+                     proj4string = crs(slp))
+
+library(rSDM)
+pts_new <- points2nearestcell(locs = pts, ras = slp)
+plot$slope[is.na(plot$slope)] <- raster::extract(slp, pts_new)
+
+pts <- SpatialPoints(plot[is.na(plot$aspect),c("LON_ND_W84","LAT_ND_W84")], 
+                     proj4string = crs(asp))
+pts_new <- points2nearestcell(locs = pts, ras = asp)
+plot$aspect[is.na(plot$aspect)] <- raster::extract(asp, pts_new)
 
 # Load + extract climate classification raster layer
-load("DATA/ClimateB.Rdata")
-plot$climate_classification <- raster::extract(ClimateB, plot[,c("LON_ND_W84","LAT_ND_W84")])
+cc <- projectRaster(raster("DATA/climateclassification/hdr.adf"), italy_elev)
+plot$climate_classification <- raster::extract(cc, plot[,c("LON_ND_W84","LAT_ND_W84")])
+
+# Fix points with NA values for climate layers
+pts <- SpatialPoints(plot[is.na(plot$climate_classification),c("LON_ND_W84","LAT_ND_W84")],
+                     proj4string = crs(cc))
+pts_new <- points2nearestcell(locs = pts, ras = cc)
+plot$climate_classification[is.na(plot$climate_classification)] <- raster::extract(cc, pts_new)
 
 # Read tree data
 tree <- read.table("DATA/RAW/infc05_apv/t2_05_apv.csv", sep=";", header=T)
