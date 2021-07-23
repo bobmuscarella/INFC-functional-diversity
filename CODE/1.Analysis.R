@@ -47,6 +47,7 @@ ord <- prcomp( ~ VPD  +
 summary(ord)
 
 library("factoextra")
+library("ggpubr")
 ### visualize the variables used in the PCA
 A1 <- fviz_pca_var(ord, col.var="contrib",gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),repel = TRUE # Avoid text overlapping)
 )
@@ -276,6 +277,7 @@ ggplot(data = data, aes(x = soilmoisture, y = ProportionConifer)) + geom_point(c
 
 
 ### Check is species richness is affected by climate like shown by Marco and Angelo
+library(data.table)
 
 Richness_tree_comm <- tree_comm[,colnames(tree_comm) %in% rownames(trait)]
 Richness_tree_comm <- Richness_tree_comm[rowSums(Richness_tree_comm) > 0,]
