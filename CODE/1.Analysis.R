@@ -241,8 +241,7 @@ summary(Fdis2)
 ggplot(data = data, aes(x = soilmoisture, y = FDis)) + geom_point(color='red') + geom_smooth(method = "lm", se = TRUE)
 
 ### create conifer column
-Conifer <- read_excel("C:/Users/roell/OneDrive/Bureaublad/Conifer.xlsx", 
-                      col_types = c("numeric", "skip", "text"))
+Conifer <- as.data.frame(readxl::read_excel("DATA/conifer.xlsx",col_types = c("numeric", "skip", "text")))
 
 tree$conifer <- Conifer$`Conifer (T/F)`[match(tree$SPcod, Conifer$`Species Code`)]
 TRUE. <- subset(tree, conifer == "T")
