@@ -301,6 +301,80 @@ summary(RichnessB)
 ggplot(data = data, aes(x = soilmoisture, y = SpeciesRichness)) + geom_point(color='red') + geom_smooth(method = "lm", se = TRUE)
 
 
+######################################################################
+########                                                     #########
+########               Structural equation models            #########
+########                                                     #########
+######################################################################
+
+library(lavaan)
+Seedmass_vpd <- '
+  # regressions
+     ICCapv_ha ~ 1 + vpd + cwm_SeedMass_log + FDis_SeedMass
+     FDis_SeedMass ~ 1 + vpd
+     cwm_SeedMass_log ~ 1 + vpd
+'
+fit1 <- sem(Seedmass_vpd, data=data)
+summary(fit1, fit.measures=TRUE)
+
+Height_vpd <- '
+  # regressions
+     ICCapv_ha ~ 1 + vpd + cwm_Height_log + FDis_Height
+     FDis_Height ~ 1 + vpd
+     cwm_Height_log ~ 1 + vpd
+'
+fit2 <- sem(Height_vpd, data=data)
+summary(fit2, fit.measures=TRUE)
+
+SLA_vpd <- '
+  # regressions
+     ICCapv_ha ~ 1 + vpd + cwm_SLA_log + FDis_SLA
+     FDis_SLA ~ 1 + vpd
+     cwm_SLA_log ~ 1 + vpd
+'
+fit3 <- sem(SLA_vpd, data=data)
+summary(fit3, fit.measures=TRUE)
+
+StemDensity_vpd <- '
+  # regressions
+     ICCapv_ha ~ 1 + vpd + cwm_StemDensity + FDis_StemDensity
+     FDis_StemDensity ~ 1 + vpd
+     cwm_StemDensity ~ 1 + vpd
+'
+fit4 <- sem(StemDensity_vpd, data=data)
+summary(fit4, fit.measures=TRUE)
+
+XylemVulnerability_vpd <- '
+  # regressions
+     ICCapv_ha ~ 1 + vpd + cwm_XylemVulnerability + FDis_XylemVulnerability
+     FDis_XylemVulnerability ~ 1 + vpd
+     cwm_XylemVulnerability ~ 1 + vpd
+'
+fit5 <- sem(XylemVulnerability_vpd, data=data)
+summary(fit5, fit.measures=TRUE)
+
+All_vpd <- '
+  # regressions
+     ICCapv_ha ~ 1 + vpd + cwm_Dim1 + FDis_All
+     FDis_All ~ 1 + vpd
+     cwm_Dim1 ~ 1 + vpd
+'
+fit6 <- sem(All_vpd, data=data)
+summary(fit6, fit.measures=TRUE)
+
+All2_vpd <- '
+  # regressions
+     ICCapv_ha ~ 1 + vpd + cwm_Dim2 + FDis_All
+     FDis_All ~ 1 + vpd
+     cwm_Dim2 ~ 1 + vpd
+'
+fit7 <- sem(All2_vpd, data=data)
+summary(fit7, fit.measures=TRUE)
+
+
+
+
+
 
 
 
