@@ -1,7 +1,7 @@
 library(raster)
 library(readxl)
 
-# Read plot data
+# Read plot data ## WARNING !!: never assign the object name (plot) as a function name (plot)
 plot <- read.csv("DATA/RAW/infc05_quantiF3/t1_05_quantiF3.csv", sep=";")
 plot <- plot[plot$codcfor < 17,] # Filter unwanted Forest codes out
 
