@@ -3,6 +3,20 @@
 ####                  Load R packages                   ####
 #                                                          #
 ##%######################################################%##
+resetPar <- function() {
+  dev.new()
+  op <- par(no.readonly = TRUE)
+  dev.off()
+  op
+}
+par(resetPar())
+
+folder_names <- c( "output_data", 'output_plot')
+#Check if the folders  exist in the current directory, if not creates it
+for (i in folder_names){
+  ifelse(!dir.exists(i), dir.create(i), print("Folder exists already"))
+}
+
 ipak <- function(pkg){
   new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
   if (length(new.pkg)) 
