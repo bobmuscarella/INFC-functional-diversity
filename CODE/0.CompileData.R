@@ -347,19 +347,19 @@ df <- cbind(df, cwm_PCA[match(df$idpunto, rownames(cwm)),])
 
 # VARIABLES OF INTEREST
 
-# Annual increment
-df$ICCapv_ha # Current annual volume increment of living trees
-df$ICWapv_ha # Dry weight correspondent to the current annual volume increment of living trees
-df$ICVapv_ha # Organic carbon stock correspondent to the current annual volume increment of living trees
+# # Annual increment
+# df$ICCapv_ha # Current annual volume increment of living trees
+# df$ICWapv_ha # Dry weight correspondent to the current annual volume increment of living trees
+# df$ICVapv_ha # Organic carbon stock correspondent to the current annual volume increment of living trees
 
-# Stock (sum?)
-df$Capv_ha # Organic carbon stock of total above-ground biomass of living trees
-df$Capm_ha # Organic carbon stock of the total above-ground biomass of standing dead trees
+# # Stock (sum?)
+# df$Capv_ha # Organic carbon stock of total above-ground biomass of living trees
+# df$Capm_ha # Organic carbon stock of the total above-ground biomass of standing dead trees
 
-# Climate
-Forest type
-Climate classification
-VPD
+# # Climate
+# Forest type
+# Climate classification
+# VPD
 
 # How are functional composition (CWM) and diversity (FDisp) related to climate?
 # Do plots with higher *response variable* have higher/lower CWM values?
