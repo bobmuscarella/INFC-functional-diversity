@@ -27,7 +27,7 @@ FDis_SeedMass_log ~ vpd
 
 
 fit1=lavaan::cfa(modA, fixed.x=F, data=dataset, estimator = "MLR", likelihood = "wishart", missing = "FIML", std.lv=TRUE) # , se = "bootstrap" 
-summary(fit1, fit.measures=TRUE)
+summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 semPaths(fit1)
 parameterEstimates(fit1)
 modificationIndices(fit1, minimum.value = 10)
@@ -92,7 +92,7 @@ modB <- '
   '
 
 fit1 <- lavaan::sem(modB, data=dataset)
-summary(fit1, fit.measures=TRUE)
+summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 parameterEstimates(fit1)
 ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
 cfi_modb<-ft$cfi
@@ -152,7 +152,7 @@ modC <- '
   '
 
 fit1 <- lavaan::sem(modC, data=dataset)
-summary(fit1, fit.measures=TRUE)
+summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 parameterEstimates(fit1)
 ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
 cfi_modc<-ft$cfi
@@ -213,7 +213,7 @@ modD <- '
   '
 
 fit1 <- lavaan::sem(modD, data=dataset)
-summary(fit1, fit.measures=TRUE)
+summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 parameterEstimates(fit1)
 ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
 cfi_modd<-ft$cfi
@@ -275,7 +275,7 @@ modE <- '
   '
 
 fit1 <- lavaan::sem(modE, data=dataset)
-summary(fit1, fit.measures=TRUE)
+summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 parameterEstimates(fit1)
 ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
 cfi_mode<-ft$cfi
@@ -338,7 +338,7 @@ modF <- '
   '
 
 fit1 <- lavaan::sem(modF, data=dataset)
-summary(fit1, fit.measures=TRUE)
+summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 parameterEstimates(fit1)
 ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
 cfi_modf<-ft$cfi
@@ -399,7 +399,7 @@ modG <- '
   '
 
 fit1 <- lavaan::sem(modG, data=dataset)
-summary(fit1, fit.measures=TRUE)
+summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 parameterEstimates(fit1)
 ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
 cfi_modg<-ft$cfi
