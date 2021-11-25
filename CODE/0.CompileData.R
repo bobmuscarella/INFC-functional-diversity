@@ -3,6 +3,20 @@
 ####                  Load R packages                   ####
 #                                                          #
 ##%######################################################%##
+resetPar <- function() {
+  dev.new()
+  op <- par(no.readonly = TRUE)
+  dev.off()
+  op
+}
+par(resetPar())
+
+folder_names <- c( "output_data", 'output_plot')
+#Check if the folders  exist in the current directory, if not creates it
+for (i in folder_names){
+  ifelse(!dir.exists(i), dir.create(i), print("Folder exists already"))
+}
+
 ipak <- function(pkg){
   new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
   if (length(new.pkg)) 
@@ -354,6 +368,6 @@ VPD
 # Do other climate variables mediate the relationship between FD and *response*?
 
 =======
-write.csv(df, "DATA/Data_for_analysis.csv", row.names=F)
+write.csv(df, "output_data/Data_for_analysis.csv", row.names=F)
 >>>>>>> ec1db9416573693eeced8419620e4924a4be5069:CODE/0.CompileData.R
 
