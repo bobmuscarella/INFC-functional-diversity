@@ -3,19 +3,6 @@
 ####                  Load R packages                   ####
 #                                                          #
 ##%######################################################%##
-resetPar <- function() {
-  dev.new()
-  op <- par(no.readonly = TRUE)
-  dev.off()
-  op
-}
-par(resetPar())
-
-folder_names <- c('output_plot')
-for (i in folder_names){
-  ifelse(!dir.exists(i), dir.create(i), print("Folder exists already"))
-}
-
 ipak <- function(pkg){
   new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
   if (length(new.pkg)) 
@@ -339,27 +326,34 @@ colnames(cwm_PCA) <- paste0("cwm_", colnames(cwm_PCA))
 df <- cbind(df, cwm_PCA[match(df$idpunto, rownames(cwm)),])
 
 
+<<<<<<< HEAD:CODE/x.CompileData.R
+
+
 
 
 # VARIABLES OF INTEREST
 
-# # Annual increment
-# df$ICCapv_ha # Current annual volume increment of living trees
-# df$ICWapv_ha # Dry weight correspondent to the current annual volume increment of living trees
-# df$ICVapv_ha # Organic carbon stock correspondent to the current annual volume increment of living trees
+# Annual increment
+df$ICCapv_ha # Current annual volume increment of living trees
+df$ICWapv_ha # Dry weight correspondent to the current annual volume increment of living trees
+df$ICVapv_ha # Organic carbon stock correspondent to the current annual volume increment of living trees
 
-# # Stock (sum?)
-# df$Capv_ha # Organic carbon stock of total above-ground biomass of living trees
-# df$Capm_ha # Organic carbon stock of the total above-ground biomass of standing dead trees
+# Stock (sum?)
+df$Capv_ha # Organic carbon stock of total above-ground biomass of living trees
+df$Capm_ha # Organic carbon stock of the total above-ground biomass of standing dead trees
 
-## Climate
-# Forest type
-# Climate classification
-# VPD
+# Climate
+Forest type
+Climate classification
+VPD
 
 # How are functional composition (CWM) and diversity (FDisp) related to climate?
 # Do plots with higher *response variable* have higher/lower CWM values?
 # Do plots with higher *response variable* have higher functional diversity?
 # Does this relationship differ between Mediterranean and temperate climates?
 # Do other climate variables mediate the relationship between FD and *response*?
+
+=======
+write.csv(df, "DATA/Data_for_analysis.csv", row.names=F)
+>>>>>>> ec1db9416573693eeced8419620e4924a4be5069:CODE/0.CompileData.R
 
