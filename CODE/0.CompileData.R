@@ -11,7 +11,7 @@ resetPar <- function() {
 }
 par(resetPar())
 
-folder_names <- c( "output_data", 'output_plot')
+folder_names <- c( "output_data", 'output_plot','output_tab')
 #Check if the folders  exist in the current directory, if not creates it
 for (i in folder_names){
   ifelse(!dir.exists(i), dir.create(i), print("Folder exists already"))

@@ -28,7 +28,7 @@ FDis_SeedMass_log ~ vpd
 
 fit1=lavaan::cfa(modA, fixed.x=F, data=dataset, estimator = "MLR", likelihood = "wishart", missing = "FIML", std.lv=TRUE) # , se = "bootstrap" 
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
-semPaths(fit1)
+semPaths(fit1,whatLabels = "std", layout = "tree2", intercepts = F, nCharNodes = 7, sizeMan = 5,sizeLat = 8,curvePivot = T,ask = F)
 parameterEstimates(fit1)
 modificationIndices(fit1, minimum.value = 10)
 ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
