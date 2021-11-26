@@ -641,7 +641,7 @@ text(usr[1],
 dev.off()
 
 png(
-  "output_plot/Mod_f.jpg",
+  "output_plot/Mod_g.jpg",
   width = 5,
   height = 5,
   units = 'in',
