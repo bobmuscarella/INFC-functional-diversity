@@ -25,8 +25,7 @@ ipak(packages)
 plot <- read.csv("DATA/RAW/infc05_quantiF3/t1_05_quantiF3.csv", sep=";")
 plot <- plot[plot$codcfor < 17,] # Filter unwanted Forest codes out
 
-# SHOULD WE REMOVE PLOTS WITH ANY RECENT EXPLOITATION?
-# sum(plot$Vut_ha>0, na.rm=T)
+# Remove plots with recent explotation
 plot <- plot[plot$Vut_ha == 0 | is.na(plot$Vut_ha),]
 
 # Remove unused columns in plot data
