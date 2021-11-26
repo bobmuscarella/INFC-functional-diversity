@@ -71,6 +71,42 @@ library(semptools)
 p_pa2_moda <- mark_sig(p_pa, fit1)
 plot(p_pa2_moda)
 
+semTable(
+  fit1,
+  paramSets = "all",
+  paramSetLabels = c(
+    "composites" = "Composites",
+    "loadings" = "Factor Loadings",
+    "slopes" = "Regression Slopes",
+    "intercepts" = "Intercepts",
+    "means" = "Means",
+    "residualvariances" = "Residual Variances",
+    "residualcovariances" = "Residual Covariances",
+    "variances" = "Variances",
+    "latentvariances" = "Latent Variances",
+    "latentcovariances" = "Latent Covariances",
+    "latentmeans" = "Latent Intercepts",
+    "thresholds" = "Thresholds",
+    "constructed" = "Constructed",
+    "fits" = "Fit Indices"
+  ),
+  columns = c("est", "se", "z", "p", "rsquare"
+              #"estse", "eststars", "estsestars"
+  ),
+  columnLabels =  c(
+    "est" = "Estimate",
+    se = "Std. Err.",
+    z = "z",
+    p = "p",
+    rsquare = "R Square" #, estse = "Estimate(Std.Err.)", eststars = "Estimate", estsestars = "Estimate(Std.Err.)"
+  ),
+  
+  fits = c("tli", "chisq", "rmsea"),
+  fitLabels = c(tli = "TLI", chisq = "chisq"),
+  type = "html",
+  file = ("output_tab/moda"),
+  print.results = T
+)
 
 
 ##%######################################################%##
@@ -133,6 +169,44 @@ library(semptools)
 p_pa2_modb <- mark_sig(p_pa, fit1)
 plot(p_pa2_modb)
 
+semTable(
+  fit1,
+  paramSets = "all",
+  paramSetLabels = c(
+    "composites" = "Composites",
+    "loadings" = "Factor Loadings",
+    "slopes" = "Regression Slopes",
+    "intercepts" = "Intercepts",
+    "means" = "Means",
+    "residualvariances" = "Residual Variances",
+    "residualcovariances" = "Residual Covariances",
+    "variances" = "Variances",
+    "latentvariances" = "Latent Variances",
+    "latentcovariances" = "Latent Covariances",
+    "latentmeans" = "Latent Intercepts",
+    "thresholds" = "Thresholds",
+    "constructed" = "Constructed",
+    "fits" = "Fit Indices"
+  ),
+  columns = c("est", "se", "z", "p", "rsquare"
+              #"estse", "eststars", "estsestars"
+  ),
+  columnLabels =  c(
+    "est" = "Estimate",
+    se = "Std. Err.",
+    z = "z",
+    p = "p",
+    rsquare = "R Square" #, estse = "Estimate(Std.Err.)", eststars = "Estimate", estsestars = "Estimate(Std.Err.)"
+  ),
+  
+  fits = c("tli", "chisq", "rmsea"),
+  fitLabels = c(tli = "TLI", chisq = "chisq"),
+  type = "html",
+  file = ("output_tab/modb"),
+  print.results = T
+)
+
+
 ##%######################################################%##
 #                                                          #
 ####                       Mod. C                       ####
@@ -194,6 +268,43 @@ library(semptools)
 p_pa2_modc <- mark_sig(p_pa, fit1)
 plot(p_pa2_modc)
 
+semTable(
+  fit1,
+  paramSets = "all",
+  paramSetLabels = c(
+    "composites" = "Composites",
+    "loadings" = "Factor Loadings",
+    "slopes" = "Regression Slopes",
+    "intercepts" = "Intercepts",
+    "means" = "Means",
+    "residualvariances" = "Residual Variances",
+    "residualcovariances" = "Residual Covariances",
+    "variances" = "Variances",
+    "latentvariances" = "Latent Variances",
+    "latentcovariances" = "Latent Covariances",
+    "latentmeans" = "Latent Intercepts",
+    "thresholds" = "Thresholds",
+    "constructed" = "Constructed",
+    "fits" = "Fit Indices"
+  ),
+  columns = c("est", "se", "z", "p", "rsquare"
+              #"estse", "eststars", "estsestars"
+  ),
+  columnLabels =  c(
+    "est" = "Estimate",
+    se = "Std. Err.",
+    z = "z",
+    p = "p",
+    rsquare = "R Square" #, estse = "Estimate(Std.Err.)", eststars = "Estimate", estsestars = "Estimate(Std.Err.)"
+  ),
+  
+  fits = c("tli", "chisq", "rmsea"),
+  fitLabels = c(tli = "TLI", chisq = "chisq"),
+  type = "html",
+  file = ("output_tab/modc"),
+  print.results = T
+)
+
 ##%######################################################%##
 #                                                          #
 ####                       Mod. D                       ####
@@ -254,6 +365,43 @@ p_pa$graphAttributes$Nodes$labels <-
 library(semptools)
 p_pa2_modd <- mark_sig(p_pa, fit1)
 plot(p_pa2_modd)
+
+semTable(
+  fit1,
+  paramSets = "all",
+  paramSetLabels = c(
+    "composites" = "Composites",
+    "loadings" = "Factor Loadings",
+    "slopes" = "Regression Slopes",
+    "intercepts" = "Intercepts",
+    "means" = "Means",
+    "residualvariances" = "Residual Variances",
+    "residualcovariances" = "Residual Covariances",
+    "variances" = "Variances",
+    "latentvariances" = "Latent Variances",
+    "latentcovariances" = "Latent Covariances",
+    "latentmeans" = "Latent Intercepts",
+    "thresholds" = "Thresholds",
+    "constructed" = "Constructed",
+    "fits" = "Fit Indices"
+  ),
+  columns = c("est", "se", "z", "p", "rsquare"
+              #"estse", "eststars", "estsestars"
+  ),
+  columnLabels =  c(
+    "est" = "Estimate",
+    se = "Std. Err.",
+    z = "z",
+    p = "p",
+    rsquare = "R Square" #, estse = "Estimate(Std.Err.)", eststars = "Estimate", estsestars = "Estimate(Std.Err.)"
+  ),
+  
+  fits = c("tli", "chisq", "rmsea"),
+  fitLabels = c(tli = "TLI", chisq = "chisq"),
+  type = "html",
+  file = ("output_tab/modd"),
+  print.results = T
+)
 
 ##%######################################################%##
 #                                                          #
@@ -317,6 +465,42 @@ library(semptools)
 p_pa2_mode <- mark_sig(p_pa, fit1)
 plot(p_pa2_mode)
 
+semTable(
+  fit1,
+  paramSets = "all",
+  paramSetLabels = c(
+    "composites" = "Composites",
+    "loadings" = "Factor Loadings",
+    "slopes" = "Regression Slopes",
+    "intercepts" = "Intercepts",
+    "means" = "Means",
+    "residualvariances" = "Residual Variances",
+    "residualcovariances" = "Residual Covariances",
+    "variances" = "Variances",
+    "latentvariances" = "Latent Variances",
+    "latentcovariances" = "Latent Covariances",
+    "latentmeans" = "Latent Intercepts",
+    "thresholds" = "Thresholds",
+    "constructed" = "Constructed",
+    "fits" = "Fit Indices"
+  ),
+  columns = c("est", "se", "z", "p", "rsquare"
+              #"estse", "eststars", "estsestars"
+  ),
+  columnLabels =  c(
+    "est" = "Estimate",
+    se = "Std. Err.",
+    z = "z",
+    p = "p",
+    rsquare = "R Square" #, estse = "Estimate(Std.Err.)", eststars = "Estimate", estsestars = "Estimate(Std.Err.)"
+  ),
+  
+  fits = c("tli", "chisq", "rmsea"),
+  fitLabels = c(tli = "TLI", chisq = "chisq"),
+  type = "html",
+  file = ("output_tab/mode"),
+  print.results = T
+)
 
 
 ##%######################################################%##
@@ -380,6 +564,42 @@ library(semptools)
 p_pa2_modf <- mark_sig(p_pa, fit1)
 plot(p_pa2_modf)
 
+semTable(
+  fit1,
+  paramSets = "all",
+  paramSetLabels = c(
+    "composites" = "Composites",
+    "loadings" = "Factor Loadings",
+    "slopes" = "Regression Slopes",
+    "intercepts" = "Intercepts",
+    "means" = "Means",
+    "residualvariances" = "Residual Variances",
+    "residualcovariances" = "Residual Covariances",
+    "variances" = "Variances",
+    "latentvariances" = "Latent Variances",
+    "latentcovariances" = "Latent Covariances",
+    "latentmeans" = "Latent Intercepts",
+    "thresholds" = "Thresholds",
+    "constructed" = "Constructed",
+    "fits" = "Fit Indices"
+  ),
+  columns = c("est", "se", "z", "p", "rsquare"
+              #"estse", "eststars", "estsestars"
+  ),
+  columnLabels =  c(
+    "est" = "Estimate",
+    se = "Std. Err.",
+    z = "z",
+    p = "p",
+    rsquare = "R Square" #, estse = "Estimate(Std.Err.)", eststars = "Estimate", estsestars = "Estimate(Std.Err.)"
+  ),
+  
+  fits = c("tli", "chisq", "rmsea"),
+  fitLabels = c(tli = "TLI", chisq = "chisq"),
+  type = "html",
+  file = ("output_tab/modf"),
+  print.results = T
+)
 
 ##%######################################################%##
 #                                                          #
@@ -441,6 +661,42 @@ library(semptools)
 p_pa2_modg <- mark_sig(p_pa, fit1)
 plot(p_pa2_modg)
 
+semTable(
+  fit1,
+  paramSets = "all",
+  paramSetLabels = c(
+    "composites" = "Composites",
+    "loadings" = "Factor Loadings",
+    "slopes" = "Regression Slopes",
+    "intercepts" = "Intercepts",
+    "means" = "Means",
+    "residualvariances" = "Residual Variances",
+    "residualcovariances" = "Residual Covariances",
+    "variances" = "Variances",
+    "latentvariances" = "Latent Variances",
+    "latentcovariances" = "Latent Covariances",
+    "latentmeans" = "Latent Intercepts",
+    "thresholds" = "Thresholds",
+    "constructed" = "Constructed",
+    "fits" = "Fit Indices"
+  ),
+  columns = c("est", "se", "z", "p", "rsquare"
+              #"estse", "eststars", "estsestars"
+  ),
+  columnLabels =  c(
+    "est" = "Estimate",
+    se = "Std. Err.",
+    z = "z",
+    p = "p",
+    rsquare = "R Square" #, estse = "Estimate(Std.Err.)", eststars = "Estimate", estsestars = "Estimate(Std.Err.)"
+  ),
+  
+  fits = c("tli", "chisq", "rmsea"),
+  fitLabels = c(tli = "TLI", chisq = "chisq"),
+  type = "html",
+  file = ("output_tab/modg"),
+  print.results = T
+)
 
 ##%######################################################%##
 #                                                          #
