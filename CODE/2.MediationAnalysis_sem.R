@@ -63,8 +63,8 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
-    expression(FDis[SeedMass]),
-    expression(CWM[SeedMass]),
+        expression(CWM[SeedMass]),
+expression(FDis[SeedMass]),
     expression(VPD)
   ))
 library(semptools)
@@ -161,8 +161,8 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
-    expression(FDis[Height]),
-    expression(CWM[Height]),
+        expression(CWM[Height]),
+expression(FDis[Height]),
     expression(VPD)
   ))
 library(semptools)
@@ -260,8 +260,8 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
-    expression(FDis[SLA]),
-    expression(CWM[SLA]),
+        expression(CWM[SLA]),
+expression(FDis[SLA]),
     expression(VPD)
   ))
 library(semptools)
@@ -358,8 +358,8 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
-    expression(FDis[WD]),
-    expression(CWM[WD]),
+        expression(CWM[WD]),
+expression(FDis[WD]),
     expression(VPD)
   ))
 library(semptools)
@@ -457,8 +457,8 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
-    expression(FDis[Xylem]),
-    expression(CWM[Xylem]),
+       expression(CWM[Xylem]),
+ expression(FDis[Xylem]),
     expression(VPD)
   ))
 library(semptools)
@@ -556,8 +556,8 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
-    expression(FDis[all]),
-    expression(CWM[Dim1]),
+        expression(CWM[Dim1]),
+expression(FDis[all]),
     expression(VPD)
   ))
 library(semptools)
@@ -653,8 +653,8 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
-    expression(FDis[all]),
-    expression(CWM[Dim2]),
+        expression(CWM[Dim2]),
+expression(FDis[all]),
     expression(VPD)
   ))
 library(semptools)
