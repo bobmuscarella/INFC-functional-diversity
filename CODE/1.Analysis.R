@@ -1,6 +1,9 @@
+# load libraries
+library("factoextra")
+library("ggpubr")
+
 # Load data
-data <- read.csv("DATA/Data_for_analysis.csv")
-head(data)
+dataset <- df
 
 ### VARIABLES OF INTEREST
 ### Annual increment
@@ -39,23 +42,27 @@ head(data)
 #############################
 
 ### Option 1: Create one environmental gradient and plot versus CWM/Fdis
-VPD <- data$vpd
-Soil_Moisture <- data$soilmoisture
+VPD <- dataset$vpd
+Soil_Moisture <- dataset$soilmoisture
 ord <- prcomp( ~ VPD  +
                  Soil_Moisture,
                center = TRUE, scale = TRUE)
 summary(ord)
 
-library("factoextra")
-library("ggpubr")
+
 ### visualize the variables used in the PCA
-A1 <- fviz_pca_var(ord, col.var="contrib",gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),repel = TRUE # Avoid text overlapping)
-)
+A1 <-
+  fviz_pca_var(
+    ord,
+    col.var = "contrib",
+    gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+    repel = TRUE # Avoid text overlapping)
+  )
 
 ###  visualize results for individuals
 B1 <- fviz_pca_ind(ord,
-                   label = "none", # hide individual labels
-)
+                   label = "none" # hide individual labels
+                   )
 
 ### Put the plots together
 PCAplot1 <- ggarrange(A1, B1, labels = c("A", "B"), ncol = 2, nrow = 1)
@@ -64,57 +71,55 @@ PCAplot1
 ### Coordinates for individuals and plotting it against soil moisture
 res.ind <- get_pca_ind(ord)
 Coord <- res.ind$coord
+head(Coord)
+# get dimensions
+Dim1 <- Coord[,1]
+Dim2 <- Coord[,2]
 
-Dim1 <- Coord[,-c(2)]
-Dim2 <- Coord[,-c(1)]
-
-data$Dim1 <- Dim1
-data$Dim2 <- Dim2
+dataset$Dim1 <- Dim1
+dataset$Dim2 <- Dim2
 
 ## Plotting relationships out
+SLA.mod <- lm(cwm_SLA_log ~ Dim2, data=dataset)
+summary(SLA.mod)
+plot(cwm_SLA_log~Dim2, data=dataset, col='red', pch='.')
+abline(SLA.mod)
 
-SLA <- lm(data$cwm_SLA_log ~ data$Dim2)
-summary(SLA)
+Wooddensity.mod <- lm(cwm_StemDensity ~ Dim2, data = dataset)
+summary(Wooddensity.mod)
+plot(cwm_StemDensity~Dim2, data=dataset, col='red', pch='.')
+abline(Wooddensity.mod)
 
-ggplot(data = data, aes(x = Dim2, y = cwm_SLA_log)) + geom_point(color='red') + geom_smooth(method = "lm", se = TRUE)
+Height.mod <- lm(cwm_Height_log ~ Dim2, data=dataset)
+summary(Height.mod)
+plot(cwm_Height_log~Dim2, data=dataset, col='red', pch='.')
+abline(Height.mod)
 
-Wooddensity <- lm(data$cwm_StemDensity ~ plot$Dim2)
-summary(Wooddensity)
+SeedMass.mod <- lm(cwm_SeedMass_log ~ Dim2, data=dataset)
+summary(SeedMass.mod)
+plot(cwm_SeedMass_log~Dim2, data=dataset, col='red', pch='.')
+abline(SeedMass.mod)
 
-ggplot(data = data, aes(x = Dim2, y = cwm_StemDensity)) + geom_point(color='red') + geom_smooth(method = "lm", se = TRUE)
+XylemVulnerability.mod <- lm(cwm_XylemVulnerability ~ Dim2, data=dataset)
+summary(XylemVulnerability.mod)
+plot(cwm_XylemVulnerability~Dim2, data=dataset, col='red', pch='.')
+abline(XylemVulnerability.mod)
 
-Height <- lm(data$cwm_Height_log ~ data$Dim2)
-summary(Height)
+FunctionalDispersion.mod <- lm(FDis ~ Dim2, data=dataset) # Warning !! FDis in not in the dataframe; do you mean FDis_All ??
+summary(FunctionalDispersion.mod)
 
-ggplot(data = data, aes(x = Dim2, y = cwm_Height_log)) + geom_point(color='red') + geom_smooth(method = "lm", se = TRUE)
-
-SeedMass <- lm(data$cwm_SeedMass_log ~ data$Dim2)
-summary(SeedMass)
-
-ggplot(data = data, aes(x = Dim2, y = cwm_SeedMass_log)) + geom_point(color='red') + geom_smooth(method = "lm", se = TRUE)
-
-XylemVulnerability <- lm(data$cwm_XylemVulnerability ~ data$Dim2)
-summary(XylemVulnerability)
-
-ggplot(data = data, aes(x = Dim2, y = cwm_XylemVulnerability)) + geom_point(color='red') + geom_smooth(method = "lm", se = TRUE)
-
-FunctionalDispersion <- lm(data$FDis ~ data$Dim2)
-summary(FunctionalDispersion)
-
-ggplot(data = data, aes(x = Dim2, y = FDis)) + geom_point(color='red') + geom_smooth(method = "lm", se = TRUE)
 
 # Visualize the the relationship between soil moisture and vdp
-
-ggplot(data = data, aes(x = vpd, y = soilmoisture)) + geom_point(color='red') 
+ggplot(data = dataset, aes(x = vpd, y = soilmoisture)) + geom_point(color='red') 
 
 # Visualize dimension 1, to see where low soil moisture/vpd plots occur
 pacman::p_load(ggplot2, sf, rnaturalearth, rnaturalearthdata, sp, rgeos)
 theme_set(theme_bw()) ## sets background theme
 Italy <- ne_countries(country = 'italy',scale = "medium", returnclass = "sf")
+ggplot(data = Italy) + geom_sf() + geom_point(data = dataset, aes(LON_ND_W84, LAT_ND_W84, color = Dim1)) + labs(y = "", x = "") + scale_color_gradientn(colours = rainbow(5))
 
-ggplot(data = Italy) + geom_sf() + geom_point(data = data, aes(LON_ND_W84, LAT_ND_W84, color = Dim1)) + labs(y = "", x = "") + scale_color_gradientn(colours = rainbow(5))
 
-
+# AR: I stopped here with the coding..
 
 ### Option 2A: PCA species traits + CWM species position PCA 
 
@@ -299,83 +304,4 @@ RichnessB <- lm(data$SpeciesRichness ~ data$soilmoisture)
 summary(RichnessB)
 
 ggplot(data = data, aes(x = soilmoisture, y = SpeciesRichness)) + geom_point(color='red') + geom_smooth(method = "lm", se = TRUE)
-
-
-######################################################################
-########                                                     #########
-########               Structural equation models            #########
-########                                                     #########
-######################################################################
-
-library(lavaan)
-Seedmass_vpd <- '
-  # regressions
-     ICCapv_ha ~ 1 + vpd + cwm_SeedMass_log + FDis_SeedMass
-     FDis_SeedMass ~ 1 + vpd
-     cwm_SeedMass_log ~ 1 + vpd
-'
-fit1 <- sem(Seedmass_vpd, data=data)
-summary(fit1, fit.measures=TRUE)
-
-Height_vpd <- '
-  # regressions
-     ICCapv_ha ~ 1 + vpd + cwm_Height_log + FDis_Height
-     FDis_Height ~ 1 + vpd
-     cwm_Height_log ~ 1 + vpd
-'
-fit2 <- sem(Height_vpd, data=data)
-summary(fit2, fit.measures=TRUE)
-
-SLA_vpd <- '
-  # regressions
-     ICCapv_ha ~ 1 + vpd + cwm_SLA_log + FDis_SLA
-     FDis_SLA ~ 1 + vpd
-     cwm_SLA_log ~ 1 + vpd
-'
-fit3 <- sem(SLA_vpd, data=data)
-summary(fit3, fit.measures=TRUE)
-
-StemDensity_vpd <- '
-  # regressions
-     ICCapv_ha ~ 1 + vpd + cwm_StemDensity + FDis_StemDensity
-     FDis_StemDensity ~ 1 + vpd
-     cwm_StemDensity ~ 1 + vpd
-'
-fit4 <- sem(StemDensity_vpd, data=data)
-summary(fit4, fit.measures=TRUE)
-
-XylemVulnerability_vpd <- '
-  # regressions
-     ICCapv_ha ~ 1 + vpd + cwm_XylemVulnerability + FDis_XylemVulnerability
-     FDis_XylemVulnerability ~ 1 + vpd
-     cwm_XylemVulnerability ~ 1 + vpd
-'
-fit5 <- sem(XylemVulnerability_vpd, data=data)
-summary(fit5, fit.measures=TRUE)
-
-All_vpd <- '
-  # regressions
-     ICCapv_ha ~ 1 + vpd + cwm_Dim1 + FDis_All
-     FDis_All ~ 1 + vpd
-     cwm_Dim1 ~ 1 + vpd
-'
-fit6 <- sem(All_vpd, data=data)
-summary(fit6, fit.measures=TRUE)
-
-All2_vpd <- '
-  # regressions
-     ICCapv_ha ~ 1 + vpd + cwm_Dim2 + FDis_All
-     FDis_All ~ 1 + vpd
-     cwm_Dim2 ~ 1 + vpd
-'
-fit7 <- sem(All2_vpd, data=data)
-summary(fit7, fit.measures=TRUE)
-
-
-
-
-
-
-
-
 
