@@ -1,6 +1,6 @@
-library(lavaan)
-library(semPlot)
-library(semTools)
+# usage
+packages <- c('lavaan','semPlot','semTools', 'semptools','semTable')
+ipak(packages)
 
 ##%######################################################%##
 #                                                          #
@@ -17,14 +17,24 @@ hist(dataset$FDis_SeedMass_log)
 ks.test(x=dataset$cwm_SeedMass_log,y='pnorm',alternative='two.sided')
 ks.test(x=dataset$FDis_SeedMass,y='pnorm',alternative='two.sided')
 
-modA <- '
-Capv_ha_log ~ cwm_SeedMass_log
-Capv_ha_log ~ FDis_SeedMass_log
-Capv_ha_log ~ vpd
-cwm_SeedMass_log ~ vpd
-FDis_SeedMass_log ~ vpd
-'
 
+modA <- '
+# Direct effect
+Capv_ha_log ~ c*vpd
+
+# Mediator effect
+Capv_ha_log ~ d*cwm_SeedMass_log
+Capv_ha_log ~ e*FDis_SeedMass_log
+cwm_SeedMass_log ~ a*vpd
+FDis_SeedMass_log ~ b*vpd
+
+# Indirect effects
+be:=b*e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
+
+# Total direct+indirect effect
+total:=c+(b*e)+(a*d)
+'
 
 fit1=lavaan::cfa(modA, fixed.x=F, data=dataset, estimator = "MLR", likelihood = "wishart", missing = "FIML", std.lv=TRUE) # , se = "bootstrap" 
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
@@ -63,11 +73,10 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
-        expression(CWM[SeedMass]),
-expression(FDis[SeedMass]),
+    expression(CWM[SeedMass]),
+    expression(FDis[SeedMass]),
     expression(VPD)
   ))
-library(semptools)
 p_pa2_moda <- mark_sig(p_pa, fit1)
 plot(p_pa2_moda)
 
@@ -119,13 +128,24 @@ hist(dataset$FDis_Height)
 dataset$FDis_Height_log<- log(dataset$FDis_Height+1)
 hist(dataset$FDis_Height_log)
 
+
 modB <- '
-     Capv_ha_log ~ cwm_Height_log
-     Capv_ha_log ~ FDis_Height_log
-     Capv_ha_log ~ vpd
-    cwm_Height_log ~ vpd
-        FDis_Height_log ~ vpd
-  '
+# Direct effect
+Capv_ha_log ~ c*vpd
+
+# Mediator effect
+Capv_ha_log ~ d*cwm_Height_log
+Capv_ha_log ~ e*FDis_Height_log
+cwm_Height_log ~ a*vpd
+FDis_Height_log ~ b*vpd
+
+# Indirect effects
+be:=b*e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
+
+# Total direct+indirect effect
+total:=c+(b*e)+(a*d)
+'
 
 fit1 <- lavaan::sem(modB, data=dataset)
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
@@ -218,12 +238,22 @@ dataset$FDis_SLA_log<- log(dataset$FDis_SLA+1)
 hist(log(dataset$FDis_SLA))
 
 modC <- '
-     Capv_ha_log ~ cwm_SLA_log
-     Capv_ha_log ~ FDis_SLA_log
-     Capv_ha_log ~ vpd
-    cwm_SLA_log ~ vpd
-        FDis_SLA_log ~ vpd
-  '
+# Direct effect
+Capv_ha_log ~ c*vpd
+
+# Mediator effect
+Capv_ha_log ~ d*cwm_SLA_log
+Capv_ha_log ~ e*FDis_SLA_log
+cwm_SLA_log ~ a*vpd
+FDis_SLA_log ~ b*vpd
+
+# Indirect effects
+be:=b*e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
+
+# Total direct+indirect effect
+total:=c+(b*e)+(a*d)
+'
 
 fit1 <- lavaan::sem(modC, data=dataset)
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
@@ -316,12 +346,23 @@ dataset$cwm_StemDensity_log<- log(dataset$cwm_StemDensity+1)
 dataset$FDis_StemDensity_log<- log(dataset$FDis_StemDensity+1)
 
 modD <- '
-     Capv_ha_log ~ cwm_StemDensity_log
-     Capv_ha_log ~ FDis_StemDensity_log
-     Capv_ha_log ~ vpd
-    cwm_StemDensity_log ~ vpd
-        FDis_StemDensity_log ~ vpd
-  '
+# Direct effect
+Capv_ha_log ~ c*vpd
+
+# Mediator effect
+Capv_ha_log ~ d*cwm_StemDensity_log
+Capv_ha_log ~ e*FDis_StemDensity_log
+cwm_StemDensity_log ~ a*vpd
+FDis_StemDensity_log ~ b*vpd
+
+# Indirect effects
+be:=b*e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
+
+# Total direct+indirect effect
+total:=c+(b*e)+(a*d)
+'
+
 
 fit1 <- lavaan::sem(modD, data=dataset)
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
@@ -413,14 +454,23 @@ hist(dataset$FDis_XylemVulnerability)
 dataset$cwm_XylemVulnerability_log<- log(dataset$cwm_XylemVulnerability+11)
 dataset$FDis_XylemVulnerability_log<- log(dataset$FDis_XylemVulnerability+1)
 
-
 modE <- '
-     Capv_ha_log ~ cwm_XylemVulnerability_log
-     Capv_ha_log ~ FDis_XylemVulnerability_log
-     Capv_ha_log ~ vpd
-    cwm_XylemVulnerability_log ~ vpd
-        FDis_XylemVulnerability_log ~ vpd
-  '
+# Direct effect
+Capv_ha_log ~ c*vpd
+
+# Mediator effect
+Capv_ha_log ~ d*cwm_XylemVulnerability_log
+Capv_ha_log ~ e*FDis_XylemVulnerability_log
+cwm_XylemVulnerability_log ~ a*vpd
+FDis_XylemVulnerability_log ~ b*vpd
+
+# Indirect effects
+be:=b*e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
+
+# Total direct+indirect effect
+total:=c+(b*e)+(a*d)
+'
 
 fit1 <- lavaan::sem(modE, data=dataset)
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
@@ -514,13 +564,22 @@ dataset$cwm_Dim1_log<- log(dataset$cwm_Dim1+2)
 dataset$FDis_All_log<- log(dataset$FDis_All+1)
 
 modF <- '
-     Capv_ha_log ~ cwm_Dim1_log
-     Capv_ha_log ~ FDis_All_log
-     Capv_ha_log ~ vpd
-    cwm_Dim1_log ~ vpd
-        FDis_All_log ~ vpd
-  '
+# Direct effect
+Capv_ha_log ~ c*vpd
 
+# Mediator effect
+Capv_ha_log ~ d*cwm_Dim1_log
+Capv_ha_log ~ e*FDis_All_log
+cwm_Dim1_log ~ a*vpd
+FDis_All_log ~ b*vpd
+
+# Indirect effects
+be:=b*e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
+
+# Total direct+indirect effect
+total:=c+(b*e)+(a*d)
+'
 fit1 <- lavaan::sem(modF, data=dataset)
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 parameterEstimates(fit1)
@@ -611,12 +670,22 @@ hist(dataset$FDis_All)
 dataset$cwm_Dim2_log<- log(dataset$cwm_Dim2+3)
 
 modG <- '
-     Capv_ha_log ~ cwm_Dim2_log
-     Capv_ha_log ~ FDis_All_log
-     Capv_ha_log ~ vpd
-    cwm_Dim2_log ~ vpd
-        FDis_All_log ~ vpd
-  '
+# Direct effect
+Capv_ha_log ~ c*vpd
+
+# Mediator effect
+Capv_ha_log ~ d*cwm_Dim2_log
+Capv_ha_log ~ e*FDis_All_log
+cwm_Dim2_log ~ a*vpd
+FDis_All_log ~ b*vpd
+
+# Indirect effects
+be:=b*e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
+
+# Total direct+indirect effect
+total:=c+(b*e)+(a*d)
+'
 
 fit1 <- lavaan::sem(modG, data=dataset)
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
