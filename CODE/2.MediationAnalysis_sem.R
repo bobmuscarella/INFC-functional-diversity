@@ -1,5 +1,5 @@
 # usage
-packages <- c('lavaan','semPlot','semTools', 'semptools','semTable')
+packages <- c('lavaan','semPlot','semTools', 'semptools','semTable','dplyr','piecewiseSEM')
 ipak(packages)
 
 ##%######################################################%##
@@ -23,19 +23,26 @@ modA <- '
 Capv_ha_log ~ c*vpd
 
 # Mediator effect
-Capv_ha_log ~ d*cwm_SeedMass_log
-Capv_ha_log ~ e*FDis_SeedMass_log
-cwm_SeedMass_log ~ a*vpd
-FDis_SeedMass_log ~ b*vpd
+Capv_ha_log ~ d * cwm_SeedMass_log
+Capv_ha_log ~ e * FDis_SeedMass_log
+cwm_SeedMass_log ~ a * vpd
+FDis_SeedMass_log ~ b * vpd
 
 # Indirect effects
-be:=b*e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
-ad:=a*d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
+be := b * e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad := a * d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
 
 # Total direct+indirect effect
-total:=c+(b*e)+(a*d)
-'
+total := c + (b * e) + (a * d)
 
+# Observed means
+Capv_ha_log ~ 1
+FDis_SeedMass_log ~ 1
+cwm_SeedMass_log ~ 1
+vpd ~ 1
+
+'
+datasetscaled<- dataset %>% mutate_at(vars(Capv_ha_log, FDis_SeedMass_log, cwm_SeedMass_log, vpd), funs(scale))
 fit1=lavaan::cfa(modA, fixed.x=F, data=dataset, estimator = "MLR", likelihood = "wishart", missing = "FIML", std.lv=TRUE) # , se = "bootstrap" 
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 semPaths(fit1,whatLabels = "std", layout = "tree2", intercepts = F, nCharNodes = 7, sizeMan = 5,sizeLat = 8,curvePivot = T,ask = F)
@@ -181,8 +188,8 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
-        expression(CWM[Height]),
-expression(FDis[Height]),
+    expression(CWM[Height]),
+    expression(FDis[Height]),
     expression(VPD)
   ))
 library(semptools)
