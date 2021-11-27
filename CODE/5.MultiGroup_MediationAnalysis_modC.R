@@ -252,7 +252,7 @@ p_pa[[2]]$graphAttributes$Nodes$labels <-
   ))
 
 png(
-  "output_plot/MultiGroup_Mod_a.jpg",
+  "output_plot/MultiGroup_Mod_c.jpg",
   width = 10,
   height = 4.5,
   units = 'in',

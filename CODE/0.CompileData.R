@@ -340,6 +340,12 @@ colnames(cwm_PCA) <- paste0("cwm_", colnames(cwm_PCA))
 df <- cbind(df, cwm_PCA[match(df$idpunto, rownames(cwm)),])
 par(resetPar())
 
+
+
+#--------------------- End of script -----------------------#
+
+
+
 <<<<<<< HEAD:CODE/x.CompileData.R
 
 
