@@ -7,32 +7,27 @@ ipak(packages)
 ####                       Mod. D                       ####
 #                                                          #
 ##%######################################################%##
-hist(dataset$cwm_StemDensity)
-hist(dataset$FDis_StemDensity)
-dataset$cwm_StemDensity_log<- log(dataset$cwm_StemDensity+1)
-dataset$FDis_StemDensity_log<- log(dataset$FDis_StemDensity+1)
-
 
 modD <- '
 # Direct effect
-Capv_ha_log ~ c(c0,c1)*vpd
+Capv_ha_log ~ c(c0,c1)*vpd_log
 
 # Mediator effect
 Capv_ha_log ~ c(d0,d1) * cwm_StemDensity_log
 Capv_ha_log ~ c(e0,e1) * FDis_StemDensity_log
-cwm_StemDensity_log ~ c(a0,a1) * vpd
-FDis_StemDensity_log ~ c(b0,b1) * vpd
+cwm_StemDensity_log ~ c(a0,a1) * vpd_log
+FDis_StemDensity_log ~ c(b0,b1) * vpd_log
 
 # Indirect effects
-b0e0 := b0 * e0 # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b0*e0)
-a0d0 := a0 * d0 # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a0*d0)
+b0e0 := b0 * e0 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b0*e0)
+a0d0 := a0 * d0 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a0*d0)
 
 # Total direct+indirect effect
 total0 := c0 + (b0 * e0) + (a0 * d0)
 
 # Indirect effects
-b1e1 := b1 * e1 # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b1*e1)
-a1d1 := a1 * d1 # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a1*d1)
+b1e1 := b1 * e1 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b1*e1)
+a1d1 := a1 * d1 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a1*d1)
 
 # Total direct+indirect effect
 total1 := c1 + (b1 * e1) + (a1 * d1)
@@ -41,7 +36,7 @@ total1 := c1 + (b1 * e1) + (a1 * d1)
 Capv_ha_log ~ 1
 FDis_StemDensity_log ~ 1
 cwm_StemDensity_log ~ 1
-vpd ~ 1
+vpd_log ~ 1
 '
 
 ##%######################################################%##
@@ -126,24 +121,24 @@ lavTestWald(fit.Configural, #the name of the Lavaan 'fitted' object
 
 modDp <- '
 # Direct effect
-Capv_ha_log ~ c(c0,c0)*vpd
+Capv_ha_log ~ c(c0,c0)*vpd_log
 
 # Mediator effect
 Capv_ha_log ~ c(d0,d1) * cwm_StemDensity_log
 Capv_ha_log ~ c(e0,e1) * FDis_StemDensity_log
-cwm_StemDensity_log ~ c(a0,a1) * vpd
-FDis_StemDensity_log ~ c(b0,b1) * vpd
+cwm_StemDensity_log ~ c(a0,a1) * vpd_log
+FDis_StemDensity_log ~ c(b0,b1) * vpd_log
 
 # Indirect effects
-b0e0 := b0 * e0 # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b0*e0)
-a0d0 := a0 * d0 # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a0*d0)
+b0e0 := b0 * e0 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b0*e0)
+a0d0 := a0 * d0 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a0*d0)
 
 # Total direct+indirect effect
 total0 := c0 + (b0 * e0) + (a0 * d0)
 
 # Indirect effects
-b1e1 := b1 * e1 # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b1*e1)
-a1d0 := a1 * d1 # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a1*d1)
+b1e1 := b1 * e1 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b1*e1)
+a1d0 := a1 * d1 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a1*d1)
 
 # Total direct+indirect effect
 total1 := c0 + (b1 * e1) + (a1 * d1)
@@ -152,7 +147,7 @@ total1 := c0 + (b1 * e1) + (a1 * d1)
 Capv_ha_log ~ 1
 FDis_StemDensity_log ~ 1
 cwm_StemDensity_log ~ 1
-vpd ~ 1
+vpd_log ~ 1
 '
 
 fit.PartConstrained <- sem(modDp,
@@ -207,7 +202,7 @@ summary(cf)
 #                                                          #
 ##%######################################################%##
 m <- matrix(
-  c(NA, 'vpd',  NA,
+  c(NA, 'vpd_log',  NA,
     'cwm_StemDensity_log', NA, "FDis_StemDensity_log",
     NA, "Capv_ha_log", NA),
   byrow = TRUE,

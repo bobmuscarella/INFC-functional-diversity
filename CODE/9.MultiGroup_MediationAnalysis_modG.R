@@ -7,30 +7,27 @@ ipak(packages)
 ####                       Mod. F                       ####
 #                                                          #
 ##%######################################################%##
-hist(dataset$cwm_Dim2)
-hist(dataset$FDis_All)
-dataset$cwm_Dim2_log<- log(dataset$cwm_Dim2+3)
 
 modG <- '
 # Direct effect
-Capv_ha_log ~ c(c0,c1)*vpd
+Capv_ha_log ~ c(c0,c1)*vpd_log
 
 # Mediator effect
 Capv_ha_log ~ c(d0,d1) * cwm_Dim2_log
 Capv_ha_log ~ c(e0,e1) * FDis_All_log
-cwm_Dim2_log ~ c(a0,a1) * vpd
-FDis_All_log ~ c(b0,b1) * vpd
+cwm_Dim2_log ~ c(a0,a1) * vpd_log
+FDis_All_log ~ c(b0,b1) * vpd_log
 
 # Indirect effects
-b0e0 := b0 * e0 # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b0*e0)
-a0d0 := a0 * d0 # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a0*d0)
+b0e0 := b0 * e0 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b0*e0)
+a0d0 := a0 * d0 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a0*d0)
 
 # Total direct+indirect effect
 total0 := c0 + (b0 * e0) + (a0 * d0)
 
 # Indirect effects
-b1e1 := b1 * e1 # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b1*e1)
-a1d1 := a1 * d1 # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a1*d1)
+b1e1 := b1 * e1 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b1*e1)
+a1d1 := a1 * d1 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a1*d1)
 
 # Total direct+indirect effect
 total1 := c1 + (b1 * e1) + (a1 * d1)
@@ -39,7 +36,7 @@ total1 := c1 + (b1 * e1) + (a1 * d1)
 Capv_ha_log ~ 1
 FDis_All_log ~ 1
 cwm_Dim2_log ~ 1
-vpd ~ 1
+vpd_log ~ 1
 '
 
 ##%######################################################%##
@@ -125,24 +122,24 @@ lavTestWald(fit.Configural, #the name of the Lavaan 'fitted' object
 
 modGp <- '
 # Direct effect
-Capv_ha_log ~ c(c0,c0)*vpd
+Capv_ha_log ~ c(c0,c0)*vpd_log
 
 # Mediator effect
 Capv_ha_log ~ c(d0,d0) * cwm_Dim2_log
 Capv_ha_log ~ c(e0,e1) * FDis_All_log
-cwm_Dim2_log ~ c(a0,a1) * vpd
-FDis_All_log ~ c(b0,b1) * vpd
+cwm_Dim2_log ~ c(a0,a1) * vpd_log
+FDis_All_log ~ c(b0,b1) * vpd_log
 
 # Indirect effects
-b0e0 := b0 * e0 # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b0*e0)
-a0d0 := a0 * d0 # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a0*d0)
+b0e0 := b0 * e0 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b0*e0)
+a0d0 := a0 * d0 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a0*d0)
 
 # Total direct+indirect effect
 total0 := c0 + (b0 * e0) + (a0 * d0)
 
 # Indirect effects
-b1e1 := b1 * e1 # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b1*e1)
-a1d0 := a1 * d0 # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a1*d0)
+b1e1 := b1 * e1 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b1*e1)
+a1d0 := a1 * d0 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a1*d0)
 
 # Total direct+indirect effect
 total1 := c0 + (b1 * e1) + (a1 * d0)
@@ -151,7 +148,7 @@ total1 := c0 + (b1 * e1) + (a1 * d0)
 Capv_ha_log ~ 1
 FDis_All_log ~ 1
 cwm_Dim2_log ~ 1
-vpd ~ 1
+vpd_log ~ 1
 '
 
 fit.PartConstrained <- sem(modGp,
@@ -206,7 +203,7 @@ summary(cf)
 #                                                          #
 ##%######################################################%##
 m <- matrix(
-  c(NA, 'vpd',  NA,
+  c(NA, 'vpd_log',  NA,
     'cwm_Dim2_log', NA, "FDis_All_log",
     NA, "Capv_ha_log", NA),
   byrow = TRUE,

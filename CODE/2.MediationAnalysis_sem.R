@@ -7,30 +7,43 @@ ipak(packages)
 ####                       Mod. A                       ####
 #                                                          #
 ##%######################################################%##
-dataset$ICCapv_ha_log<- log(dataset$ICCapv_ha+1)
-dataset$Capv_ha_log<- log(dataset$Capv_ha+1)
-dataset$Capm_ha_log<- log(dataset$Capm_ha+1)
-hist(dataset$cwm_SeedMass_log)
-hist(dataset$FDis_SeedMass)
-dataset$FDis_SeedMass_log<- log(dataset$FDis_SeedMass+1)
-hist(dataset$FDis_SeedMass_log)
-ks.test(x=dataset$cwm_SeedMass_log,y='pnorm',alternative='two.sided')
-ks.test(x=dataset$FDis_SeedMass,y='pnorm',alternative='two.sided')
+dataset$ICCapv_ha_log <-
+  scale(log(dataset$ICCapv_ha + (1 - min(dataset$ICCapv_ha, na.rm = T))), center = TRUE)
+hist(dataset$ICCapv_ha_log)
 
+dataset$Capv_ha_log <-
+  scale(log(dataset$Capv_ha + (1 - min(dataset$Capv_ha, na.rm = T))), center = TRUE)
+hist(dataset$Capv_ha_log)
+
+dataset$Capm_ha_log <-
+  scale(log(dataset$Capm_ha + (1 - min(dataset$Capm_ha, na.rm = T))), center = TRUE)
+hist(dataset$Capm_ha_log)
+
+dataset$cwm_SeedMass_log <-
+  scale(dataset$cwm_SeedMass_log, center = TRUE)
+hist(dataset$cwm_SeedMass_log)
+
+dataset$FDis_SeedMass_log <-
+  scale(log(dataset$FDis_SeedMass + (1 - min(dataset$FDis_SeedMass, na.rm = T))), center = TRUE)
+hist(dataset$FDis_SeedMass_log)
+
+dataset$vpd_log <-
+  scale(log(dataset$vpd + (1 - min(dataset$vpd, na.rm = T))), center = TRUE)
+hist(dataset$vpd_log)
 
 modA <- '
 # Direct effect
-Capv_ha_log ~ c*vpd
+Capv_ha_log ~ c*vpd_log
 
 # Mediator effect
 Capv_ha_log ~ d * cwm_SeedMass_log
 Capv_ha_log ~ e * FDis_SeedMass_log
-cwm_SeedMass_log ~ a * vpd
-FDis_SeedMass_log ~ b * vpd
+cwm_SeedMass_log ~ a * vpd_log
+FDis_SeedMass_log ~ b * vpd_log
 
 # Indirect effects
-be := b * e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
-ad := a * d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
+be := b * e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad := a * d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a*d)
 
 # Total direct+indirect effect
 total := c + (b * e) + (a * d)
@@ -39,11 +52,19 @@ total := c + (b * e) + (a * d)
 Capv_ha_log ~ 1
 FDis_SeedMass_log ~ 1
 cwm_SeedMass_log ~ 1
-vpd ~ 1
-
+vpd_log ~ 1
 '
-datasetscaled<- dataset %>% mutate_at(vars(Capv_ha_log, FDis_SeedMass_log, cwm_SeedMass_log, vpd), funs(scale))
-fit1=lavaan::cfa(modA, fixed.x=F, data=dataset, estimator = "MLR", likelihood = "wishart", missing = "FIML", std.lv=TRUE) # , se = "bootstrap" 
+
+# datasetscaled<- dataset %>% mutate_at(vars(Capv_ha_log, FDis_SeedMass_log, cwm_SeedMass_log, vpd), funs(scale))
+fit1 = lavaan::cfa(
+  modA,
+  fixed.x = F,
+  data = dataset,
+  estimator = "MLR",
+  likelihood = "wishart",
+  missing = "FIML",
+  std.lv = TRUE
+) # , se = "bootstrap"
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 semPaths(fit1,whatLabels = "std", layout = "tree2", intercepts = F, nCharNodes = 7, sizeMan = 5,sizeLat = 8,curvePivot = T,ask = F)
 parameterEstimates(fit1)
@@ -59,7 +80,7 @@ srmr_moda<-ft$srmr
 
 library(semPlot)
 m <- matrix(
-  c(NA, 'vpd',  NA,
+  c(NA, 'vpd_log',  NA,
     'cwm_SeedMass_log', NA, "FDis_SeedMass_log",
     NA, "Capv_ha_log", NA),
   byrow = TRUE,
@@ -130,31 +151,43 @@ semTable(
 ####                       Mod. B                       ####
 #                                                          #
 ##%######################################################%##
+dataset$cwm_Height_log <-
+  scale(dataset$cwm_Height_log, center = TRUE)
 hist(dataset$cwm_Height_log)
+
+dataset$FDis_Height_log <-
+  scale(log(dataset$FDis_Height + (1 - min(dataset$FDis_Height, na.rm = T))), center = TRUE)
 hist(dataset$FDis_Height)
-dataset$FDis_Height_log<- log(dataset$FDis_Height+1)
-hist(dataset$FDis_Height_log)
+
 
 
 modB <- '
 # Direct effect
-Capv_ha_log ~ c*vpd
+Capv_ha_log ~ c*vpd_log
 
 # Mediator effect
 Capv_ha_log ~ d*cwm_Height_log
 Capv_ha_log ~ e*FDis_Height_log
-cwm_Height_log ~ a*vpd
-FDis_Height_log ~ b*vpd
+cwm_Height_log ~ a*vpd_log
+FDis_Height_log ~ b*vpd_log
 
 # Indirect effects
-be:=b*e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
-ad:=a*d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
+be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a*d)
 
 # Total direct+indirect effect
 total:=c+(b*e)+(a*d)
 '
 
-fit1 <- lavaan::sem(modB, data=dataset)
+fit1 = lavaan::cfa(
+  modB,
+  fixed.x = F,
+  data = dataset,
+  estimator = "MLR",
+  likelihood = "wishart",
+  missing = "FIML",
+  std.lv = TRUE
+) # , se = "bootstrap"
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 parameterEstimates(fit1)
 ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
@@ -167,7 +200,7 @@ srmr_modb<-ft$srmr
 
 library(semPlot)
 m <- matrix(
-  c(NA, 'vpd',  NA,
+  c(NA, 'vpd_log',  NA,
     'cwm_Height_log', NA, "FDis_Height_log",
     NA, "Capv_ha_log", NA),
   byrow = TRUE,
@@ -239,30 +272,42 @@ semTable(
 ####                       Mod. C                       ####
 #                                                          #
 ##%######################################################%##
+dataset$cwm_SLA_log <-
+  scale(dataset$cwm_SLA_log, center = TRUE)
 hist(dataset$cwm_SLA_log)
-hist(dataset$FDis_SLA)
-dataset$FDis_SLA_log<- log(dataset$FDis_SLA+1)
-hist(log(dataset$FDis_SLA))
+
+dataset$FDis_SLA_log <-
+  scale(log(dataset$FDis_SLA + (1 - min(dataset$FDis_SLA, na.rm = T))), center = TRUE)
+hist(dataset$FDis_SLA_log)
+
 
 modC <- '
 # Direct effect
-Capv_ha_log ~ c*vpd
+Capv_ha_log ~ c*vpd_log
 
 # Mediator effect
 Capv_ha_log ~ d*cwm_SLA_log
 Capv_ha_log ~ e*FDis_SLA_log
-cwm_SLA_log ~ a*vpd
-FDis_SLA_log ~ b*vpd
+cwm_SLA_log ~ a*vpd_log
+FDis_SLA_log ~ b*vpd_log
 
 # Indirect effects
-be:=b*e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
-ad:=a*d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
+be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a*d)
 
 # Total direct+indirect effect
 total:=c+(b*e)+(a*d)
 '
 
-fit1 <- lavaan::sem(modC, data=dataset)
+fit1 = lavaan::cfa(
+  modC,
+  fixed.x = F,
+  data = dataset,
+  estimator = "MLR",
+  likelihood = "wishart",
+  missing = "FIML",
+  std.lv = TRUE
+) # , se = "bootstrap"
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 parameterEstimates(fit1)
 ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
@@ -276,7 +321,7 @@ srmr_modc<-ft$srmr
 
 library(semPlot)
 m <- matrix(
-  c(NA, 'vpd',  NA,
+  c(NA, 'vpd_log',  NA,
     'cwm_SLA_log', NA, "FDis_SLA_log",
     NA, "Capv_ha_log", NA),
   byrow = TRUE,
@@ -347,31 +392,42 @@ semTable(
 ####                       Mod. D                       ####
 #                                                          #
 ##%######################################################%##
-hist(dataset$cwm_StemDensity)
-hist(dataset$FDis_StemDensity)
-dataset$cwm_StemDensity_log<- log(dataset$cwm_StemDensity+1)
-dataset$FDis_StemDensity_log<- log(dataset$FDis_StemDensity+1)
+dataset$FDis_StemDensity_log <-
+  scale(log(dataset$FDis_StemDensity + (1 - min(dataset$FDis_StemDensity, na.rm = T))), center = TRUE)
+hist(dataset$FDis_StemDensity_log)
+
+dataset$cwm_StemDensity_log <-
+  scale(log(dataset$cwm_StemDensity + (1 - min(dataset$cwm_StemDensity, na.rm = T))), center = TRUE)
+hist(dataset$cwm_StemDensity_log)
 
 modD <- '
 # Direct effect
-Capv_ha_log ~ c*vpd
+Capv_ha_log ~ c*vpd_log
 
 # Mediator effect
 Capv_ha_log ~ d*cwm_StemDensity_log
 Capv_ha_log ~ e*FDis_StemDensity_log
-cwm_StemDensity_log ~ a*vpd
-FDis_StemDensity_log ~ b*vpd
+cwm_StemDensity_log ~ a*vpd_log
+FDis_StemDensity_log ~ b*vpd_log
 
 # Indirect effects
-be:=b*e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
-ad:=a*d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
+be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a*d)
 
 # Total direct+indirect effect
 total:=c+(b*e)+(a*d)
 '
 
 
-fit1 <- lavaan::sem(modD, data=dataset)
+fit1 = lavaan::cfa(
+  modD,
+  fixed.x = F,
+  data = dataset,
+  estimator = "MLR",
+  likelihood = "wishart",
+  missing = "FIML",
+  std.lv = TRUE
+) # , se = "bootstrap"
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 parameterEstimates(fit1)
 ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
@@ -385,7 +441,7 @@ srmr_modd<-ft$srmr
 
 library(semPlot)
 m <- matrix(
-  c(NA, 'vpd',  NA,
+  c(NA, 'vpd_log',  NA,
     'cwm_StemDensity_log', NA, "FDis_StemDensity_log",
     NA, "Capv_ha_log", NA),
   byrow = TRUE,
@@ -456,30 +512,41 @@ semTable(
 ####                       Mod. E                       ####
 #                                                          #
 ##%######################################################%##
-hist(dataset$cwm_XylemVulnerability)
-hist(dataset$FDis_XylemVulnerability)
-dataset$cwm_XylemVulnerability_log<- log(dataset$cwm_XylemVulnerability+11)
-dataset$FDis_XylemVulnerability_log<- log(dataset$FDis_XylemVulnerability+1)
+dataset$FDis_XylemVulnerability_log <-
+  scale(log(dataset$FDis_XylemVulnerability + (1 - min(dataset$FDis_XylemVulnerability, na.rm = T))), center = TRUE)
+hist(dataset$FDis_XylemVulnerability_log)
+
+dataset$cwm_XylemVulnerability_log <-
+  scale(log(dataset$cwm_XylemVulnerability + (1 - min(dataset$cwm_XylemVulnerability, na.rm = T))), center = TRUE)
+hist(dataset$cwm_XylemVulnerability_log)
 
 modE <- '
 # Direct effect
-Capv_ha_log ~ c*vpd
+Capv_ha_log ~ c*vpd_log
 
 # Mediator effect
 Capv_ha_log ~ d*cwm_XylemVulnerability_log
 Capv_ha_log ~ e*FDis_XylemVulnerability_log
-cwm_XylemVulnerability_log ~ a*vpd
-FDis_XylemVulnerability_log ~ b*vpd
+cwm_XylemVulnerability_log ~ a*vpd_log
+FDis_XylemVulnerability_log ~ b*vpd_log
 
 # Indirect effects
-be:=b*e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
-ad:=a*d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
+be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a*d)
 
 # Total direct+indirect effect
 total:=c+(b*e)+(a*d)
 '
 
-fit1 <- lavaan::sem(modE, data=dataset)
+fit1 = lavaan::cfa(
+  modE,
+  fixed.x = F,
+  data = dataset,
+  estimator = "MLR",
+  likelihood = "wishart",
+  missing = "FIML",
+  std.lv = TRUE
+) # , se = "bootstrap"
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 parameterEstimates(fit1)
 ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
@@ -493,7 +560,7 @@ srmr_mode<-ft$srmr
 
 library(semPlot)
 m <- matrix(
-  c(NA, 'vpd',  NA,
+  c(NA, 'vpd_log',  NA,
     'cwm_XylemVulnerability_log', NA, "FDis_XylemVulnerability_log",
     NA, "Capv_ha_log", NA),
   byrow = TRUE,
@@ -565,29 +632,42 @@ semTable(
 ####                       Mod. F                       ####
 #                                                          #
 ##%######################################################%##
-hist(dataset$cwm_Dim1)
-hist(dataset$FDis_All)
-dataset$cwm_Dim1_log<- log(dataset$cwm_Dim1+2)
-dataset$FDis_All_log<- log(dataset$FDis_All+1)
+dataset$FDis_All_log <-
+  scale(log(dataset$FDis_All + (1 - min(dataset$FDis_All, na.rm = T))), center = TRUE)
+hist(dataset$FDis_All_log)
+
+dataset$cwm_Dim1_log <-
+  scale(log(dataset$cwm_Dim1 + (1 - min(dataset$cwm_Dim1, na.rm = T))), center = TRUE)
+hist(dataset$cwm_Dim1_log)
+
 
 modF <- '
 # Direct effect
-Capv_ha_log ~ c*vpd
+Capv_ha_log ~ c*vpd_log
 
 # Mediator effect
 Capv_ha_log ~ d*cwm_Dim1_log
 Capv_ha_log ~ e*FDis_All_log
-cwm_Dim1_log ~ a*vpd
-FDis_All_log ~ b*vpd
+cwm_Dim1_log ~ a*vpd_log
+FDis_All_log ~ b*vpd_log
 
 # Indirect effects
-be:=b*e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
-ad:=a*d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
+be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a*d)
 
 # Total direct+indirect effect
 total:=c+(b*e)+(a*d)
 '
-fit1 <- lavaan::sem(modF, data=dataset)
+
+fit1 = lavaan::cfa(
+  modF,
+  fixed.x = F,
+  data = dataset,
+  estimator = "MLR",
+  likelihood = "wishart",
+  missing = "FIML",
+  std.lv = TRUE
+) # , se = "bootstrap"
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 parameterEstimates(fit1)
 ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
@@ -601,7 +681,7 @@ srmr_modf<-ft$srmr
 
 library(semPlot)
 m <- matrix(
-  c(NA, 'vpd',  NA,
+  c(NA, 'vpd_log',  NA,
     'cwm_Dim1_log', NA, "FDis_All_log",
     NA, "Capv_ha_log", NA),
   byrow = TRUE,
@@ -672,29 +752,37 @@ semTable(
 ####                       Mod. G                       ####
 #                                                          #
 ##%######################################################%##
-hist(dataset$cwm_Dim2)
-hist(dataset$FDis_All)
-dataset$cwm_Dim2_log<- log(dataset$cwm_Dim2+3)
+dataset$cwm_Dim2_log <-
+  scale(log(dataset$cwm_Dim2 + (1 - min(dataset$cwm_Dim2, na.rm = T))), center = TRUE)
+hist(dataset$cwm_Dim2_log)
 
 modG <- '
 # Direct effect
-Capv_ha_log ~ c*vpd
+Capv_ha_log ~ c*vpd_log
 
 # Mediator effect
 Capv_ha_log ~ d*cwm_Dim2_log
 Capv_ha_log ~ e*FDis_All_log
-cwm_Dim2_log ~ a*vpd
-FDis_All_log ~ b*vpd
+cwm_Dim2_log ~ a*vpd_log
+FDis_All_log ~ b*vpd_log
 
 # Indirect effects
-be:=b*e # The indirect (i.e., Mediator) effect of VPD and FDIs on Capv id the product of the mediator coefficient (b*e)
-ad:=a*d # The indirect (i.e., Mediator) effect of VPD and CWM on Capv id the product of the mediator coefficient (a*d)
+be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a*d)
 
 # Total direct+indirect effect
 total:=c+(b*e)+(a*d)
 '
 
-fit1 <- lavaan::sem(modG, data=dataset)
+fit1 = lavaan::cfa(
+  modG,
+  fixed.x = F,
+  data = dataset,
+  estimator = "MLR",
+  likelihood = "wishart",
+  missing = "FIML",
+  std.lv = TRUE
+) # , se = "bootstrap"
 summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
 parameterEstimates(fit1)
 ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
@@ -708,7 +796,7 @@ srmr_modg<-ft$srmr
 
 library(semPlot)
 m <- matrix(
-  c(NA, 'vpd',  NA,
+  c(NA, 'vpd_log',  NA,
     'cwm_Dim2_log', NA, "FDis_All_log",
     NA, "Capv_ha_log", NA),
   byrow = TRUE,
@@ -1004,3 +1092,155 @@ dev.off()
 # par(op)
 # dev.off()
 par(resetPar)
+
+##%######################################################%##
+#                                                          #
+####                     TRY MOD. X                     ####
+#                                                          #
+##%######################################################%##
+
+modX <- '
+# Direct effect
+Capv_ha_log ~ c*vpd_log
+ICCapv_ha_log ~ f * Capv_ha_log
+
+# Mediator effect
+ICCapv_ha_log ~ d * cwm_SeedMass_log
+ICCapv_ha_log ~ e * FDis_SeedMass_log
+cwm_SeedMass_log ~ a * Capv_ha_log
+FDis_SeedMass_log ~ b * Capv_ha_log
+
+# Indirect effects
+be := b * e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad := a * d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a*d)
+
+# Total direct+indirect effect
+total := c + (b * e) + (a * d)
+
+# Observed means
+Capv_ha_log ~ 1
+FDis_SeedMass_log ~ 1
+cwm_SeedMass_log ~ 1
+vpd_log ~ 1
+ICCapv_ha_log~1
+'
+
+# datasetscaled<- dataset %>% mutate_at(vars(Capv_ha_log, FDis_SeedMass_log, cwm_SeedMass_log, vpd), funs(scale))
+fit1 = lavaan::cfa(
+  modX,
+  fixed.x = F,
+  data = dataset,
+  estimator = "MLR",
+  likelihood = "wishart",
+  missing = "FIML",
+  std.lv = TRUE
+) # , se = "bootstrap"
+summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
+semPaths(fit1,whatLabels = "std", layout = "tree2", intercepts = F, nCharNodes = 7, sizeMan = 5,sizeLat = 8,curvePivot = T,ask = F)
+parameterEstimates(fit1)
+modificationIndices(fit1, minimum.value = 10)
+ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
+cfi_moda<-ft$cfi
+tli_moda<-ft$tli
+rmsea_moda<-ft$rmsea
+rmsea.upp_moda<-ft$rmsea.ci.upper
+rmsea.low_moda<-ft$rmsea.ci.upper
+srmr_moda<-ft$srmr
+
+library(semPlot)
+m <- matrix(
+  c(NA, 'vpd_log',  NA,
+    NA, 'Capv_ha_log',  NA,
+    'cwm_SeedMass_log', NA, "FDis_SeedMass_log",
+    NA, "ICCapv_ha_log", NA),
+  byrow = TRUE,
+  4, 3)
+p_pa <- semPaths(
+  fit1,
+  whatLabels = "std",
+  intercepts = F,
+  sizeMan = 8,
+  edge.label.cex = .7,
+  style = "ram",
+  nCharNodes = 0,
+  nCharEdges = 0,
+  layout = m, 
+  fade=F, DoNotPlot = T
+)
+p_pa$graphAttributes$Nodes$labels
+p_pa$graphAttributes$Nodes$labels <-
+  c(list(
+    expression(C[apv]),
+    expression(ICC[apv]),
+    expression(CWM[SeedMass]),
+    expression(FDis[SeedMass]),
+    expression(VPD)
+  ))
+p_pa2_modx <- mark_sig(p_pa, fit1)
+plot(p_pa2_modx)
+
+png(
+  "output_plot/Mod_x.jpg",
+  width = 5,
+  height = 5,
+  units = 'in',
+  res = 300
+)
+plot(p_pa2_modx)
+legend(
+  'topright',
+  legend = c(
+    paste0('CFI=', round(cfi_moda, 2)),
+    paste0('TLI=', round(tli_moda, 2)),
+    paste0('RMSEA=', round(rmsea_moda, 2)),
+    paste0('SRMR=', round(srmr_moda, 2))
+  ),
+  cex = 0.7,
+  box.lty = 0,
+  bg = "transparent",
+  text.col = 'grey30'
+)
+usr <- par("usr")
+text(usr[1],
+     usr[4],
+     'Mod. X',
+     adj = c(-0.2, 1.5),
+     col = 'black',
+     cex = 1)
+dev.off()
+
+semTable(
+  fit1,
+  paramSets = "all",
+  paramSetLabels = c(
+    "composites" = "Composites",
+    "loadings" = "Factor Loadings",
+    "slopes" = "Regression Slopes",
+    "intercepts" = "Intercepts",
+    "means" = "Means",
+    "residualvariances" = "Residual Variances",
+    "residualcovariances" = "Residual Covariances",
+    "variances" = "Variances",
+    "latentvariances" = "Latent Variances",
+    "latentcovariances" = "Latent Covariances",
+    "latentmeans" = "Latent Intercepts",
+    "thresholds" = "Thresholds",
+    "constructed" = "Constructed",
+    "fits" = "Fit Indices"
+  ),
+  columns = c("est", "se", "z", "p", "rsquare"
+  ),
+  columnLabels =  c(
+    "est" = "Estimate",
+    se = "Std. Err.",
+    z = "z",
+    p = "p",
+    rsquare = "R Square"
+  ),
+  
+  fits = c("tli", "chisq", "rmsea"),
+  fitLabels = c(tli = "TLI", chisq = "chisq"),
+  type = "html",
+  file = ("output_tab/modx"),
+  print.results = T
+)
