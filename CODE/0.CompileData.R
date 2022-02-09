@@ -25,7 +25,7 @@ ipak <- function(pkg){
 }
 
 # usage
-packages <- c('raster','sp','readxl', 'FD')
+packages <- c('raster','sp','readxl', 'FD', 'rSDM', 'data.table')
 ipak(packages)
 
 ##%######################################################%##
@@ -33,8 +33,6 @@ ipak(packages)
 ####                  Read plot data                    ####
 #                                                          #
 ##%######################################################%##
-
-## WARNING !!: never assign the object name (plot) as a function name (plot)
 
 plot <- read.csv("DATA/RAW/infc05_quantiF3/t1_05_quantiF3.csv", sep=";")
 plot <- plot[plot$codcfor < 17,] # Filter unwanted Forest codes out
@@ -71,12 +69,6 @@ raster::crs(vpd.r)
 quanti.sp@data$vpd <-raster::extract(vpd.r, quanti.sp)
 rm(vpd.r)
 
-#---- LOAD SoilMoisture and check projection coherence -----#
-soilmoisture.r<-raster::raster("DATA/TerraClimate19812010_soil_italy.nc")
-raster::crs(soilmoisture.r)
-quanti.sp@data$soilmoisture <-raster::extract(soilmoisture.r, quanti.sp)
-rm(soilmoisture.r)
-
 #---- Topographic  -----#
 italy_elev <- raster::getData('alt',country="ITA", path = "DATA")
 projection(italy_elev)
@@ -88,10 +80,6 @@ quanti.sp@data$aspect<-raster::extract(italy_asp, quanti.sp)
 
 #---- Climate classification -----#
 ## WARNING !!: Is NOT a good idea re-project RASTER data as it involves pixel deformation. Instead we can easily re-project our spatialpointdataframe (vector) before extraction.
-
-#cc <- projectRaster(raster("DATA/climateclassification/hdr.adf"), italy_elev)
-#plot$climate_classification <- raster::extract(cc, plot[,c("LON_ND_W84","LAT_ND_W84")])
-
 cc<- raster::raster("DATA/climateclassification/hdr.adf")
 raster::crs(cc)
 # So, being incompatible projections
@@ -103,15 +91,14 @@ quanti.sp <- spTransform(quanti.sp_proj, CRS(setProj)) # reproject to the origin
 head(quanti.sp@data)
 rm(quanti.sp_proj)
 
+##%######################################################%##
+#                                                          #
+####        Assign values to NA grid cells              ####
+#                                                          #
+##%######################################################%##
+
 ### FOR PLOTS THAT HAVE NA VALUES OF CLIMATE, ASSIGN VALUE FROM NEAREST, NON-NA GRID CELL
 # devtools::install_github("Pakillo/rSDM")
-library(rSDM)
-# pts <- SpatialPoints(plot[is.na(plot$slope),c("LON_ND_W84","LAT_ND_W84")], 
-#                      proj4string=crs(slp))
-# pts_new <- points2nearestcell(locs=pts, ras=slp, showmap=F, showchanges=F)
-# plot$slope[is.na(plot$slope)] <- raster::extract(slp, pts_new)
-
-## Better below
 pts = quanti.sp[is.na((quanti.sp$slope)),]
 pts <- points2nearestcell(locs=pts, ras=italy_slp, showmap=F, showchanges=F)
 quanti.sp$slope[is.na(quanti.sp$slope)] <- raster::extract(italy_slp, pts)
@@ -130,53 +117,11 @@ quanti.sp <- spTransform(quanti.sp_proj, CRS(setProj)) # reproject to the origin
 
 rm(italy_asp, italy_elev, italy_slp, quanti.sp_proj,cc)
 
-#----- Bioclimatic variables -----#
-
-# Note that I did extraction of Bioclimatic variable offline and saved as dataframe since BIOCLIM rasters are ~18GB
-# So I tagged many steps of the code below
-
-# mypath<- 'I:/Worldclim/wc2.0_30s_bio'# Worldclim 2.0 at https://www.worldclim.org/data/worldclim21.html
-# rastlist <- list.files(path = mypath, pattern='.tif$', all.files=TRUE, full.names=T)
-# rastlist
-# BIOCLIM <- raster::stack(rastlist)
-# projection(BIOCLIM)
-# extent(BIOCLIM)
-# res(BIOCLIM)
-# names(BIOCLIM)
-# names(BIOCLIM)<-paste0('bio', seq(1,19,1)) # Rename raster layers
-# 
-# ## They are coded as follows: # many of them are autocorrelated
-# # BIO1 = Annual Mean Temperature
-# # BIO2 = Mean Diurnal Range (Mean of monthly (max temp - min temp))
-# # BIO3 = Isothermality (BIO2/BIO7) (×100)
-# # BIO4 = Temperature Seasonality (standard deviation ×100)
-# # BIO5 = Max Temperature of Warmest Month
-# # BIO6 = Min Temperature of Coldest Month
-# # BIO7 = Temperature Annual Range (BIO5-BIO6)
-# # BIO8 = Mean Temperature of Wettest Quarter
-# # BIO9 = Mean Temperature of Driest Quarter
-# # BIO10 = Mean Temperature of Warmest Quarter
-# # BIO11 = Mean Temperature of Coldest Quarter
-# # BIO12 = Annual Precipitation
-# # BIO13 = Precipitation of Wettest Month
-# # BIO14 = Precipitation of Driest Month
-# # BIO15 = Precipitation Seasonality (Coefficient of Variation)
-# # BIO16 = Precipitation of Wettest Quarter
-# # BIO17 = Precipitation of Driest Quarter
-# # BIO18 = Precipitation of Warmest Quarter
-# # BIO19 = Precipitation of Coldest Quarter
-# 
-# # extraction
-# quanti.sp@data<-cbind(quanti.sp@data,extract(BIOCLIM,quanti.sp))
-# quanti.sp@data<-raster::extract(BIOCLIM, quanti.sp)
-# rm(BIOCLIM);gc()
-# names(quanti.sp@data)
-# bio.df<- quanti.sp@data[,c(1,16:34)]
-# save(bio.df, file = "DATA/bio_df.RData")
-
-load("DATA/bio_df.RData")
-quanti.sp@data<- merge(quanti.sp@data, bio.df, by='idpunto')
-
+##%######################################################%##
+#                                                          #
+####               ADD Functional Indices               ####
+#                                                          #
+##%######################################################%##
 
 # Back to dataframe
 df<- quanti.sp@data  # I called the whole dataframe
@@ -219,8 +164,14 @@ fd_tree_comm <- fd_tree_comm[rowSums(fd_tree_comm) > 0,]
 dbfd <- FD::dbFD(fd_trait, fd_tree_comm, w.abun=T, corr = "cailliez", 
                  calc.CWM=F, calc.FRic=F, calc.FGR=F, calc.FDiv=F)
 df$FDis_All <- dbfd$FDis[match(df$idpunto, names(dbfd$FDis))]
-df$SpRich <- dbfd$FDis[match(df$idpunto, names(dbfd$nbsp))]
 
+# Compute and add species richness
+SpeciesRichness <- as.data.frame (rowSums(tree_comm))
+setDT(SpeciesRichness, keep.rownames = "idpunto")
+SpeciesRichness$idpunto <- as.double(SpeciesRichness$idpunto)
+names(SpeciesRichness)[2]<-paste("SpRich")
+df <- merge(SpeciesRichness,df,by="idpunto")
+                                     
 # Compute and add community-mean traits
 cwm_tree_comm <- tree_comm[,colnames(tree_comm) %in% rownames(trait)]
 cwm_tree_comm <- cwm_tree_comm[rowSums(cwm_tree_comm) > 0,]
@@ -242,7 +193,6 @@ FDis_SeedMass_tree_comm <- tree_comm[,colnames(tree_comm) %in% rownames(SeedMass
 FDis_SeedMass_tree_comm <- FDis_SeedMass_tree_comm[rowSums(FDis_SeedMass_tree_comm) > 0,]
 FDis_SeedMass <- FD::dbFD(SeedMass_log, FDis_SeedMass_tree_comm, w.abun=T, corr = "cailliez", 
                           calc.CWM=F, calc.FRic=F, calc.FGR=F, calc.FDiv=F)
-# WARNING !  Is "FDis_Seedmass' the same "FDis_SeedMass ? I replaced line 241 in order to keep going
 df$FDis_SeedMass <- FDis_SeedMass$FDis[match(df$idpunto, names(FDis_SeedMass$FDis))]
 
 Height_log <- as.data.frame(trait$Height_log)
@@ -286,7 +236,6 @@ FDis_XylemVulnerability <- FD::dbFD(XylemVulnerability, FDis_XylemVulnerability_
 df$FDis_XylemVulnerability <- FDis_XylemVulnerability$FDis[match(df$idpunto, names(FDis_XylemVulnerability$FDis))]
 
 #Compute and add community-mean PCA postion
-#TAKE OUT NA VALUES FOR PCA
 Trait_PCA <- na.omit(trait)
 
 StemDensity <- Trait_PCA$StemDensity
@@ -335,7 +284,6 @@ cwm_PCA_tree_comm <- tree_comm[,colnames(tree_comm) %in% rownames(Trait_PCA)]
 cwm_PCA_tree_comm <- cwm_PCA_tree_comm[rowSums(cwm_PCA_tree_comm) > 0,]
 cwm_PCA <- FD::functcomp(Trait_PCA[,c(11:12)], cwm_PCA_tree_comm) 
 colnames(cwm_PCA) <- paste0("cwm_", colnames(cwm_PCA))
-# WARNING !  I replaced 'data$idpunto' with df$idpunto as it doesn't exist. Correct ??
 df <- cbind(df, cwm_PCA[match(df$idpunto, rownames(cwm)),])
 par(resetPar())
 
@@ -347,30 +295,6 @@ par(resetPar())
 
 <<<<<<< HEAD:CODE/x.CompileData.R
 
-
-
-
-# VARIABLES OF INTEREST
-
-# # Annual increment
-# df$ICCapv_ha # Current annual volume increment of living trees
-# df$ICWapv_ha # Dry weight correspondent to the current annual volume increment of living trees
-# df$ICVapv_ha # Organic carbon stock correspondent to the current annual volume increment of living trees
-
-# # Stock (sum?)
-# df$Capv_ha # Organic carbon stock of total above-ground biomass of living trees
-# df$Capm_ha # Organic carbon stock of the total above-ground biomass of standing dead trees
-
-# # Climate
-# Forest type
-# Climate classification
-# VPD
-
-# How are functional composition (CWM) and diversity (FDisp) related to climate?
-# Do plots with higher *response variable* have higher/lower CWM values?
-# Do plots with higher *response variable* have higher functional diversity?
-# Does this relationship differ between Mediterranean and temperate climates?
-# Do other climate variables mediate the relationship between FD and *response*?
 
 =======
 write.csv(df, "output_data/Data_for_analysis.csv", row.names=F)
