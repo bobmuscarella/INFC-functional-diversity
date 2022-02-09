@@ -31,13 +31,18 @@ dataset$vpd_log <-
   scale(log(dataset$vpd + (1 - min(dataset$vpd, na.rm = T))), center = TRUE)
 hist(dataset$vpd_log)
 
+# Capv_ha_log
 modA <- '
 # Direct effect
-Capv_ha_log ~ c*vpd_log
+Prod=~ g1*Capv_ha_log
+Prod=~ g2*ICCapv_ha_log
+Prod=~ g3* Capm_ha_log
+
+Prod ~ c*vpd_log
 
 # Mediator effect
-Capv_ha_log ~ d * cwm_SeedMass_log
-Capv_ha_log ~ e * FDis_SeedMass_log
+Prod ~ d * cwm_SeedMass_log
+Prod ~ e * FDis_SeedMass_log
 cwm_SeedMass_log ~ a * vpd_log
 FDis_SeedMass_log ~ b * vpd_log
 
@@ -49,7 +54,6 @@ ad := a * d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id
 total := c + (b * e) + (a * d)
 
 # Observed means
-Capv_ha_log ~ 1
 FDis_SeedMass_log ~ 1
 cwm_SeedMass_log ~ 1
 vpd_log ~ 1
@@ -82,9 +86,10 @@ library(semPlot)
 m <- matrix(
   c(NA, 'vpd_log',  NA,
     'cwm_SeedMass_log', NA, "FDis_SeedMass_log",
-    NA, "Capv_ha_log", NA),
+    NA, "Prod", NA,
+    "Capv_ha_log", 'ICCapv_ha_log','Capm_ha_log'),
   byrow = TRUE,
-  3, 3)
+  4, 3)
 p_pa <- semPaths(
   fit1,
   whatLabels = "std",
@@ -101,10 +106,18 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
+    expression(ICC[apv]),
+    expression(C[apm]),
     expression(CWM[SeedMass]),
     expression(FDis[SeedMass]),
-    expression(VPD)
+    expression(VPD),
+    expression(P)
+    
   ))
+p_pa$graphAttributes$Nodes$width<-
+  c(
+    7, 7, 7, 10, 10, 10,  10
+  )
 p_pa2_moda <- mark_sig(p_pa, fit1)
 plot(p_pa2_moda)
 
@@ -141,7 +154,7 @@ semTable(
   fits = c("tli", "chisq", "rmsea"),
   fitLabels = c(tli = "TLI", chisq = "chisq"),
   type = "html",
-  file = ("output_tab/moda"),
+  file = ("output_tab/moda_latent"),
   print.results = T
 )
 
@@ -163,11 +176,15 @@ hist(dataset$FDis_Height)
 
 modB <- '
 # Direct effect
-Capv_ha_log ~ c*vpd_log
+Prod=~ g1*Capv_ha_log
+Prod=~ g2*ICCapv_ha_log
+Prod=~ g3* Capm_ha_log
+
+Prod ~ c*vpd_log
 
 # Mediator effect
-Capv_ha_log ~ d*cwm_Height_log
-Capv_ha_log ~ e*FDis_Height_log
+Prod ~ d*cwm_Height_log
+Prod ~ e*FDis_Height_log
 cwm_Height_log ~ a*vpd_log
 FDis_Height_log ~ b*vpd_log
 
@@ -202,9 +219,10 @@ library(semPlot)
 m <- matrix(
   c(NA, 'vpd_log',  NA,
     'cwm_Height_log', NA, "FDis_Height_log",
-    NA, "Capv_ha_log", NA),
+    NA, "Prod", NA,
+    "Capv_ha_log", 'ICCapv_ha_log','Capm_ha_log'),
   byrow = TRUE,
-  3, 3)
+  4, 3)
 
 p_pa <- semPaths(
   fit1,
@@ -221,10 +239,17 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
+    expression(ICC[apv]),
+    expression(C[apm]),
     expression(CWM[Height]),
     expression(FDis[Height]),
-    expression(VPD)
+    expression(VPD),
+    expression(P)
   ))
+p_pa$graphAttributes$Nodes$width<-
+  c(
+    7, 7, 7, 10, 10, 10,  10
+  )
 library(semptools)
 p_pa2_modb <- mark_sig(p_pa, fit1)
 plot(p_pa2_modb)
@@ -262,7 +287,7 @@ semTable(
   fits = c("tli", "chisq", "rmsea"),
   fitLabels = c(tli = "TLI", chisq = "chisq"),
   type = "html",
-  file = ("output_tab/modb"),
+  file = ("output_tab/modb_latent"),
   print.results = T
 )
 
@@ -283,11 +308,15 @@ hist(dataset$FDis_SLA_log)
 
 modC <- '
 # Direct effect
-Capv_ha_log ~ c*vpd_log
+Prod=~ g1*Capv_ha_log
+Prod=~ g2*ICCapv_ha_log
+Prod=~ g3* Capm_ha_log
+
+Prod ~ c*vpd_log
 
 # Mediator effect
-Capv_ha_log ~ d*cwm_SLA_log
-Capv_ha_log ~ e*FDis_SLA_log
+Prod ~ d*cwm_SLA_log
+Prod ~ e*FDis_SLA_log
 cwm_SLA_log ~ a*vpd_log
 FDis_SLA_log ~ b*vpd_log
 
@@ -323,9 +352,10 @@ library(semPlot)
 m <- matrix(
   c(NA, 'vpd_log',  NA,
     'cwm_SLA_log', NA, "FDis_SLA_log",
-    NA, "Capv_ha_log", NA),
+    NA, "Prod", NA,
+  "Capv_ha_log", 'ICCapv_ha_log','Capm_ha_log'),
   byrow = TRUE,
-  3, 3)
+  4, 3)
 
 p_pa <- semPaths(
   fit1,
@@ -342,10 +372,18 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
-        expression(CWM[SLA]),
+    expression(ICC[apv]),
+    expression(C[apm]),
+    expression(CWM[SLA]),
 expression(FDis[SLA]),
-    expression(VPD)
+    expression(VPD),
+expression(P)
+
   ))
+p_pa$graphAttributes$Nodes$width<-
+  c(
+    7, 7, 7, 10, 10, 10,  10
+  )
 library(semptools)
 p_pa2_modc <- mark_sig(p_pa, fit1)
 plot(p_pa2_modc)
@@ -383,7 +421,7 @@ semTable(
   fits = c("tli", "chisq", "rmsea"),
   fitLabels = c(tli = "TLI", chisq = "chisq"),
   type = "html",
-  file = ("output_tab/modc"),
+  file = ("output_tab/modc_latent"),
   print.results = T
 )
 
@@ -402,11 +440,15 @@ hist(dataset$cwm_StemDensity_log)
 
 modD <- '
 # Direct effect
-Capv_ha_log ~ c*vpd_log
+Prod=~ g1*Capv_ha_log
+Prod=~ g2*ICCapv_ha_log
+Prod=~ g3* Capm_ha_log
+
+Prod ~ c*vpd_log
 
 # Mediator effect
-Capv_ha_log ~ d*cwm_StemDensity_log
-Capv_ha_log ~ e*FDis_StemDensity_log
+Prod ~ d*cwm_StemDensity_log
+Prod ~ e*FDis_StemDensity_log
 cwm_StemDensity_log ~ a*vpd_log
 FDis_StemDensity_log ~ b*vpd_log
 
@@ -443,9 +485,11 @@ library(semPlot)
 m <- matrix(
   c(NA, 'vpd_log',  NA,
     'cwm_StemDensity_log', NA, "FDis_StemDensity_log",
-    NA, "Capv_ha_log", NA),
+    NA, "Prod", NA,
+    "Capv_ha_log", 'ICCapv_ha_log','Capm_ha_log'),
+  
   byrow = TRUE,
-  3, 3)
+  4, 3)
 
 p_pa <- semPaths(
   fit1,
@@ -462,10 +506,18 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
-        expression(CWM[WD]),
+    expression(ICC[apv]),
+    expression(C[apm]),
+    expression(CWM[WD]),
 expression(FDis[WD]),
-    expression(VPD)
+    expression(VPD),
+expression(P)
+
   ))
+p_pa$graphAttributes$Nodes$width<-
+  c(
+    7, 7, 7, 10, 10, 10,  10
+  )
 library(semptools)
 p_pa2_modd <- mark_sig(p_pa, fit1)
 plot(p_pa2_modd)
@@ -503,7 +555,7 @@ semTable(
   fits = c("tli", "chisq", "rmsea"),
   fitLabels = c(tli = "TLI", chisq = "chisq"),
   type = "html",
-  file = ("output_tab/modd"),
+  file = ("output_tab/modd_latent"),
   print.results = T
 )
 
@@ -522,11 +574,15 @@ hist(dataset$cwm_XylemVulnerability_log)
 
 modE <- '
 # Direct effect
-Capv_ha_log ~ c*vpd_log
+Prod=~ g1*Capv_ha_log
+Prod=~ g2*ICCapv_ha_log
+Prod=~ g3* Capm_ha_log
+
+Prod ~ c*vpd_log
 
 # Mediator effect
-Capv_ha_log ~ d*cwm_XylemVulnerability_log
-Capv_ha_log ~ e*FDis_XylemVulnerability_log
+Prod ~ d*cwm_XylemVulnerability_log
+Prod ~ e*FDis_XylemVulnerability_log
 cwm_XylemVulnerability_log ~ a*vpd_log
 FDis_XylemVulnerability_log ~ b*vpd_log
 
@@ -562,9 +618,10 @@ library(semPlot)
 m <- matrix(
   c(NA, 'vpd_log',  NA,
     'cwm_XylemVulnerability_log', NA, "FDis_XylemVulnerability_log",
-    NA, "Capv_ha_log", NA),
+    NA, "Prod", NA,
+    "Capv_ha_log", 'ICCapv_ha_log','Capm_ha_log'),
   byrow = TRUE,
-  3, 3)
+  4, 3)
 
 p_pa <- semPaths(
   fit1,
@@ -581,10 +638,18 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
-       expression(CWM[Xylem]),
+    expression(ICC[apv]),
+    expression(C[apm]),
+    expression(CWM[Xylem]),
  expression(FDis[Xylem]),
-    expression(VPD)
+    expression(VPD),
+ expression(P)
+ 
   ))
+p_pa$graphAttributes$Nodes$width<-
+  c(
+    7, 7, 7, 10, 10, 10,  10
+  )
 library(semptools)
 p_pa2_mode <- mark_sig(p_pa, fit1)
 plot(p_pa2_mode)
@@ -622,7 +687,7 @@ semTable(
   fits = c("tli", "chisq", "rmsea"),
   fitLabels = c(tli = "TLI", chisq = "chisq"),
   type = "html",
-  file = ("output_tab/mode"),
+  file = ("output_tab/mode_latent"),
   print.results = T
 )
 
@@ -643,11 +708,15 @@ hist(dataset$cwm_Dim1_log)
 
 modF <- '
 # Direct effect
-Capv_ha_log ~ c*vpd_log
+Prod=~ g1*Capv_ha_log
+Prod=~ g2*ICCapv_ha_log
+Prod=~ g3* Capm_ha_log
+
+Prod ~ c*vpd_log
 
 # Mediator effect
-Capv_ha_log ~ d*cwm_Dim1_log
-Capv_ha_log ~ e*FDis_All_log
+Prod ~ d*cwm_Dim1_log
+Prod ~ e*FDis_All_log
 cwm_Dim1_log ~ a*vpd_log
 FDis_All_log ~ b*vpd_log
 
@@ -683,9 +752,11 @@ library(semPlot)
 m <- matrix(
   c(NA, 'vpd_log',  NA,
     'cwm_Dim1_log', NA, "FDis_All_log",
-    NA, "Capv_ha_log", NA),
+    NA, "Prod", NA,
+    "Capv_ha_log", 'ICCapv_ha_log','Capm_ha_log'),
+  
   byrow = TRUE,
-  3, 3)
+  4, 3)
 
 p_pa <- semPaths(
   fit1,
@@ -702,10 +773,18 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
+    expression(ICC[apv]),
+    expression(C[apm]),
         expression(CWM[Dim1]),
 expression(FDis[all]),
-    expression(VPD)
+    expression(VPD),
+expression(P)
+
   ))
+p_pa$graphAttributes$Nodes$width<-
+  c(
+    7, 7, 7, 10, 10, 10,  10
+  )
 library(semptools)
 p_pa2_modf <- mark_sig(p_pa, fit1)
 plot(p_pa2_modf)
@@ -743,7 +822,7 @@ semTable(
   fits = c("tli", "chisq", "rmsea"),
   fitLabels = c(tli = "TLI", chisq = "chisq"),
   type = "html",
-  file = ("output_tab/modf"),
+  file = ("output_tab/modf_latent"),
   print.results = T
 )
 
@@ -758,11 +837,15 @@ hist(dataset$cwm_Dim2_log)
 
 modG <- '
 # Direct effect
-Capv_ha_log ~ c*vpd_log
+Prod=~ g1*Capv_ha_log
+Prod=~ g2*ICCapv_ha_log
+Prod=~ g3* Capm_ha_log
+
+Prod ~ c*vpd_log
 
 # Mediator effect
-Capv_ha_log ~ d*cwm_Dim2_log
-Capv_ha_log ~ e*FDis_All_log
+Prod ~ d*cwm_Dim2_log
+Prod ~ e*FDis_All_log
 cwm_Dim2_log ~ a*vpd_log
 FDis_All_log ~ b*vpd_log
 
@@ -798,9 +881,11 @@ library(semPlot)
 m <- matrix(
   c(NA, 'vpd_log',  NA,
     'cwm_Dim2_log', NA, "FDis_All_log",
-    NA, "Capv_ha_log", NA),
+    NA, "Prod", NA,
+    "Capv_ha_log", 'ICCapv_ha_log','Capm_ha_log'),
+  
   byrow = TRUE,
-  3, 3)
+  4, 3)
 
 p_pa <- semPaths(
   fit1,
@@ -817,10 +902,18 @@ p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
-        expression(CWM[Dim2]),
+    expression(ICC[apv]),
+    expression(C[apm]),
+    expression(CWM[Dim2]),
 expression(FDis[all]),
-    expression(VPD)
+    expression(VPD),
+expression(P)
+
   ))
+p_pa$graphAttributes$Nodes$width<-
+  c(
+    7, 7, 7, 10, 10, 10,  10
+  )
 library(semptools)
 p_pa2_modg <- mark_sig(p_pa, fit1)
 plot(p_pa2_modg)
@@ -858,7 +951,7 @@ semTable(
   fits = c("tli", "chisq", "rmsea"),
   fitLabels = c(tli = "TLI", chisq = "chisq"),
   type = "html",
-  file = ("output_tab/modg"),
+  file = ("output_tab/modg_latent"),
   print.results = T
 )
 
@@ -881,9 +974,9 @@ semTable(
 # op<- par(mfrow=c(2,3))
 
 png(
-  "output_plot/Mod_a.jpg",
+  "output_plot/Mod_a_latent.jpg",
   width = 5,
-  height = 5,
+  height = 6,
   units = 'in',
   res = 300
 )
@@ -911,9 +1004,9 @@ text(usr[1],
 dev.off()
 
 png(
-  "output_plot/Mod_b.jpg",
+  "output_plot/Mod_b_latent.jpg",
   width = 5,
-  height = 5,
+  height = 6,
   units = 'in',
   res = 300
 )
@@ -941,9 +1034,9 @@ text(usr[1],
 dev.off()
 
 png(
-  "output_plot/Mod_c.jpg",
+  "output_plot/Mod_c_latent.jpg",
   width = 5,
-  height = 5,
+  height = 6,
   units = 'in',
   res = 300
 )
@@ -971,9 +1064,9 @@ text(usr[1],
 dev.off()
 
 png(
-  "output_plot/Mod_d.jpg",
+  "output_plot/Mod_d_latent.jpg",
   width = 5,
-  height = 5,
+  height = 6,
   units = 'in',
   res = 300
 )
@@ -1001,9 +1094,9 @@ text(usr[1],
 dev.off()
 
 png(
-  "output_plot/Mod_e.jpg",
+  "output_plot/Mod_e_latent.jpg",
   width = 5,
-  height = 5,
+  height = 6,
   units = 'in',
   res = 300
 )
@@ -1031,9 +1124,9 @@ text(usr[1],
 dev.off()
 
 png(
-  "output_plot/Mod_f.jpg",
+  "output_plot/Mod_f_latent.jpg",
   width = 5,
-  height = 5,
+  height = 6,
   units = 'in',
   res = 300
 )
@@ -1061,9 +1154,9 @@ text(usr[1],
 dev.off()
 
 png(
-  "output_plot/Mod_g.jpg",
+  "output_plot/Mod_g_latent.jpg",
   width = 5,
-  height = 5,
+  height = 6,
   units = 'in',
   res = 300
 )
@@ -1093,154 +1186,3 @@ dev.off()
 # dev.off()
 par(resetPar)
 
-##%######################################################%##
-#                                                          #
-####                     TRY MOD. X                     ####
-#                                                          #
-##%######################################################%##
-
-modX <- '
-# Direct effect
-Capv_ha_log ~ c*vpd_log
-ICCapv_ha_log ~ f * Capv_ha_log
-
-# Mediator effect
-ICCapv_ha_log ~ d * cwm_SeedMass_log
-ICCapv_ha_log ~ e * FDis_SeedMass_log
-cwm_SeedMass_log ~ a * Capv_ha_log
-FDis_SeedMass_log ~ b * Capv_ha_log
-
-# Indirect effects
-be := b * e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b*e)
-ad := a * d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a*d)
-
-# Total direct+indirect effect
-total := c + (b * e) + (a * d)
-
-# Observed means
-Capv_ha_log ~ 1
-FDis_SeedMass_log ~ 1
-cwm_SeedMass_log ~ 1
-vpd_log ~ 1
-ICCapv_ha_log~1
-'
-
-# datasetscaled<- dataset %>% mutate_at(vars(Capv_ha_log, FDis_SeedMass_log, cwm_SeedMass_log, vpd), funs(scale))
-fit1 = lavaan::cfa(
-  modX,
-  fixed.x = F,
-  data = dataset,
-  estimator = "MLR",
-  likelihood = "wishart",
-  missing = "FIML",
-  std.lv = TRUE
-) # , se = "bootstrap"
-summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
-semPaths(fit1,whatLabels = "std", layout = "tree2", intercepts = F, nCharNodes = 7, sizeMan = 5,sizeLat = 8,curvePivot = T,ask = F)
-parameterEstimates(fit1)
-modificationIndices(fit1, minimum.value = 10)
-ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
-cfi_moda<-ft$cfi
-tli_moda<-ft$tli
-rmsea_moda<-ft$rmsea
-rmsea.upp_moda<-ft$rmsea.ci.upper
-rmsea.low_moda<-ft$rmsea.ci.upper
-srmr_moda<-ft$srmr
-
-library(semPlot)
-m <- matrix(
-  c(NA, 'vpd_log',  NA,
-    NA, 'Capv_ha_log',  NA,
-    'cwm_SeedMass_log', NA, "FDis_SeedMass_log",
-    NA, "ICCapv_ha_log", NA),
-  byrow = TRUE,
-  4, 3)
-p_pa <- semPaths(
-  fit1,
-  whatLabels = "std",
-  intercepts = F,
-  sizeMan = 8,
-  edge.label.cex = .7,
-  style = "ram",
-  nCharNodes = 0,
-  nCharEdges = 0,
-  layout = m, 
-  fade=F, DoNotPlot = T
-)
-p_pa$graphAttributes$Nodes$labels
-p_pa$graphAttributes$Nodes$labels <-
-  c(list(
-    expression(C[apv]),
-    expression(ICC[apv]),
-    expression(CWM[SeedMass]),
-    expression(FDis[SeedMass]),
-    expression(VPD)
-  ))
-p_pa2_modx <- mark_sig(p_pa, fit1)
-plot(p_pa2_modx)
-
-png(
-  "output_plot/Mod_x.jpg",
-  width = 5,
-  height = 5,
-  units = 'in',
-  res = 300
-)
-plot(p_pa2_modx)
-legend(
-  'topright',
-  legend = c(
-    paste0('CFI=', round(cfi_moda, 2)),
-    paste0('TLI=', round(tli_moda, 2)),
-    paste0('RMSEA=', round(rmsea_moda, 2)),
-    paste0('SRMR=', round(srmr_moda, 2))
-  ),
-  cex = 0.7,
-  box.lty = 0,
-  bg = "transparent",
-  text.col = 'grey30'
-)
-usr <- par("usr")
-text(usr[1],
-     usr[4],
-     'Mod. X',
-     adj = c(-0.2, 1.5),
-     col = 'black',
-     cex = 1)
-dev.off()
-
-semTable(
-  fit1,
-  paramSets = "all",
-  paramSetLabels = c(
-    "composites" = "Composites",
-    "loadings" = "Factor Loadings",
-    "slopes" = "Regression Slopes",
-    "intercepts" = "Intercepts",
-    "means" = "Means",
-    "residualvariances" = "Residual Variances",
-    "residualcovariances" = "Residual Covariances",
-    "variances" = "Variances",
-    "latentvariances" = "Latent Variances",
-    "latentcovariances" = "Latent Covariances",
-    "latentmeans" = "Latent Intercepts",
-    "thresholds" = "Thresholds",
-    "constructed" = "Constructed",
-    "fits" = "Fit Indices"
-  ),
-  columns = c("est", "se", "z", "p", "rsquare"
-  ),
-  columnLabels =  c(
-    "est" = "Estimate",
-    se = "Std. Err.",
-    z = "z",
-    p = "p",
-    rsquare = "R Square"
-  ),
-  
-  fits = c("tli", "chisq", "rmsea"),
-  fitLabels = c(tli = "TLI", chisq = "chisq"),
-  type = "html",
-  file = ("output_tab/modx"),
-  print.results = T
-)
