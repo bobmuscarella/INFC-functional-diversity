@@ -29,11 +29,7 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$FDis_SeedMass_log, na.rm = T),
-<<<<<<< HEAD
   x2 = max(dataset$FDis_SeedMass_log, na.rm = T), lty=0
-=======
-  x2 = max(dataset$FDis_SeedMass_log, na.rm = T)
->>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
 )
 
 at <- 0.053
@@ -69,7 +65,7 @@ plot(
   xlab = expression(FDis[Height]), ylim=c(-1,1),
   type = 'n', cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
+legend('topleft', legend=c("Temperate", "Mediterranean"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
 a <- 0.002
@@ -78,11 +74,8 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$FDis_Height_log, na.rm = T),
-<<<<<<< HEAD
   x2 = max(dataset$FDis_Height_log, na.rm = T), lty=0
-=======
-  x2 = max(dataset$FDis_Height_log, na.rm = T)
->>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
+
 )
 
 at <- 0.037
@@ -118,7 +111,7 @@ plot(
   xlab = expression(FDis[SLA]), ylim=c(-1,1),
   type = 'n', cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
+legend('topleft', legend=c("Temperate", "Mediterranean"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
 a <- 0.001
@@ -127,11 +120,8 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$FDis_SLA_log, na.rm = T),
-<<<<<<< HEAD
   x2 = max(dataset$FDis_SLA_log, na.rm = T), lty=0
-=======
-  x2 = max(dataset$FDis_SLA_log, na.rm = T)
->>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
+
 )
 
 at <- 0.057
@@ -167,7 +157,7 @@ plot(
   xlab =  expression(FDis[WD]), ylim=c(-1,1),
   type = 'n', cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
+legend('topleft', legend=c("Temperate", "Mediterranean"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
 a <- 0.001
@@ -176,11 +166,8 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$FDis_StemDensity_log, na.rm = T),
-<<<<<<< HEAD
   x2 = max(dataset$FDis_StemDensity_log, na.rm = T), lty=0
-=======
-  x2 = max(dataset$FDis_StemDensity_log, na.rm = T)
->>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
+
 )
 
 at <- 0.055
@@ -216,7 +203,7 @@ plot(
   xlab =  expression(FDis[Xylem]), ylim=c(-1,1),
   type = 'n', cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
+legend('topleft', legend=c("Temperate", "Mediterranean"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
 a <- 0
@@ -225,11 +212,8 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$FDis_XylemVulnerability_log, na.rm = T),
-<<<<<<< HEAD
   x2 = max(dataset$FDis_XylemVulnerability_log, na.rm = T), lty=0
-=======
-  x2 = max(dataset$FDis_XylemVulnerability_log, na.rm = T)
->>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
+
 )
 
 at <- 0.057
@@ -265,7 +249,7 @@ plot(
   xlab =   expression(FDis[all]), ylim=c(-1,1),
   type = 'n', cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
+legend('topleft', legend=c("Temperate", "Mediterranean"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
 a <- 0
@@ -274,11 +258,8 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$FDis_All_log, na.rm = T),
-<<<<<<< HEAD
   x2 = max(dataset$FDis_All_log, na.rm = T), lty=0
-=======
-  x2 = max(dataset$FDis_All_log, na.rm = T)
->>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
+
 )
 
 at <- 0.05

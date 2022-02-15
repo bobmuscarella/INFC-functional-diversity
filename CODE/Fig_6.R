@@ -12,7 +12,7 @@ png(
 )
 op<- par(mfrow=c(2,3), mar=c(5,5,1,1))
 
-mycols<-c('dodgerblue', 'indianred', 'black')
+mycols<-c('dodgerblue', 'indianred')
 plot(
   Capv_ha_log ~ cwm_SeedMass_log,
   dataset,
@@ -20,7 +20,7 @@ plot(
   xlab =  expression(CWM[SeedMass]), ylim=c(-1,1),
   type = 'n',  cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
+legend('topleft', legend=c("Temperate", "Mediterranean"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
 a <- 0
@@ -29,11 +29,8 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$cwm_SeedMass_log, na.rm = T),
-<<<<<<< HEAD
   x2 = max(dataset$cwm_SeedMass_log, na.rm = T), lty=0
-=======
-  x2 = max(dataset$cwm_SeedMass_log, na.rm = T)
->>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
+
 )
 
 at <- 0.053
@@ -69,7 +66,7 @@ plot(
   xlab = expression(CWM[Height]), #ylim=c(-1,1),
   type = 'n', cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
+legend('topleft', legend=c("Temperate", "Mediterranean"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
 a <- 0.002
@@ -78,11 +75,8 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$cwm_Height_log, na.rm = T),
-<<<<<<< HEAD
   x2 = max(dataset$cwm_Height_log, na.rm = T), lty=0
-=======
-  x2 = max(dataset$cwm_Height_log, na.rm = T)
->>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
+
 )
 
 at <- 0.037
@@ -118,7 +112,7 @@ plot(
   xlab = expression(CWM[SLA]), ylim=c(-1,1),
   type = 'n', cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
+legend('topleft', legend=c("Temperate", "Mediterranean"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
 a <- 0.001
@@ -127,11 +121,8 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$cwm_SLA_log, na.rm = T),
-<<<<<<< HEAD
   x2 = max(dataset$cwm_SLA_log, na.rm = T),lty=0#2
-=======
-  x2 = max(dataset$cwm_SLA_log, na.rm = T),lty=2
->>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
+
 )
 
 at <- 0.057
@@ -167,7 +158,7 @@ plot(
   xlab =  expression(CWM[WD]), ylim=c(-1,1),
   type = 'n', cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
+legend('topleft', legend=c("Temperate", "Mediterranean"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
 a <- 0.001
@@ -176,11 +167,8 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$cwm_StemDensity_log, na.rm = T),
-<<<<<<< HEAD
   x2 = max(dataset$cwm_StemDensity_log, na.rm = T), lty=0
-=======
-  x2 = max(dataset$cwm_StemDensity_log, na.rm = T)
->>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
+
 )
 
 at <- 0.055
@@ -216,7 +204,7 @@ plot(
   xlab =  expression(CWM[Xylem]), #ylim=c(-1,1),
   type = 'n', cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
+legend('topleft', legend=c("Temperate", "Mediterranean"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
 a <- 0
@@ -225,11 +213,8 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$cwm_XylemVulnerability_log, na.rm = T),
-<<<<<<< HEAD
   x2 = max(dataset$cwm_XylemVulnerability_log, na.rm = T), lty=0
-=======
-  x2 = max(dataset$cwm_XylemVulnerability_log, na.rm = T)
->>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
+
 )
 
 at <- 0.057
@@ -265,7 +250,7 @@ plot(
   xlab =   expression(CWM[Dim1]), ylim=c(-1,1),
   type = 'n', cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
+legend('topleft', legend=c("Temperate", "Mediterranean"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
 a <- 0
@@ -274,11 +259,8 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$cwm_Dim1_log, na.rm = T),
-<<<<<<< HEAD
   x2 = max(dataset$cwm_Dim1_log, na.rm = T), lty=0#2
-=======
-  x2 = max(dataset$cwm_Dim1_log, na.rm = T), lty=2
->>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
+
 )
 
 at <- 0.05
