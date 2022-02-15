@@ -29,7 +29,11 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$FDis_SeedMass_log, na.rm = T),
+<<<<<<< HEAD
   x2 = max(dataset$FDis_SeedMass_log, na.rm = T), lty=0
+=======
+  x2 = max(dataset$FDis_SeedMass_log, na.rm = T)
+>>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
 )
 
 at <- 0.053
@@ -74,7 +78,11 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$FDis_Height_log, na.rm = T),
+<<<<<<< HEAD
   x2 = max(dataset$FDis_Height_log, na.rm = T), lty=0
+=======
+  x2 = max(dataset$FDis_Height_log, na.rm = T)
+>>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
 )
 
 at <- 0.037
@@ -119,7 +127,11 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$FDis_SLA_log, na.rm = T),
+<<<<<<< HEAD
   x2 = max(dataset$FDis_SLA_log, na.rm = T), lty=0
+=======
+  x2 = max(dataset$FDis_SLA_log, na.rm = T)
+>>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
 )
 
 at <- 0.057
@@ -164,7 +176,11 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$FDis_StemDensity_log, na.rm = T),
+<<<<<<< HEAD
   x2 = max(dataset$FDis_StemDensity_log, na.rm = T), lty=0
+=======
+  x2 = max(dataset$FDis_StemDensity_log, na.rm = T)
+>>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
 )
 
 at <- 0.055
@@ -209,7 +225,11 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$FDis_XylemVulnerability_log, na.rm = T),
+<<<<<<< HEAD
   x2 = max(dataset$FDis_XylemVulnerability_log, na.rm = T), lty=0
+=======
+  x2 = max(dataset$FDis_XylemVulnerability_log, na.rm = T)
+>>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
 )
 
 at <- 0.057
@@ -254,7 +274,11 @@ plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$FDis_All_log, na.rm = T),
+<<<<<<< HEAD
   x2 = max(dataset$FDis_All_log, na.rm = T), lty=0
+=======
+  x2 = max(dataset$FDis_All_log, na.rm = T)
+>>>>>>> 6ac22465f308c794457741913f1c48c88de0f8cb
 )
 
 at <- 0.05
