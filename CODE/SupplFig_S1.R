@@ -14,6 +14,10 @@
     'cwm_Dim2'
   )]
 
+
+head(dataset$SpRich)
+
+
 hist(.temp$SpRich)
 hist(.temp$FDis_All)
 hist(.temp$FDis_SeedMass)
@@ -61,7 +65,7 @@ cor.test(.temp$SpRich_log, .temp$FDis_XylemVulnerability_log)
 
 
 png(
-  "output_plot/XYplot.jpg",
+  "output_plot/SuppMat.jpg",
   width = 10,
   height = 10,
   units = 'in',

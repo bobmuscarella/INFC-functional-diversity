@@ -146,6 +146,7 @@ trait <- as.data.frame(readxl::read_excel("DATA/TraitDataFrame.xlsx",
 # Remove vessel traits & species not in plots
 trait <- trait[trait$`Species Code` %in% tree$SPcod, -c(8:9)]
 rownames(trait) <- trait$`Species Code`
+head(trait)
 
 # Log-transform some variables
 trait$SeedMass_log <- log(trait$SeedMass)
