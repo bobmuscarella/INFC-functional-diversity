@@ -19,11 +19,16 @@ hist(.temp$FDis_All)
 hist(.temp$FDis_SeedMass)
 hist(.temp$FDis_Height)
 hist(.temp$FDis_SLA)
+hist(.temp$FDis_StemDensity)
 hist(.temp$FDis_XylemVulnerability)
 
 
 .temp$SpRich_log <-
   log(.temp$SpRich + (1 - min(.temp$SpRich, na.rm = T)))
+hist(.temp$SpRich_log)
+
+.temp$FDis_All_log <-
+  log(.temp$FDis_All + (1 - min(.temp$FDis_All, na.rm = T)))
 hist(.temp$SpRich_log)
 
 .temp$FDis_SeedMass_log <-
@@ -38,9 +43,21 @@ hist(.temp$FDis_Height_log)
   log(.temp$FDis_SLA + (1 - min(.temp$FDis_SLA, na.rm = T)))
 hist(.temp$FDis_SLA_log)
 
+.temp$FDis_StemDensity_log <-
+  log(.temp$FDis_StemDensity + (1 - min(.temp$FDis_Stem, na.rm = T)))
+hist(.temp$FDis_StemDensity_log)
+
 .temp$FDis_XylemVulnerability_log <-
   log(.temp$FDis_XylemVulnerability + (1 - min(.temp$FDis_XylemVulnerability, na.rm = T)))
 hist(.temp$FDis_XylemVulnerability_log)
+
+
+cor.test(.temp$SpRich_log, .temp$FDis_All_log)
+cor.test(.temp$SpRich_log, .temp$FDis_Height_log)
+cor.test(.temp$SpRich_log, .temp$FDis_SeedMass_log)
+cor.test(.temp$SpRich_log, .temp$FDis_SLA_log)
+cor.test(.temp$SpRich_log, .temp$FDis_StemDensity_log)
+cor.test(.temp$SpRich_log, .temp$FDis_XylemVulnerability_log)
 
 
 png(
@@ -50,7 +67,7 @@ png(
   units = 'in',
   res = 300
 )
-op<- par(mfrow=c(2,2))
+op<- par(mfrow=c(3,2))
 plot(SpRich_log~FDis_SeedMass_log, .temp)
 mod<-lm(SpRich_log~FDis_SeedMass_log, .temp)
 mods<-summary(mod)
@@ -72,8 +89,22 @@ mods$r.squared
 mods$fstatistic
 abline(mod, col='blue')
 
+plot(SpRich_log~FDis_StemDensity_log, .temp)
+mod<-lm(SpRich_log~FDis_StemDensity_log, .temp)
+mods<-summary(mod)
+mods$r.squared
+mods$fstatistic
+abline(mod, col='blue')
+
 plot(SpRich_log~FDis_XylemVulnerability_log, .temp)
 mod<-lm(SpRich_log~FDis_XylemVulnerability_log, .temp)
+mods<-summary(mod)
+mods$r.squared
+mods$fstatistic
+abline(mod, col='blue')
+
+plot(SpRich_log~FDis_All_log, .temp)
+mod<-lm(SpRich_log~FDis_All_log, .temp)
 mods<-summary(mod)
 mods$r.squared
 mods$fstatistic
