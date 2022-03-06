@@ -67,7 +67,7 @@ rm(xy.dt)
 vpd.r<-raster::raster("DATA/TerraClimate19812010_vpd_italy.nc")
 raster::crs(vpd.r)
 quanti.sp@data$vpd <-raster::extract(vpd.r, quanti.sp)
-rm(vpd.r)
+#rm(vpd.r)
 
 #---- Topographic  -----#
 italy_elev <- raster::getData('alt',country="ITA", path = "DATA")
