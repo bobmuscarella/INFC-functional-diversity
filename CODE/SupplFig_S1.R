@@ -66,54 +66,104 @@ cor.test(.temp$SpRich_log, .temp$FDis_XylemVulnerability_log)
 
 png(
   "output_plot/SuppMat.jpg",
-  width = 10,
+  width = 6,
   height = 10,
   units = 'in',
   res = 300
 )
 op<- par(mfrow=c(3,2))
-plot(SpRich_log~FDis_SeedMass_log, .temp)
+
+plot(SpRich_log~FDis_SeedMass_log, .temp, ylab='Log(Species richness)', xlab=expression(Log(FDis[SeedMass])))
 mod<-lm(SpRich_log~FDis_SeedMass_log, .temp)
 mods<-summary(mod)
 mods$r.squared
 mods$fstatistic
 abline(mod, col='blue')
+usr <- par("usr")
+text(
+  usr[2],
+  usr[4],
+  labels = 'a)',
+  adj = c(1.5, 1.5),
+  col = 'black',
+  cex = 1
+)
 
-plot(SpRich_log~FDis_Height_log, .temp)
+plot(SpRich_log~FDis_Height_log, .temp, ylab='Log(Species richness)', xlab=expression(Log(FDis[Height])))
 mod<-lm(SpRich_log~FDis_Height_log, .temp)
 mods<-summary(mod)
 mods$r.squared
 mods$fstatistic
 abline(mod, col='blue')
-
-plot(SpRich_log~FDis_SLA_log, .temp)
+usr <- par("usr")
+text(
+  usr[2],
+  usr[4],
+  labels = 'b)',
+  adj = c(1.5, 1.5),
+  col = 'black',
+  cex = 1
+)
+plot(SpRich_log~FDis_SLA_log, .temp, ylab='Log(Species richness)', xlab=expression(Log(FDis[SLA])))
 mod<-lm(SpRich_log~FDis_SLA_log, .temp)
 mods<-summary(mod)
 mods$r.squared
 mods$fstatistic
 abline(mod, col='blue')
-
-plot(SpRich_log~FDis_StemDensity_log, .temp)
+usr <- par("usr")
+text(
+  usr[2],
+  usr[4],
+  labels = 'c)',
+  adj = c(1.5, 1.5),
+  col = 'black',
+  cex = 1
+)
+plot(SpRich_log~FDis_StemDensity_log, .temp, ylab='Log(Species richness)', xlab=expression(Log(FDis[WD])))
 mod<-lm(SpRich_log~FDis_StemDensity_log, .temp)
 mods<-summary(mod)
 mods$r.squared
 mods$fstatistic
 abline(mod, col='blue')
-
-plot(SpRich_log~FDis_XylemVulnerability_log, .temp)
+usr <- par("usr")
+text(
+  usr[2],
+  usr[4],
+  labels = 'd)',
+  adj = c(1.5, 1.5),
+  col = 'black',
+  cex = 1
+)
+plot(SpRich_log~FDis_XylemVulnerability_log, .temp, ylab='Log(Species richness)', xlab=expression(Log(FDis[Xylem])))
 mod<-lm(SpRich_log~FDis_XylemVulnerability_log, .temp)
 mods<-summary(mod)
 mods$r.squared
 mods$fstatistic
 abline(mod, col='blue')
-
-plot(SpRich_log~FDis_All_log, .temp)
+usr <- par("usr")
+text(
+  usr[2],
+  usr[4],
+  labels = 'e)',
+  adj = c(1.5, 1.5),
+  col = 'black',
+  cex = 1
+)
+plot(SpRich_log~FDis_All_log, .temp, ylab='Log(Species richness)', xlab=expression(Log(FDis[all])))
 mod<-lm(SpRich_log~FDis_All_log, .temp)
 mods<-summary(mod)
 mods$r.squared
 mods$fstatistic
 abline(mod, col='blue')
-
+usr <- par("usr")
+text(
+  usr[2],
+  usr[4],
+  labels = 'f)',
+  adj = c(1.5, 1.5),
+  col = 'black',
+  cex = 1
+)
 par(op)
 dev.off()
 

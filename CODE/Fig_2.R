@@ -51,6 +51,16 @@ plotrix::ablineclip(
   x1 = min(dataset.m$vpd_log, na.rm = T),
   x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2]
 )
+usr <- par("usr")
+text(
+  usr[2],
+  usr[4],
+  labels = 'a)',
+  adj = c(1.5, 1.5),
+  col = 'black',
+  cex = 1
+)
+
 
 ##%######################################################%##
 #                                                          #
@@ -95,6 +105,15 @@ plotrix::ablineclip(
   b = bm,
   x1 = min(dataset.m$vpd_log, na.rm = T),
   x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2]
+)
+usr <- par("usr")
+text(
+  usr[2],
+  usr[4],
+  labels = 'b)',
+  adj = c(1.5, 1.5),
+  col = 'black',
+  cex = 1
 )
 
 ##%######################################################%##
@@ -141,7 +160,15 @@ plotrix::ablineclip(
   x1 = min(dataset.m$vpd_log, na.rm = T),
   x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2]
 )
-
+usr <- par("usr")
+text(
+  usr[2],
+  usr[4],
+  labels = 'c)',
+  adj = c(1.5, 1.5),
+  col = 'black',
+  cex = 1
+)
 ##%######################################################%##
 #                                                          #
 ####                        modD                        ####
@@ -186,7 +213,15 @@ plotrix::ablineclip(
   x1 = min(dataset.m$vpd_log, na.rm = T),
   x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2]
 )
-
+usr <- par("usr")
+text(
+  usr[2],
+  usr[4],
+  labels = 'd)',
+  adj = c(1.5, 1.5),
+  col = 'black',
+  cex = 1
+)
 ##%######################################################%##
 #                                                          #
 ####                        modE                        ####
@@ -231,7 +266,15 @@ plotrix::ablineclip(
   x1 = min(dataset.m$vpd_log, na.rm = T),
   x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2]
 )
-
+usr <- par("usr")
+text(
+  usr[2],
+  usr[4],
+  labels = 'e)',
+  adj = c(1.5, 1.5),
+  col = 'black',
+  cex = 1
+)
 ##%######################################################%##
 #                                                          #
 ####                        modF                        ####
@@ -276,6 +319,14 @@ plotrix::ablineclip(
   x1 = min(dataset.m$vpd_log, na.rm = T),
   x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2], lty=2
 )
-
+usr <- par("usr")
+text(
+  usr[2],
+  usr[4],
+  labels = 'f)',
+  adj = c(1.5, 1.5),
+  col = 'black',
+  cex = 1
+)
 par(op)
 dev.off()
