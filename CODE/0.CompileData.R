@@ -25,8 +25,9 @@ ipak <- function(pkg){
 }
 
 # usage
-packages <- c('raster','sp','readxl', 'FD', 'rSDM', 'data.table')
+packages <- c('raster','sp','readxl', 'FD', 'rSDM', 'data.table','ncdf4')
 ipak(packages)
+
 
 ##%######################################################%##
 #                                                          #
