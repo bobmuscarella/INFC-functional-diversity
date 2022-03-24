@@ -106,13 +106,13 @@ dev.off()
 ####                        Fig1                        ####
 #                                                          #
 ##%######################################################%##
-png(
-  "output_plot/Fig_1b.jpg",
-  width = 5,
-  height = 5,
-  units = 'in',
-  res = 300
+pdf(
+  "output_plot/Fig_1.pdf",
+  width = 10,
+  height = 5
 )
+op<- par(mfrow=c(1,2), mar=c(5,5,1,1))
+
 
 
 plot(
@@ -147,5 +147,9 @@ plot(
   cex = .1,
   add = T
 )
+
+
+plot(0,type='n',axes=FALSE,ann=FALSE)
+
 
 dev.off()
