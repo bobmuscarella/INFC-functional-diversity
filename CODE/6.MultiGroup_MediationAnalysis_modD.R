@@ -296,3 +296,13 @@ text(usr[1],
 par(op)
 dev.off()
 par(resetPar())
+
+############################################################
+#                                                          #
+#                          Table                           #
+#                                                          #
+############################################################
+library("xtable")
+tab<- cbind(parameterEstimates(fit.Configural, standardized=TRUE))
+table1<-xtable(tab,caption="Parameter Estimates from SEM Model.", label="tab:path-analysis-estimates")
+print.xtable(table1, type="html", file="output_tab/MultiGroup_Mod_d.html")
