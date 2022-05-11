@@ -42,6 +42,7 @@ plotrix::ablineclip(
   x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1]
 )
 
+
 am <- -0.304
 bm <- -0.015
 dataset.m<- subset(dataset,climate_classification==1)
@@ -51,6 +52,7 @@ plotrix::ablineclip(
   x1 = min(dataset.m$vpd_log, na.rm = T),
   x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2], lty=2
 )
+
 usr <- par("usr")
 text(
   usr[2],
@@ -60,6 +62,28 @@ text(
   col = 'black',
   cex = 1
 )
+
+# ----------- Testing slope differences ---------#
+library(lsmeans)
+model <- function(x){
+  bt * x +  at
+}
+pd.t<-data.frame(pd=model(dataset.t$vpd_log),vpd_log=dataset.t$vpd_log)
+pd.t$climate_classification<-paste0(0)
+pd.m<-data.frame(pd=model(dataset.m$vpd_log),vpd_log=dataset.m$vpd_log)
+pd.m$climate_classification<-paste0(1)
+pd<- rbind(pd.t,pd.m)
+head(pd)
+m.interaction <- lm(pd ~ vpd_log *climate_classification, data = pd)
+anova(m.interaction)
+# Obtain slopes
+m.interaction$coefficients
+m.lst <- lstrends(m.interaction, "climate_classification", var="vpd_log")
+m.lst
+# Compare slopes
+pairs(m.lst)
+rm(pd.t,pd.m, pd,m.interaction,m.lst)
+
 ##%######################################################%##
 #                                                          #
 ####                        modB                        ####
@@ -113,6 +137,28 @@ text(
   col = 'black',
   cex = 1
 )
+
+# ----------- Testing slope differences ---------#
+library(lsmeans)
+model <- function(x){
+  bt * x +  at
+}
+pd.t<-data.frame(pd=model(dataset.t$vpd_log),vpd_log=dataset.t$vpd_log)
+pd.t$climate_classification<-paste0(0)
+pd.m<-data.frame(pd=model(dataset.m$vpd_log),vpd_log=dataset.m$vpd_log)
+pd.m$climate_classification<-paste0(1)
+pd<- rbind(pd.t,pd.m)
+head(pd)
+m.interaction <- lm(pd ~ vpd_log *climate_classification, data = pd)
+anova(m.interaction)
+# Obtain slopes
+m.interaction$coefficients
+m.lst <- lstrends(m.interaction, "climate_classification", var="vpd_log")
+m.lst
+# Compare slopes
+pairs(m.lst)
+rm(pd.t,pd.m, pd,m.interaction,m.lst)
+
 ##%######################################################%##
 #                                                          #
 ####                        modC                        ####
@@ -166,6 +212,28 @@ text(
   col = 'black',
   cex = 1
 )
+
+# ----------- Testing slope differences ---------#
+library(lsmeans)
+model <- function(x){
+  bt * x +  at
+}
+pd.t<-data.frame(pd=model(dataset.t$vpd_log),vpd_log=dataset.t$vpd_log)
+pd.t$climate_classification<-paste0(0)
+pd.m<-data.frame(pd=model(dataset.m$vpd_log),vpd_log=dataset.m$vpd_log)
+pd.m$climate_classification<-paste0(1)
+pd<- rbind(pd.t,pd.m)
+head(pd)
+m.interaction <- lm(pd ~ vpd_log *climate_classification, data = pd)
+anova(m.interaction)
+# Obtain slopes
+m.interaction$coefficients
+m.lst <- lstrends(m.interaction, "climate_classification", var="vpd_log")
+m.lst
+# Compare slopes
+pairs(m.lst)
+rm(pd.t,pd.m, pd,m.interaction,m.lst)
+
 ##%######################################################%##
 #                                                          #
 ####                        modD                        ####
@@ -219,6 +287,28 @@ text(
   col = 'black',
   cex = 1
 )
+
+# ----------- Testing slope differences ---------#
+library(lsmeans)
+model <- function(x){
+  bt * x +  at
+}
+pd.t<-data.frame(pd=model(dataset.t$vpd_log),vpd_log=dataset.t$vpd_log)
+pd.t$climate_classification<-paste0(0)
+pd.m<-data.frame(pd=model(dataset.m$vpd_log),vpd_log=dataset.m$vpd_log)
+pd.m$climate_classification<-paste0(1)
+pd<- rbind(pd.t,pd.m)
+head(pd)
+m.interaction <- lm(pd ~ vpd_log *climate_classification, data = pd)
+anova(m.interaction)
+# Obtain slopes
+m.interaction$coefficients
+m.lst <- lstrends(m.interaction, "climate_classification", var="vpd_log")
+m.lst
+# Compare slopes
+pairs(m.lst)
+rm(pd.t,pd.m, pd,m.interaction,m.lst)
+
 ##%######################################################%##
 #                                                          #
 ####                        modE                        ####
@@ -272,6 +362,28 @@ text(
   col = 'black',
   cex = 1
 )
+
+# ----------- Testing slope differences ---------#
+library(lsmeans)
+model <- function(x){
+  bt * x +  at
+}
+pd.t<-data.frame(pd=model(dataset.t$vpd_log),vpd_log=dataset.t$vpd_log)
+pd.t$climate_classification<-paste0(0)
+pd.m<-data.frame(pd=model(dataset.m$vpd_log),vpd_log=dataset.m$vpd_log)
+pd.m$climate_classification<-paste0(1)
+pd<- rbind(pd.t,pd.m)
+head(pd)
+m.interaction <- lm(pd ~ vpd_log *climate_classification, data = pd)
+anova(m.interaction)
+# Obtain slopes
+m.interaction$coefficients
+m.lst <- lstrends(m.interaction, "climate_classification", var="vpd_log")
+m.lst
+# Compare slopes
+pairs(m.lst)
+rm(pd.t,pd.m, pd,m.interaction,m.lst)
+
 ##%######################################################%##
 #                                                          #
 ####                        modF                        ####
@@ -325,5 +437,28 @@ text(
   col = 'black',
   cex = 1
 )
+
+# ----------- Testing slope differences ---------#
+library(lsmeans)
+model <- function(x){
+  bt * x +  at
+}
+pd.t<-data.frame(pd=model(dataset.t$vpd_log),vpd_log=dataset.t$vpd_log)
+pd.t$climate_classification<-paste0(0)
+pd.m<-data.frame(pd=model(dataset.m$vpd_log),vpd_log=dataset.m$vpd_log)
+pd.m$climate_classification<-paste0(1)
+pd<- rbind(pd.t,pd.m)
+head(pd)
+m.interaction <- lm(pd ~ vpd_log *climate_classification, data = pd)
+anova(m.interaction)
+# Obtain slopes
+m.interaction$coefficients
+m.lst <- lstrends(m.interaction, "climate_classification", var="vpd_log")
+m.lst
+# Compare slopes
+pairs(m.lst)
+rm(pd.t,pd.m, pd,m.interaction,m.lst)
+
+
 par(op)
 dev.off()
