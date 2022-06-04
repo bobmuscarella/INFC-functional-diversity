@@ -10,11 +10,11 @@ ipak(packages)
 
 modC <- '
 # Direct effect
-ICCapv_ha_log ~ c(c0,c1)*vpd_log
+Capv_ha_log ~ c(c0,c1)*vpd_log
 
 # Mediator effect
-ICCapv_ha_log ~ c(d0,d1) * cwm_SLA_log
-ICCapv_ha_log ~ c(e0,e1) * FDis_SLA_log
+Capv_ha_log ~ c(d0,d1) * cwm_SLA_log
+Capv_ha_log ~ c(e0,e1) * FDis_SLA_log
 cwm_SLA_log ~ c(a0,a1) * vpd_log
 FDis_SLA_log ~ c(b0,b1) * vpd_log
 
@@ -33,7 +33,7 @@ a1d1 := a1 * d1 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Cap
 total1 := c1 + (b1 * e1) + (a1 * d1)
 
 # Observed means
-ICCapv_ha_log ~ 1
+Capv_ha_log ~ 1
 FDis_SLA_log ~ 1
 cwm_SLA_log ~ 1
 vpd_log ~ 1
@@ -102,11 +102,11 @@ anova(fit.Configural, fit.Constrained)
 #                                                          #
 ##%######################################################%##
 
-sub.dataset<- dataset[,c('ICCapv_ha_log','FDis_SLA_log','cwm_SLA_log','vpd','climate_classification')]
+sub.dataset<- dataset[,c('Capv_ha_log','FDis_SLA_log','cwm_SLA_log','vpd','climate_classification')]
 sub.dataset<- na.omit(sub.dataset)
 library(piecewiseSEM)
 pmultigroup <- psem(
-  lm(ICCapv_ha_log ~ FDis_SLA_log + cwm_SLA_log+vpd, sub.dataset),
+  lm(Capv_ha_log ~ FDis_SLA_log + cwm_SLA_log+vpd, sub.dataset),
   lm(FDis_SLA_log ~ vpd, sub.dataset),
   lm(cwm_SLA_log ~ vpd, sub.dataset)
   
@@ -121,11 +121,11 @@ lavTestWald(fit.Configural, #the name of the Lavaan 'fitted' object
 
 modCp <- '
 # Direct effect
-ICCapv_ha_log ~ c(c0,c1)*vpd_log
+Capv_ha_log ~ c(c0,c1)*vpd_log
 
 # Mediator effect
-ICCapv_ha_log ~ c(d0,d0) * cwm_SLA_log
-ICCapv_ha_log ~ c(e0,e1) * FDis_SLA_log
+Capv_ha_log ~ c(d0,d0) * cwm_SLA_log
+Capv_ha_log ~ c(e0,e1) * FDis_SLA_log
 cwm_SLA_log ~ c(a0,a1) * vpd_log
 FDis_SLA_log ~ c(b0,b1) * vpd_log
 
@@ -144,7 +144,7 @@ a1d0 := a1 * d0 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Cap
 total1 := c1 + (b1 * e1) + (a1 * d0)
 
 # Observed means
-ICCapv_ha_log ~ 1
+Capv_ha_log ~ 1
 FDis_SLA_log ~ 1
 cwm_SLA_log ~ 1
 vpd_log ~ 1
@@ -204,7 +204,7 @@ summary(cf)
 m <- matrix(
   c(NA, 'vpd_log',  NA,
     'cwm_SLA_log', NA, "FDis_SLA_log",
-    NA, "ICCapv_ha_log", NA),
+    NA, "Capv_ha_log", NA),
   byrow = TRUE,
   3, 3)
 p_pa<-semPaths(

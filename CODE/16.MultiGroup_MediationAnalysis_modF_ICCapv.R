@@ -4,19 +4,19 @@ ipak(packages)
 
 ##%######################################################%##
 #                                                          #
-####                       Mod. C                       ####
+####                       Mod. F                       ####
 #                                                          #
 ##%######################################################%##
 
-modC <- '
+modF <- '
 # Direct effect
 ICCapv_ha_log ~ c(c0,c1)*vpd_log
 
 # Mediator effect
-ICCapv_ha_log ~ c(d0,d1) * cwm_SLA_log
-ICCapv_ha_log ~ c(e0,e1) * FDis_SLA_log
-cwm_SLA_log ~ c(a0,a1) * vpd_log
-FDis_SLA_log ~ c(b0,b1) * vpd_log
+ICCapv_ha_log ~ c(d0,d1) * cwm_Dim1_log
+ICCapv_ha_log ~ c(e0,e1) * FDis_All_log
+cwm_Dim1_log ~ c(a0,a1) * vpd_log
+FDis_All_log ~ c(b0,b1) * vpd_log
 
 # Indirect effects
 b0e0 := b0 * e0 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b0*e0)
@@ -34,8 +34,8 @@ total1 := c1 + (b1 * e1) + (a1 * d1)
 
 # Observed means
 ICCapv_ha_log ~ 1
-FDis_SLA_log ~ 1
-cwm_SLA_log ~ 1
+FDis_All_log ~ 1
+cwm_Dim1_log ~ 1
 vpd_log ~ 1
 '
 
@@ -47,7 +47,7 @@ vpd_log ~ 1
 
 fit.Configural <-
   cfa(
-    modC,
+    modF,
     data = dataset,
     group = "climate_classification",
     meanstructure = TRUE,
@@ -77,7 +77,7 @@ subset(mi[order(mi$mi, decreasing=TRUE), ], mi > 5)#And the bigger than 5:
 #                                                          #
 ##%######################################################%##
 
-fit.Constrained <- sem(modC,
+fit.Constrained <- sem(modF,
                        fixed.x = F,
                        data = dataset,
                        estimator = "MLR",
@@ -102,32 +102,33 @@ anova(fit.Configural, fit.Constrained)
 #                                                          #
 ##%######################################################%##
 
-sub.dataset<- dataset[,c('ICCapv_ha_log','FDis_SLA_log','cwm_SLA_log','vpd','climate_classification')]
+sub.dataset<- dataset[,c('ICCapv_ha_log','FDis_All_log','cwm_Dim1_log','vpd','climate_classification')]
 sub.dataset<- na.omit(sub.dataset)
 library(piecewiseSEM)
 pmultigroup <- psem(
-  lm(ICCapv_ha_log ~ FDis_SLA_log + cwm_SLA_log+vpd, sub.dataset),
-  lm(FDis_SLA_log ~ vpd, sub.dataset),
-  lm(cwm_SLA_log ~ vpd, sub.dataset)
+  lm(ICCapv_ha_log ~ FDis_All_log + cwm_Dim1_log+vpd, sub.dataset),
+  lm(FDis_All_log ~ vpd, sub.dataset),
+  lm(cwm_Dim1_log ~ vpd, sub.dataset)
   
 )
 multigroup(pmultigroup, group = "climate_classification")
 
 #----- Overall (Omnibus) Wald-Test ------#
-all.constraints<- 'd0 == d1' #Tell Lavaan these are the constraints we are interested in testing simultaneously.
+all.constraints<- 'c0 == c1
+                  d0 == d1' #Tell Lavaan these are the constraints we are interested in testing simultaneously.
 lavTestWald(fit.Configural, #the name of the Lavaan 'fitted' object
             constraints = all.constraints) #the name of our previously specified paths that we would like to test
 
 
-modCp <- '
+modFp <- '
 # Direct effect
-ICCapv_ha_log ~ c(c0,c1)*vpd_log
+ICCapv_ha_log ~ c(c0,c0)*vpd_log
 
 # Mediator effect
-ICCapv_ha_log ~ c(d0,d0) * cwm_SLA_log
-ICCapv_ha_log ~ c(e0,e1) * FDis_SLA_log
-cwm_SLA_log ~ c(a0,a1) * vpd_log
-FDis_SLA_log ~ c(b0,b1) * vpd_log
+ICCapv_ha_log ~ c(d0,d0) * cwm_Dim1_log
+ICCapv_ha_log ~ c(e0,e1) * FDis_All_log
+cwm_Dim1_log ~ c(a0,a1) * vpd_log
+FDis_All_log ~ c(b0,b1) * vpd_log
 
 # Indirect effects
 b0e0 := b0 * e0 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b0*e0)
@@ -141,16 +142,16 @@ b1e1 := b1 * e1 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Ca
 a1d0 := a1 * d0 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a1*d0)
 
 # Total direct+indirect effect
-total1 := c1 + (b1 * e1) + (a1 * d0)
+total1 := c0 + (b1 * e1) + (a1 * d0)
 
 # Observed means
 ICCapv_ha_log ~ 1
-FDis_SLA_log ~ 1
-cwm_SLA_log ~ 1
+FDis_All_log ~ 1
+cwm_Dim1_log ~ 1
 vpd_log ~ 1
 '
 
-fit.PartConstrained <- sem(modCp,
+fit.PartConstrained <- sem(modFp,
                            fixed.x = F,
                            data = dataset,
                            estimator = "MLR",
@@ -165,12 +166,12 @@ anova(fit.Configural, fit.PartConstrained)
 standardizedSolution(fit.PartConstrained)
 
 ft<-data.frame(t(as.matrix(fitMeasures(fit.PartConstrained))))
-cfi_modC<-ft$cfi
-tli_modC<-ft$tli
-rmsea_modC<-ft$rmsea
-rmsea.upp_modC<-ft$rmsea.ci.upper
-rmsea.low_modC<-ft$rmsea.ci.upper
-srmr_modC<-ft$srmr
+cfi_modF<-ft$cfi
+tli_modF<-ft$tli
+rmsea_modF<-ft$rmsea
+rmsea.upp_modF<-ft$rmsea.ci.upper
+rmsea.low_modF<-ft$rmsea.ci.upper
+srmr_modF<-ft$srmr
 
 ############################################################
 #                                                          #
@@ -187,7 +188,7 @@ lavTestLRT(fit.Configural, fit.Constrained, fit.PartConstrained)
 #                 Measurement invariance                   #
 #                                                          #
 ############################################################
-(out <- measurementInvariance(model=modC,
+(out <- measurementInvariance(model=modF,
                               fixed.x = FALSE,
                               estimator = "MLR",likelihood = "wishart", 
                               missing = "FIML",
@@ -203,7 +204,7 @@ summary(cf)
 ##%######################################################%##
 m <- matrix(
   c(NA, 'vpd_log',  NA,
-    'cwm_SLA_log', NA, "FDis_SLA_log",
+    'cwm_Dim1_log', NA, "FDis_All_log",
     NA, "ICCapv_ha_log", NA),
   byrow = TRUE,
   3, 3)
@@ -218,7 +219,7 @@ p_pa<-semPaths(
   sizeMan = 10,
   edge.label.cex = 1.15,
   style = "ram",
-  nCharNodes = 20,
+  nCharNodes = 0,
   nCharEdges = 0,
   #layout = 'tree2',
   layout = m, 
@@ -232,21 +233,21 @@ p_pa[[1]]$graphAttributes$Nodes$labels
 p_pa[[1]]$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
-    expression(CWM[SLA]),
-    expression(FDis[SLA]),
+    expression(CWM[Dim1]),
+    expression(FDis[all]),
     expression(VPD)
   ))
 p_pa[[2]]$graphAttributes$Nodes$labels
 p_pa[[2]]$graphAttributes$Nodes$labels <-
   c(list(
     expression(C[apv]),
-    expression(CWM[SLA]),
-    expression(FDis[SLA]),
+    expression(CWM[Dim1]),
+    expression(FDis[all]),
     expression(VPD)
   ))
 
 png(
-  "output_plot/MultiGroup_Mod_c.jpg",
+  "output_plot/MultiGroup_Mod_f.jpg",
   width = 10,
   height = 4.5,
   units = 'in',
@@ -258,7 +259,7 @@ plot(
 usr <- par("usr")
 text(usr[1],
      usr[4]-0.1,
-     'Mod. C',
+     'Mod. F',
      adj = c(-0.2, 1.5),
      col = 'black',
      cex = 1)
@@ -274,10 +275,10 @@ plot(
 legend(
   'topright',
   legend = c(
-    paste0('CFI=', round(cfi_modf, 2)),
-    paste0('TLI=', round(tli_modf, 2)),
-    paste0('RMSEA=', round(rmsea_modf, 2)),
-    paste0('SRMR=', round(srmr_modf, 2))
+    paste0('CFI=', round(cfi_modF, 2)),
+    paste0('TLI=', round(tli_modF, 2)),
+    paste0('RMSEA=', round(rmsea_modF, 2)),
+    paste0('SRMR=', round(srmr_modF, 2))
   ),
   cex = 0.7,
   box.lty = 0,
@@ -305,4 +306,5 @@ par(resetPar())
 library("xtable")
 tab<- cbind(parameterEstimates(fit.PartConstrained, standardized=TRUE))
 table1<-xtable(tab,caption="Parameter Estimates from SEM Model.", label="tab:path-analysis-estimates")
-print.xtable(table1, type="html", file="output_tab/MultiGroup_Mod_c.html")
+print.xtable(table1, type="html", file="output_tab/MultiGroup_Mod_f.html")
+

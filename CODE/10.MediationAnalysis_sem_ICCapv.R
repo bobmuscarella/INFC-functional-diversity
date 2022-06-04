@@ -42,8 +42,8 @@ cwm_SeedMass_log ~ a * vpd_log
 FDis_SeedMass_log ~ b * vpd_log
 
 # Indirect effects
-be := b * e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on ICCapv id the product of the mediator coefficient (b*e)
-ad := a * d # The indirect (i.e., Mediator) effect of vpd_log and CWM on ICCapv id the product of the mediator coefficient (a*d)
+be := b * e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad := a * d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a*d)
 
 # Total direct+indirect effect
 total := c + (b * e) + (a * d)
@@ -100,7 +100,7 @@ p_pa <- semPaths(
 p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
-    expression(ICC[apv]),
+    expression(C[cai]),
     expression(CWM[SeedMass]),
     expression(FDis[SeedMass]),
     expression(VPD)
@@ -141,7 +141,7 @@ semTable(
   fits = c("tli", "chisq", "rmsea"),
   fitLabels = c(tli = "TLI", chisq = "chisq"),
   type = "html",
-  file = ("output_tab/moda_ICCapv"),
+  file = ("output_tab/moda_Ccai"),
   print.results = T
 )
 
@@ -172,8 +172,8 @@ cwm_Height_log ~ a*vpd_log
 FDis_Height_log ~ b*vpd_log
 
 # Indirect effects
-be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on ICCapv id the product of the mediator coefficient (b*e)
-ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on ICCapv id the product of the mediator coefficient (a*d)
+be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a*d)
 
 # Total direct+indirect effect
 total:=c+(b*e)+(a*d)
@@ -220,7 +220,7 @@ p_pa <- semPaths(
 p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
-    expression(ICC[apv]),
+    expression(C[cai]),
     expression(CWM[Height]),
     expression(FDis[Height]),
     expression(VPD)
@@ -262,7 +262,7 @@ semTable(
   fits = c("tli", "chisq", "rmsea"),
   fitLabels = c(tli = "TLI", chisq = "chisq"),
   type = "html",
-  file = ("output_tab/modb_ICCapv"),
+  file = ("output_tab/modb_Ccai"),
   print.results = T
 )
 
@@ -292,8 +292,8 @@ cwm_SLA_log ~ a*vpd_log
 FDis_SLA_log ~ b*vpd_log
 
 # Indirect effects
-be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on ICCapv id the product of the mediator coefficient (b*e)
-ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on ICCapv id the product of the mediator coefficient (a*d)
+be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a*d)
 
 # Total direct+indirect effect
 total:=c+(b*e)+(a*d)
@@ -341,7 +341,7 @@ p_pa <- semPaths(
 p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
-    expression(ICC[apv]),
+    expression(C[cai]),
         expression(CWM[SLA]),
 expression(FDis[SLA]),
     expression(VPD)
@@ -383,7 +383,7 @@ semTable(
   fits = c("tli", "chisq", "rmsea"),
   fitLabels = c(tli = "TLI", chisq = "chisq"),
   type = "html",
-  file = ("output_tab/modc_ICCapv"),
+  file = ("output_tab/modc_Ccai"),
   print.results = T
 )
 
@@ -411,8 +411,8 @@ cwm_StemDensity_log ~ a*vpd_log
 FDis_StemDensity_log ~ b*vpd_log
 
 # Indirect effects
-be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on ICCapv id the product of the mediator coefficient (b*e)
-ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on ICCapv id the product of the mediator coefficient (a*d)
+be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a*d)
 
 # Total direct+indirect effect
 total:=c+(b*e)+(a*d)
@@ -461,7 +461,7 @@ p_pa <- semPaths(
 p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
-    expression(ICC[apv]),
+    expression(C[cai]),
         expression(CWM[WD]),
 expression(FDis[WD]),
     expression(VPD)
@@ -503,7 +503,7 @@ semTable(
   fits = c("tli", "chisq", "rmsea"),
   fitLabels = c(tli = "TLI", chisq = "chisq"),
   type = "html",
-  file = ("output_tab/modd_ICCapv"),
+  file = ("output_tab/modd_Ccai"),
   print.results = T
 )
 
@@ -531,8 +531,8 @@ cwm_XylemVulnerability_log ~ a*vpd_log
 FDis_XylemVulnerability_log ~ b*vpd_log
 
 # Indirect effects
-be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on ICCapv id the product of the mediator coefficient (b*e)
-ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on ICCapv id the product of the mediator coefficient (a*d)
+be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a*d)
 
 # Total direct+indirect effect
 total:=c+(b*e)+(a*d)
@@ -580,7 +580,7 @@ p_pa <- semPaths(
 p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
-    expression(ICC[apv]),
+    expression(C[cai]),
        expression(CWM[Xylem]),
  expression(FDis[Xylem]),
     expression(VPD)
@@ -622,7 +622,7 @@ semTable(
   fits = c("tli", "chisq", "rmsea"),
   fitLabels = c(tli = "TLI", chisq = "chisq"),
   type = "html",
-  file = ("output_tab/mode_ICCapv"),
+  file = ("output_tab/mode_Ccai"),
   print.results = T
 )
 
@@ -652,8 +652,8 @@ cwm_Dim1_log ~ a*vpd_log
 FDis_All_log ~ b*vpd_log
 
 # Indirect effects
-be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on ICCapv id the product of the mediator coefficient (b*e)
-ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on ICCapv id the product of the mediator coefficient (a*d)
+be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b*e)
+ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a*d)
 
 # Total direct+indirect effect
 total:=c+(b*e)+(a*d)
@@ -701,7 +701,7 @@ p_pa <- semPaths(
 p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
-    expression(ICC[apv]),
+    expression(C[cai]),
         expression(CWM[Dim1]),
 expression(FDis[all]),
     expression(VPD)
@@ -743,124 +743,10 @@ semTable(
   fits = c("tli", "chisq", "rmsea"),
   fitLabels = c(tli = "TLI", chisq = "chisq"),
   type = "html",
-  file = ("output_tab/modf_ICCapv"),
+  file = ("output_tab/modf_Ccai"),
   print.results = T
 )
 
-##%######################################################%##
-#                                                          #
-####                       Mod. G                       ####
-#                                                          #
-##%######################################################%##
-dataset$cwm_Dim2_log <-
-  scale(log(dataset$cwm_Dim2 + (1 - min(dataset$cwm_Dim2, na.rm = T))), center = TRUE)
-hist(dataset$cwm_Dim2_log)
-
-modG <- '
-# Direct effect
-ICCapv_ha_log ~ c*vpd_log
-
-# Mediator effect
-ICCapv_ha_log ~ d*cwm_Dim2_log
-ICCapv_ha_log ~ e*FDis_All_log
-cwm_Dim2_log ~ a*vpd_log
-FDis_All_log ~ b*vpd_log
-
-# Indirect effects
-be:=b*e # The indirect (i.e., Mediator) effect of vpd_log and FDIs on ICCapv id the product of the mediator coefficient (b*e)
-ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on ICCapv id the product of the mediator coefficient (a*d)
-
-# Total direct+indirect effect
-total:=c+(b*e)+(a*d)
-'
-
-fit1 = lavaan::cfa(
-  modG,
-  fixed.x = F,
-  data = dataset,
-  estimator = "MLR",
-  likelihood = "wishart",
-  missing = "FIML",
-  std.lv = TRUE
-) # , se = "bootstrap"
-summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
-parameterEstimates(fit1)
-ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
-cfi_modg<-ft$cfi
-tli_modg<-ft$tli
-rmsea_modg<-ft$rmsea
-rmsea.upp_modg<-ft$rmsea.ci.upper
-rmsea.low_modg<-ft$rmsea.ci.upper
-srmr_modg<-ft$srmr
-
-
-library(semPlot)
-m <- matrix(
-  c(NA, 'vpd_log',  NA,
-    'cwm_Dim2_log', NA, "FDis_All_log",
-    NA, "ICCapv_ha_log", NA),
-  byrow = TRUE,
-  3, 3)
-
-p_pa <- semPaths(
-  fit1,
-  whatLabels = "std",
-  intercepts = F,
-  sizeMan = 10,
-  edge.label.cex = 1.15,
-  style = "ram",
-  nCharNodes = 0,
-  nCharEdges = 0,
-  layout = m, DoNotPlot = T
-)
-p_pa$graphAttributes$Nodes$labels
-p_pa$graphAttributes$Nodes$labels <-
-  c(list(
-    expression(ICC[apv]),
-        expression(CWM[Dim2]),
-expression(FDis[all]),
-    expression(VPD)
-  ))
-library(semptools)
-p_pa2_modg <- mark_sig(p_pa, fit1)
-plot(p_pa2_modg)
-
-semTable(
-  fit1,
-  paramSets = "all",
-  paramSetLabels = c(
-    "composites" = "Composites",
-    "loadings" = "Factor Loadings",
-    "slopes" = "Regression Slopes",
-    "intercepts" = "Intercepts",
-    "means" = "Means",
-    "residualvariances" = "Residual Variances",
-    "residualcovariances" = "Residual Covariances",
-    "variances" = "Variances",
-    "latentvariances" = "Latent Variances",
-    "latentcovariances" = "Latent Covariances",
-    "latentmeans" = "Latent Intercepts",
-    "thresholds" = "Thresholds",
-    "constructed" = "Constructed",
-    "fits" = "Fit Indices"
-  ),
-  columns = c("est", "se", "z", "p", "rsquare"
-              #"estse", "eststars", "estsestars"
-  ),
-  columnLabels =  c(
-    "est" = "Estimate",
-    se = "Std. Err.",
-    z = "z",
-    p = "p",
-    rsquare = "R Square" #, estse = "Estimate(Std.Err.)", eststars = "Estimate", estsestars = "Estimate(Std.Err.)"
-  ),
-  
-  fits = c("tli", "chisq", "rmsea"),
-  fitLabels = c(tli = "TLI", chisq = "chisq"),
-  type = "html",
-  file = ("output_tab/modg_ICCapv"),
-  print.results = T
-)
 
 ##%######################################################%##
 #                                                          #
@@ -881,7 +767,7 @@ semTable(
 # op<- par(mfrow=c(2,3))
 
 png(
-  "output_plot/Mod_a_ICCapv.jpg",
+  "output_plot/Mod_a.jpg",
   width = 5,
   height = 5,
   units = 'in',
@@ -911,7 +797,7 @@ text(usr[1],
 dev.off()
 
 png(
-  "output_plot/Mod_b_ICCapv.jpg",
+  "output_plot/Mod_b.jpg",
   width = 5,
   height = 5,
   units = 'in',
@@ -941,7 +827,7 @@ text(usr[1],
 dev.off()
 
 png(
-  "output_plot/Mod_c_ICCapv.jpg",
+  "output_plot/Mod_c.jpg",
   width = 5,
   height = 5,
   units = 'in',
@@ -971,7 +857,7 @@ text(usr[1],
 dev.off()
 
 png(
-  "output_plot/Mod_d_ICCapv.jpg",
+  "output_plot/Mod_d.jpg",
   width = 5,
   height = 5,
   units = 'in',
@@ -1001,7 +887,7 @@ text(usr[1],
 dev.off()
 
 png(
-  "output_plot/Mod_e_ICCapv.jpg",
+  "output_plot/Mod_e.jpg",
   width = 5,
   height = 5,
   units = 'in',
@@ -1031,7 +917,7 @@ text(usr[1],
 dev.off()
 
 png(
-  "output_plot/Mod_f_ICCapv.jpg",
+  "output_plot/Mod_f.jpg",
   width = 5,
   height = 5,
   units = 'in',
@@ -1060,35 +946,4 @@ text(usr[1],
      cex = 1)
 dev.off()
 
-png(
-  "output_plot/Mod_g_ICCapv.jpg",
-  width = 5,
-  height = 5,
-  units = 'in',
-  res = 300
-)
-plot(p_pa2_modg)
-legend(
-  'topright',
-  legend = c(
-    paste0('CFI=', round(cfi_modg, 2)),
-    paste0('TLI=', round(tli_modg, 2)),
-    paste0('RMSEA=', round(rmsea_modg, 2)),
-    paste0('SRMR=', round(srmr_modg, 2))
-  ),
-  cex = 0.7,
-  box.lty = 0,
-  bg = "transparent",
-  text.col = 'grey30'
-)
-usr <- par("usr")
-text(usr[1],
-     usr[4],
-     'Mod. G',
-     adj = c(-0.2, 1.5),
-     col = 'black',
-     cex = 1)
-dev.off()
-# par(op)
-# dev.off()
 par(resetPar)
