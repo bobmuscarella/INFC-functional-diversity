@@ -290,7 +290,8 @@ df <- cbind(df, cwm_PCA[match(df$idpunto, rownames(cwm)),])
 par(resetPar())
 
 
-
+# Load data
+dataset <- df
 #--------------------- End of script -----------------------#
 
 

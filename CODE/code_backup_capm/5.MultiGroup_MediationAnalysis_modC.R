@@ -274,10 +274,10 @@ plot(
 legend(
   'topright',
   legend = c(
-    paste0('CFI=', round(cfi_modf, 2)),
-    paste0('TLI=', round(tli_modf, 2)),
-    paste0('RMSEA=', round(rmsea_modf, 2)),
-    paste0('SRMR=', round(srmr_modf, 2))
+    paste0('CFI=', round(cfi_modC, 2)),
+    paste0('TLI=', round(tli_modC, 2)),
+    paste0('RMSEA=', round(rmsea_modC, 2)),
+    paste0('SRMR=', round(srmr_modC, 2))
   ),
   cex = 0.7,
   box.lty = 0,

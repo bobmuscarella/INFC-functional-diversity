@@ -56,7 +56,7 @@ vpd_log ~ 1
 '
 
 # datasetscaled<- dataset %>% mutate_at(vars(ICCapv_ha_log, FDis_SeedMass_log, cwm_SeedMass_log, vpd), funs(scale))
-fit1 = lavaan::cfa(
+fit1.a = lavaan::cfa(
   modA,
   fixed.x = F,
   data = dataset,
@@ -65,11 +65,11 @@ fit1 = lavaan::cfa(
   missing = "FIML",
   std.lv = TRUE
 ) # , se = "bootstrap"
-summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
-semPaths(fit1,whatLabels = "std", layout = "tree2", intercepts = F, nCharNodes = 7, sizeMan = 5,sizeLat = 8,curvePivot = T,ask = F)
-parameterEstimates(fit1)
-modificationIndices(fit1, minimum.value = 10)
-ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
+summary(fit1.a, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
+semPaths(fit1.a,whatLabels = "std", layout = "tree2", intercepts = F, nCharNodes = 7, sizeMan = 5,sizeLat = 8,curvePivot = T,ask = F)
+parameterEstimates(fit1.a)
+modificationIndices(fit1.a, minimum.value = 10)
+ft<-data.frame(t(as.matrix(fitMeasures(fit1.a))))
 cfi_moda<-ft$cfi
 tli_moda<-ft$tli
 rmsea_moda<-ft$rmsea
@@ -86,7 +86,7 @@ m <- matrix(
   byrow = TRUE,
   3, 3)
 p_pa <- semPaths(
-  fit1,
+  fit1.a,
   whatLabels = "std",
   intercepts = F,
   sizeMan = 10,
@@ -105,11 +105,11 @@ p_pa$graphAttributes$Nodes$labels <-
     expression(FDis[SeedMass]),
     expression(VPD)
   ))
-p_pa2_moda <- mark_sig(p_pa, fit1)
+p_pa2_moda <- mark_sig(p_pa, fit1.a)
 plot(p_pa2_moda)
 
 semTable(
-  fit1,
+  fit1.a,
   paramSets = "all",
   paramSetLabels = c(
     "composites" = "Composites",
@@ -179,7 +179,7 @@ ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the
 total:=c+(b*e)+(a*d)
 '
 
-fit1 = lavaan::cfa(
+fit1.b = lavaan::cfa(
   modB,
   fixed.x = F,
   data = dataset,
@@ -188,9 +188,9 @@ fit1 = lavaan::cfa(
   missing = "FIML",
   std.lv = TRUE
 ) # , se = "bootstrap"
-summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
-parameterEstimates(fit1)
-ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
+summary(fit1.b, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
+parameterEstimates(fit1.b)
+ft<-data.frame(t(as.matrix(fitMeasures(fit1.b))))
 cfi_modb<-ft$cfi
 tli_modb<-ft$tli
 rmsea_modb<-ft$rmsea
@@ -207,7 +207,7 @@ m <- matrix(
   3, 3)
 
 p_pa <- semPaths(
-  fit1,
+  fit1.b,
   whatLabels = "std",
   intercepts = F,
   sizeMan = 10,
@@ -226,11 +226,11 @@ p_pa$graphAttributes$Nodes$labels <-
     expression(VPD)
   ))
 library(semptools)
-p_pa2_modb <- mark_sig(p_pa, fit1)
+p_pa2_modb <- mark_sig(p_pa, fit1.b)
 plot(p_pa2_modb)
 
 semTable(
-  fit1,
+  fit1.b,
   paramSets = "all",
   paramSetLabels = c(
     "composites" = "Composites",
@@ -299,7 +299,7 @@ ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the
 total:=c+(b*e)+(a*d)
 '
 
-fit1 = lavaan::cfa(
+fit1.c = lavaan::cfa(
   modC,
   fixed.x = F,
   data = dataset,
@@ -308,9 +308,9 @@ fit1 = lavaan::cfa(
   missing = "FIML",
   std.lv = TRUE
 ) # , se = "bootstrap"
-summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
-parameterEstimates(fit1)
-ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
+summary(fit1.c, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
+parameterEstimates(fit1.c)
+ft<-data.frame(t(as.matrix(fitMeasures(fit1.c))))
 cfi_modc<-ft$cfi
 tli_modc<-ft$tli
 rmsea_modc<-ft$rmsea
@@ -328,7 +328,7 @@ m <- matrix(
   3, 3)
 
 p_pa <- semPaths(
-  fit1,
+  fit1.c,
   whatLabels = "std",
   intercepts = F,
   sizeMan = 10,
@@ -347,11 +347,11 @@ expression(FDis[SLA]),
     expression(VPD)
   ))
 library(semptools)
-p_pa2_modc <- mark_sig(p_pa, fit1)
+p_pa2_modc <- mark_sig(p_pa, fit1.c)
 plot(p_pa2_modc)
 
 semTable(
-  fit1,
+  fit1.c,
   paramSets = "all",
   paramSetLabels = c(
     "composites" = "Composites",
@@ -419,7 +419,7 @@ total:=c+(b*e)+(a*d)
 '
 
 
-fit1 = lavaan::cfa(
+fit1.d = lavaan::cfa(
   modD,
   fixed.x = F,
   data = dataset,
@@ -428,9 +428,9 @@ fit1 = lavaan::cfa(
   missing = "FIML",
   std.lv = TRUE
 ) # , se = "bootstrap"
-summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
-parameterEstimates(fit1)
-ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
+summary(fit1.d, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
+parameterEstimates(fit1.d)
+ft<-data.frame(t(as.matrix(fitMeasures(fit1.d))))
 cfi_modd<-ft$cfi
 tli_modd<-ft$tli
 rmsea_modd<-ft$rmsea
@@ -448,7 +448,7 @@ m <- matrix(
   3, 3)
 
 p_pa <- semPaths(
-  fit1,
+  fit1.d,
   whatLabels = "std",
   intercepts = F,
   sizeMan = 10,
@@ -467,11 +467,11 @@ expression(FDis[WD]),
     expression(VPD)
   ))
 library(semptools)
-p_pa2_modd <- mark_sig(p_pa, fit1)
+p_pa2_modd <- mark_sig(p_pa, fit1.d)
 plot(p_pa2_modd)
 
 semTable(
-  fit1,
+  fit1.d,
   paramSets = "all",
   paramSetLabels = c(
     "composites" = "Composites",
@@ -538,7 +538,7 @@ ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the
 total:=c+(b*e)+(a*d)
 '
 
-fit1 = lavaan::cfa(
+fit1.e = lavaan::cfa(
   modE,
   fixed.x = F,
   data = dataset,
@@ -547,9 +547,9 @@ fit1 = lavaan::cfa(
   missing = "FIML",
   std.lv = TRUE
 ) # , se = "bootstrap"
-summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
-parameterEstimates(fit1)
-ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
+summary(fit1.e, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
+parameterEstimates(fit1.e)
+ft<-data.frame(t(as.matrix(fitMeasures(fit1.e))))
 cfi_mode<-ft$cfi
 tli_mode<-ft$tli
 rmsea_mode<-ft$rmsea
@@ -567,7 +567,7 @@ m <- matrix(
   3, 3)
 
 p_pa <- semPaths(
-  fit1,
+  fit1.e,
   whatLabels = "std",
   intercepts = F,
   sizeMan = 10,
@@ -586,11 +586,11 @@ p_pa$graphAttributes$Nodes$labels <-
     expression(VPD)
   ))
 library(semptools)
-p_pa2_mode <- mark_sig(p_pa, fit1)
+p_pa2_mode <- mark_sig(p_pa, fit1.e)
 plot(p_pa2_mode)
 
 semTable(
-  fit1,
+  fit1.e,
   paramSets = "all",
   paramSetLabels = c(
     "composites" = "Composites",
@@ -659,7 +659,7 @@ ad:=a*d # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the
 total:=c+(b*e)+(a*d)
 '
 
-fit1 = lavaan::cfa(
+fit1.f = lavaan::cfa(
   modF,
   fixed.x = F,
   data = dataset,
@@ -668,9 +668,9 @@ fit1 = lavaan::cfa(
   missing = "FIML",
   std.lv = TRUE
 ) # , se = "bootstrap"
-summary(fit1, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
-parameterEstimates(fit1)
-ft<-data.frame(t(as.matrix(fitMeasures(fit1))))
+summary(fit1.f, fit.measures=TRUE,standardized = TRUE, rsquare = TRUE)
+parameterEstimates(fit1.f)
+ft<-data.frame(t(as.matrix(fitMeasures(fit1.f))))
 cfi_modf<-ft$cfi
 tli_modf<-ft$tli
 rmsea_modf<-ft$rmsea
@@ -688,7 +688,7 @@ m <- matrix(
   3, 3)
 
 p_pa <- semPaths(
-  fit1,
+  fit1.f,
   whatLabels = "std",
   intercepts = F,
   sizeMan = 10,
@@ -707,11 +707,11 @@ expression(FDis[all]),
     expression(VPD)
   ))
 library(semptools)
-p_pa2_modf <- mark_sig(p_pa, fit1)
+p_pa2_modf <- mark_sig(p_pa, fit1.f)
 plot(p_pa2_modf)
 
 semTable(
-  fit1,
+  fit1.f,
   paramSets = "all",
   paramSetLabels = c(
     "composites" = "Composites",

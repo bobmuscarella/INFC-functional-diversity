@@ -113,89 +113,14 @@ pmultigroup <- psem(
 )
 multigroup(pmultigroup, group = "climate_classification")
 
-#----- Overall (Omnibus) Wald-Test ------#
-all.constraints<- 'c0 == c1
-                  d0 == d1' #Tell Lavaan these are the constraints we are interested in testing simultaneously.
-lavTestWald(fit.Configural, #the name of the Lavaan 'fitted' object
-            constraints = all.constraints) #the name of our previously specified paths that we would like to test
 
-
-modAp <- '
-# Direct effect
-ICCapv_ha_log ~ c(c0,c0)*vpd_log
-
-# Mediator effect
-ICCapv_ha_log ~ c(d0,d0) * cwm_SeedMass_log
-ICCapv_ha_log ~ c(e0,e1) * FDis_SeedMass_log
-cwm_SeedMass_log ~ c(a0,a1) * vpd_log
-FDis_SeedMass_log ~ c(b0,b1) * vpd_log
-
-# Indirect effects
-b0e0 := b0 * e0 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b0*e0)
-a0d0 := a0 * d0 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a0*d0)
-
-# Total direct+indirect effect
-total0 := c0 + (b0 * e0) + (a0 * d0)
-
-# Indirect effects
-b1e1 := b1 * e1 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b1*e1)
-a1d0 := a1 * d0 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a1*d0)
-
-# Total direct+indirect effect
-total1 := c0 + (b1 * e1) + (a1 * d0)
-
-# Observed means
-ICCapv_ha_log ~ 1
-FDis_SeedMass_log ~ 1
-cwm_SeedMass_log ~ 1
-vpd_log ~ 1
-'
-
-fit.PartConstrained <- sem(modAp,
-                           fixed.x = F,
-                           data = dataset,
-                           estimator = "MLR",
-                           likelihood = "wishart",
-                           missing = "FIML",
-                           std.lv = TRUE,
-                           group = 'climate_classification')
-
-summary(fit.PartConstrained, fit.measures = TRUE, standardized = TRUE)
-anova(fit.Configural, fit.PartConstrained)
-
-standardizedSolution(fit.PartConstrained)
-
-ft<-data.frame(t(as.matrix(fitMeasures(fit.PartConstrained))))
+ft<-data.frame(t(as.matrix(fitMeasures(fit.Configural))))
 cfi_moda<-ft$cfi
 tli_moda<-ft$tli
 rmsea_moda<-ft$rmsea
 rmsea.upp_moda<-ft$rmsea.ci.upper
 rmsea.low_moda<-ft$rmsea.ci.upper
 srmr_moda<-ft$srmr
-
-############################################################
-#                                                          #
-#                       compare fit                        #
-#                                                          #
-############################################################
-modelcomparison <- compareFit(fit.Configural, fit.Constrained, fit.PartConstrained)
-summary(modelcomparison)
-summary(modelcomparison, fit.measures = c("aic", "bic", 'cfi', 'rmsea'))
-lavTestLRT(fit.Configural, fit.Constrained, fit.PartConstrained)
-
-############################################################
-#                                                          #
-#                 Measurement invariance                   #
-#                                                          #
-############################################################
-(out <- measurementInvariance(model=modA,
-                              fixed.x = FALSE,
-                              estimator = "MLR",likelihood = "wishart", 
-                              missing = "FIML",
-                              data = dataset,
-                              group = "climate_classification"))
-cf<-compareFit(out)
-summary(cf)
 
 ##%######################################################%##
 #                                                          #
@@ -209,7 +134,7 @@ m <- matrix(
   byrow = TRUE,
   3, 3)
 p_pa<-semPaths(
-  fit.PartConstrained,
+  fit.Configural,
   whatLabels = "std",
   #what="eq",
   ask = FALSE,
@@ -232,7 +157,7 @@ p_pa<-semPaths(
 p_pa[[1]]$graphAttributes$Nodes$labels
 p_pa[[1]]$graphAttributes$Nodes$labels <-
   c(list(
-    expression(C[apv]),
+    expression(C[cai]),
     expression(CWM[SeedMass]),
     expression(FDis[SeedMass]),
     expression(VPD)
@@ -240,14 +165,14 @@ p_pa[[1]]$graphAttributes$Nodes$labels <-
 p_pa[[2]]$graphAttributes$Nodes$labels
 p_pa[[2]]$graphAttributes$Nodes$labels <-
   c(list(
-    expression(C[apv]),
+    expression(C[cai]),
     expression(CWM[SeedMass]),
     expression(FDis[SeedMass]),
     expression(VPD)
   ))
 
 png(
-  "output_plot/MultiGroup_Mod_a.jpg",
+  "output_plot/MultiGroup_Mod_a_CCai.jpg",
   width = 10,
   height = 4.5,
   units = 'in',
@@ -304,8 +229,9 @@ par(resetPar())
 #                                                          #
 ############################################################
 library("xtable")
-tab<- cbind(parameterEstimates(fit.PartConstrained, standardized=TRUE))
+tab<- cbind(parameterEstimates(fit.Configural, standardized=TRUE))
 table1<-xtable(tab,caption="Parameter Estimates from SEM Model.", label="tab:path-analysis-estimates")
-print.xtable(table1, type="html", file="output_tab/MultiGroup_Mod_a.html")
+print.xtable(table1, type="html", file="output_tab/MultiGroup_Mod_a_Ccai.html")
 
 
+fit1mg.a<-fit.Configural

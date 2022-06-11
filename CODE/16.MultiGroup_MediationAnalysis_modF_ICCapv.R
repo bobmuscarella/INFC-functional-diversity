@@ -114,15 +114,14 @@ pmultigroup <- psem(
 multigroup(pmultigroup, group = "climate_classification")
 
 #----- Overall (Omnibus) Wald-Test ------#
-all.constraints<- 'c0 == c1
-                  d0 == d1' #Tell Lavaan these are the constraints we are interested in testing simultaneously.
+all.constraints<- 'd0 == d1' #Tell Lavaan these are the constraints we are interested in testing simultaneously.
 lavTestWald(fit.Configural, #the name of the Lavaan 'fitted' object
             constraints = all.constraints) #the name of our previously specified paths that we would like to test
 
 
 modFp <- '
 # Direct effect
-ICCapv_ha_log ~ c(c0,c0)*vpd_log
+ICCapv_ha_log ~ c(c0,c1)*vpd_log
 
 # Mediator effect
 ICCapv_ha_log ~ c(d0,d0) * cwm_Dim1_log
@@ -142,7 +141,7 @@ b1e1 := b1 * e1 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Ca
 a1d0 := a1 * d0 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a1*d0)
 
 # Total direct+indirect effect
-total1 := c0 + (b1 * e1) + (a1 * d0)
+total1 := c1 + (b1 * e1) + (a1 * d0)
 
 # Observed means
 ICCapv_ha_log ~ 1
@@ -232,7 +231,7 @@ p_pa<-semPaths(
 p_pa[[1]]$graphAttributes$Nodes$labels
 p_pa[[1]]$graphAttributes$Nodes$labels <-
   c(list(
-    expression(C[apv]),
+    expression(C[cai]),
     expression(CWM[Dim1]),
     expression(FDis[all]),
     expression(VPD)
@@ -240,14 +239,14 @@ p_pa[[1]]$graphAttributes$Nodes$labels <-
 p_pa[[2]]$graphAttributes$Nodes$labels
 p_pa[[2]]$graphAttributes$Nodes$labels <-
   c(list(
-    expression(C[apv]),
+    expression(C[cai]),
     expression(CWM[Dim1]),
     expression(FDis[all]),
     expression(VPD)
   ))
 
 png(
-  "output_plot/MultiGroup_Mod_f.jpg",
+  "output_plot/MultiGroup_Mod_f_Ccai.jpg",
   width = 10,
   height = 4.5,
   units = 'in',
@@ -306,5 +305,6 @@ par(resetPar())
 library("xtable")
 tab<- cbind(parameterEstimates(fit.PartConstrained, standardized=TRUE))
 table1<-xtable(tab,caption="Parameter Estimates from SEM Model.", label="tab:path-analysis-estimates")
-print.xtable(table1, type="html", file="output_tab/MultiGroup_Mod_f.html")
+print.xtable(table1, type="html", file="output_tab/MultiGroup_Mod_f_Cai.html")
 
+fit1mg.f<-fit.PartConstrained

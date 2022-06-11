@@ -23,8 +23,8 @@ plot(
 legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
-a <- parameterEstimates(fit1.a,standardized = TRUE)[8,12]
-b <-parameterEstimates(fit1.a,standardized = TRUE)[4,12]
+a <- 0.003
+b <- 0.303
 plotrix::ablineclip(
   a = a,
   b = b,
@@ -32,8 +32,8 @@ plotrix::ablineclip(
   x2 = max(dataset$vpd_log, na.rm = T)
 )
 
-at <- parameterEstimates(fit1mg.a,standardized = TRUE)[8,12]
-bt <- parameterEstimates(fit1mg.a,standardized = TRUE)[4,12]
+at <- 0.053
+bt <- 0.306
 dataset.t<- subset(dataset,climate_classification==0)
 plotrix::ablineclip(
   a = at,
@@ -42,8 +42,8 @@ plotrix::ablineclip(
   x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1]
 )
 
-am <- parameterEstimates(fit1mg.a,standardized = TRUE)[21,12]
-bm <- parameterEstimates(fit1mg.a,standardized = TRUE)[17,12]
+am <- -0.135
+bm <- -0.138
 dataset.m<- subset(dataset,climate_classification==1)
 plotrix::ablineclip(
   a = am,
@@ -78,8 +78,8 @@ plot(
 legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
-a <- parameterEstimates(fit1.b,standardized = TRUE)[8,12]
-b <-parameterEstimates(fit1.b,standardized = TRUE)[4,12]
+a <- -0.010
+b <- -0.509
 plotrix::ablineclip(
   a = a,
   b = b,
@@ -87,8 +87,8 @@ plotrix::ablineclip(
   x2 = max(dataset$vpd_log, na.rm = T)
 )
 
-at <- parameterEstimates(fit1mg.b,standardized = TRUE)[8,12]
-bt <- parameterEstimates(fit1mg.b,standardized = TRUE)[4,12]
+at <- 0.063
+bt <- -0.485
 dataset.t<- subset(dataset,climate_classification==0)
 plotrix::ablineclip(
   a = at,
@@ -97,8 +97,8 @@ plotrix::ablineclip(
   x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1]
 )
 
-am <- parameterEstimates(fit1mg.b,standardized = TRUE)[21,12]
-bm <- parameterEstimates(fit1mg.b,standardized = TRUE)[17,12]
+am <- -0.252
+bm <- -0.242
 dataset.m<- subset(dataset,climate_classification==1)
 plotrix::ablineclip(
   a = am,
@@ -132,8 +132,8 @@ plot(
 legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
-a <- parameterEstimates(fit1.c,standardized = TRUE)[8,12]
-b <-parameterEstimates(fit1.c,standardized = TRUE)[4,12]
+a <- 0.002
+b <- 0.193
 plotrix::ablineclip(
   a = a,
   b = b,
@@ -141,8 +141,8 @@ plotrix::ablineclip(
   x2 = max(dataset$vpd_log, na.rm = T)
 )
 
-at <- parameterEstimates(fit1mg.c,standardized = TRUE)[8,12]
-bt <- parameterEstimates(fit1mg.c,standardized = TRUE)[4,12]
+at <- 0.125
+bt <- 0.323
 dataset.t<- subset(dataset,climate_classification==0)
 plotrix::ablineclip(
   a = at,
@@ -151,8 +151,8 @@ plotrix::ablineclip(
   x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1]
 )
 
-am <- parameterEstimates(fit1mg.c,standardized = TRUE)[21,12]
-bm <- parameterEstimates(fit1mg.c,standardized = TRUE)[17,12]
+am <- 0.082
+bm <- -0.265
 dataset.m<- subset(dataset,climate_classification==1)
 plotrix::ablineclip(
   a = am,
@@ -185,8 +185,8 @@ plot(
 legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
-a <- parameterEstimates(fit1.d,standardized = TRUE)[8,12]
-b <-parameterEstimates(fit1.d,standardized = TRUE)[4,12]
+a <- -0.002
+b <-  0.405
 plotrix::ablineclip(
   a = a,
   b = b,
@@ -194,8 +194,8 @@ plotrix::ablineclip(
   x2 = max(dataset$vpd_log, na.rm = T)
 )
 
-at <- parameterEstimates(fit1mg.d,standardized = TRUE)[8,12]
-bt <- parameterEstimates(fit1mg.d,standardized = TRUE)[4,12]
+at <- 0.040
+bt <- 0.434
 dataset.t<- subset(dataset,climate_classification==0)
 plotrix::ablineclip(
   a = at,
@@ -204,8 +204,8 @@ plotrix::ablineclip(
   x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1]
 )
 
-am <- parameterEstimates(fit1mg.d,standardized = TRUE)[21,12]
-bm <- parameterEstimates(fit1mg.d,standardized = TRUE)[17,12]
+am <- 0.110
+bm <- 0.121
 dataset.m<- subset(dataset,climate_classification==1)
 plotrix::ablineclip(
   a = am,
@@ -238,8 +238,8 @@ plot(
 legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
-a <- parameterEstimates(fit1.e,standardized = TRUE)[8,12]
-b <-parameterEstimates(fit1.e,standardized = TRUE)[4,12]
+a <- -0.001
+b <-  0.014
 plotrix::ablineclip(
   a = a,
   b = b,
@@ -247,8 +247,8 @@ plotrix::ablineclip(
   x2 = max(dataset$vpd_log, na.rm = T), lty=2
 )
 
-at <- parameterEstimates(fit1mg.e,standardized = TRUE)[8,12]
-bt <- parameterEstimates(fit1mg.e,standardized = TRUE)[4,12]
+at <- 0.124
+bt <- 0.175
 dataset.t<- subset(dataset,climate_classification==0)
 plotrix::ablineclip(
   a = at,
@@ -257,8 +257,8 @@ plotrix::ablineclip(
   x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1]
 )
 
-am <- parameterEstimates(fit1mg.e,standardized = TRUE)[21,12]
-bm <- parameterEstimates(fit1mg.e,standardized = TRUE)[17,12]
+am <- 0.086
+bm <- -0.193
 dataset.m<- subset(dataset,climate_classification==1)
 plotrix::ablineclip(
   a = am,
@@ -291,8 +291,8 @@ plot(
 legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
        col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
-a <- parameterEstimates(fit1.f,standardized = TRUE)[8,12]
-b <-parameterEstimates(fit1.f,standardized = TRUE)[4,12]
+a <- 0.009
+b <-  0.240
 plotrix::ablineclip(
   a = a,
   b = b,
@@ -300,8 +300,8 @@ plotrix::ablineclip(
   x2 = max(dataset$vpd_log, na.rm = T), lty=1
 )
 
-at <- parameterEstimates(fit1mg.f,standardized = TRUE)[8,12]
-bt <- parameterEstimates(fit1mg.f,standardized = TRUE)[4,12]
+at <- -0.021
+bt <- 0.227
 dataset.t<- subset(dataset,climate_classification==0)
 plotrix::ablineclip(
   a = at,
@@ -310,8 +310,8 @@ plotrix::ablineclip(
   x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1]
 )
 
-am <- parameterEstimates(fit1mg.f,standardized = TRUE)[21,12]
-bm <- parameterEstimates(fit1mg.f,standardized = TRUE)[17,12]
+am <- 0.251
+bm <- 0.026
 dataset.m<- subset(dataset,climate_classification==1)
 plotrix::ablineclip(
   a = am,
@@ -330,4 +330,3 @@ text(
 )
 par(op)
 dev.off()
-

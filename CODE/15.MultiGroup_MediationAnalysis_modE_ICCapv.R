@@ -4,7 +4,7 @@ ipak(packages)
 
 ##%######################################################%##
 #                                                          #
-####                       Mod. A                       ####
+####                       Mod. E                       ####
 #                                                          #
 ##%######################################################%##
 
@@ -114,7 +114,7 @@ pmultigroup <- psem(
 multigroup(pmultigroup, group = "climate_classification")
 
 #----- Overall (Omnibus) Wald-Test ------#
-all.constraints<- 'c0 == c1
+all.constraints<- 'e0 == e1
                   b0 == b1' #Tell Lavaan these are the constraints we are interested in testing simultaneously.
 lavTestWald(fit.Configural, #the name of the Lavaan 'fitted' object
             constraints = all.constraints) #the name of our previously specified paths that we would like to test
@@ -122,11 +122,11 @@ lavTestWald(fit.Configural, #the name of the Lavaan 'fitted' object
 
 modEp <- '
 # Direct effect
-ICCapv_ha_log ~ c(c0,c0)*vpd_log
+ICCapv_ha_log ~ c(c0,c1)*vpd_log
 
 # Mediator effect
 ICCapv_ha_log ~ c(d0,d1) * cwm_XylemVulnerability_log
-ICCapv_ha_log ~ c(e0,e1) * FDis_XylemVulnerability_log
+ICCapv_ha_log ~ c(e0,e0) * FDis_XylemVulnerability_log
 cwm_XylemVulnerability_log ~ c(a0,a1) * vpd_log
 FDis_XylemVulnerability_log ~ c(b0,b0) * vpd_log
 
@@ -138,11 +138,11 @@ a0d0 := a0 * d0 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Cap
 total0 := c0 + (b0 * e0) + (a0 * d0)
 
 # Indirect effects
-b1e1 := b0 * e1 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b0*e1)
-a1d0 := a1 * d1 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a1*d1)
+b0e0 := b0 * e0 # The indirect (i.e., Mediator) effect of vpd_log and FDIs on Capv id the product of the mediator coefficient (b0*e0)
+a1d1 := a1 * d1 # The indirect (i.e., Mediator) effect of vpd_log and CWM on Capv id the product of the mediator coefficient (a1*d1)
 
 # Total direct+indirect effect
-total1 := c0 + (b0 * e1) + (a1 * d1)
+total1 := c1 + (b0 * e0) + (a1 * d1)
 
 # Observed means
 ICCapv_ha_log ~ 1
@@ -232,7 +232,7 @@ p_pa<-semPaths(
 p_pa[[1]]$graphAttributes$Nodes$labels
 p_pa[[1]]$graphAttributes$Nodes$labels <-
   c(list(
-    expression(C[apv]),
+    expression(C[cai]),
     expression(CWM[Xylem]),
     expression(FDis[Xylem]),
     expression(VPD)
@@ -240,14 +240,14 @@ p_pa[[1]]$graphAttributes$Nodes$labels <-
 p_pa[[2]]$graphAttributes$Nodes$labels
 p_pa[[2]]$graphAttributes$Nodes$labels <-
   c(list(
-    expression(C[apv]),
+    expression(C[cai]),
     expression(CWM[Xylem]),
     expression(FDis[Xylem]),
     expression(VPD)
   ))
 
 png(
-  "output_plot/MultiGroup_Mod_e.jpg",
+  "output_plot/MultiGroup_Mod_e_Ccai.jpg",
   width = 10,
   height = 4.5,
   units = 'in',
@@ -306,4 +306,6 @@ par(resetPar())
 library("xtable")
 tab<- cbind(parameterEstimates(fit.PartConstrained, standardized=TRUE))
 table1<-xtable(tab,caption="Parameter Estimates from SEM Model.", label="tab:path-analysis-estimates")
-print.xtable(table1, type="html", file="output_tab/MultiGroup_Mod_e.html")
+print.xtable(table1, type="html", file="output_tab/MultiGroup_Mod_e_Ccai.html")
+
+fit1mg.e<-fit.PartConstrained
