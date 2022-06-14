@@ -4,7 +4,7 @@
 #                                                          #
 ##%######################################################%##
 png(
-  "output_plot/Fg_3.jpg",
+  "output_plot/Fig_3.jpg",
   width = 10,
   height = 7,
   units = 'in',
@@ -18,46 +18,47 @@ plot(
   dataset,
   xlab = 'VPD',
   ylab =  expression(FDis[SeedMass]),
-  type = 'n', ylim=c(-1.5,2), cex.lab=1.1, cex.axis=1.1
+  type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
 )
 legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
-       col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
+       col=mycols, lty=1, cex=1.3, box.lty=0, inset=0.02)
 
-a <- -0.001
-b <- 0.063
+a <- parameterEstimates(fit1.a,standardized = TRUE)[7,12]
+b <-parameterEstimates(fit1.a,standardized = TRUE)[5,12]
 plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$vpd_log, na.rm = T),
-  x2 = max(dataset$vpd_log, na.rm = T)
+  x2 = max(dataset$vpd_log, na.rm = T), lty=ifelse(
+    parameterEstimates(fit1.a,standardized = TRUE)[5,8] <0.05, 1,2)
 )
 
-at <- 0.118
-bt <- 0.171
+at <- parameterEstimates(fit1mg.a,standardized = TRUE)[7,14]
+bt <- parameterEstimates(fit1mg.a,standardized = TRUE)[5,14]
 dataset.t<- subset(dataset,climate_classification==0)
 plotrix::ablineclip(
   a = at,
   b = bt,
   x1 = min(dataset.t$vpd_log, na.rm = T),
-  x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1]
+  x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1], lty=ifelse(
+    parameterEstimates(fit1mg.a,standardized = TRUE)[5,10] <0.05, 1,2)
 )
 
-
-am <- -0.304
-bm <- -0.015
+am <- parameterEstimates(fit1mg.a,standardized = TRUE)[20,14]
+bm <- parameterEstimates(fit1mg.a,standardized = TRUE)[18,14]
 dataset.m<- subset(dataset,climate_classification==1)
 plotrix::ablineclip(
   a = am,
   b = bm,
   x1 = min(dataset.m$vpd_log, na.rm = T),
-  x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2], lty=2
+  x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2], lty=ifelse(
+    parameterEstimates(fit1mg.a,standardized = TRUE)[18,10] <0.05, 1,2)
 )
-
 usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'a)',
+  labels = 'Mod.A',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
@@ -95,44 +96,45 @@ plot(
   dataset,
   xlab = 'VPD',
   ylab = expression(FDis[Height]),
-  type = 'n', ylim=c(-1.5,2), cex.lab=1.1, cex.axis=1.1
+  type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
-       col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
-a <- -0.001
-b <- 0.010
+a <- parameterEstimates(fit1.b,standardized = TRUE)[12,12]
+b <-parameterEstimates(fit1.b,standardized = TRUE)[5,12]
 plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$vpd_log, na.rm = T),
-  x2 = max(dataset$vpd_log, na.rm = T), lty=2
+  x2 = max(dataset$vpd_log, na.rm = T), lty=ifelse(
+    parameterEstimates(fit1.b,standardized = TRUE)[5,8] <0.05, 1,2)
 )
 
-at <- 0.080
-bt <- 0.082
+at <- parameterEstimates(fit1mg.b,standardized = TRUE)[7,14]
+bt <- parameterEstimates(fit1mg.b,standardized = TRUE)[5,14]
 dataset.t<- subset(dataset,climate_classification==0)
 plotrix::ablineclip(
   a = at,
   b = bt,
   x1 = min(dataset.t$vpd_log, na.rm = T),
-  x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1]
+  x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1], lty=ifelse(
+    parameterEstimates(fit1mg.b,standardized = TRUE)[5,10] <0.05, 1,2)
 )
 
-am <- -0.223
-bm <- 0.001
+am <- parameterEstimates(fit1mg.b,standardized = TRUE)[20,14]
+bm <- parameterEstimates(fit1mg.b,standardized = TRUE)[18,14]
 dataset.m<- subset(dataset,climate_classification==1)
 plotrix::ablineclip(
   a = am,
   b = bm,
   x1 = min(dataset.m$vpd_log, na.rm = T),
-  x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2], lty=2
+  x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2], lty=ifelse(
+    parameterEstimates(fit1mg.b,standardized = TRUE)[18,10] <0.05, 1,2)
 )
 usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'b)',
+  labels = 'Mod.B',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
@@ -170,44 +172,45 @@ plot(
   dataset,
   xlab = 'VPD',
   ylab = expression(FDis[SLA]),
-  type = 'n', ylim=c(-1.5,2), cex.lab=1.1, cex.axis=1.1
+  type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
-       col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
-a <- -0.004
-b <- -0.191
+a <- parameterEstimates(fit1.c,standardized = TRUE)[12,12]
+b <-parameterEstimates(fit1.c,standardized = TRUE)[5,12]
 plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$vpd_log, na.rm = T),
-  x2 = max(dataset$vpd_log, na.rm = T)
+  x2 = max(dataset$vpd_log, na.rm = T), lty=ifelse(
+    parameterEstimates(fit1.c,standardized = TRUE)[5,8] <0.05, 1,2)
 )
 
-at <- 0.088
-bt <- -0.112
+at <- parameterEstimates(fit1mg.c,standardized = TRUE)[7,14]
+bt <- parameterEstimates(fit1mg.c,standardized = TRUE)[5,14]
 dataset.t<- subset(dataset,climate_classification==0)
 plotrix::ablineclip(
   a = at,
   b = bt,
   x1 = min(dataset.t$vpd_log, na.rm = T),
-  x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1]
+  x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1], lty=ifelse(
+    parameterEstimates(fit1mg.c,standardized = TRUE)[5,10] <0.05, 1,2)
 )
 
-am <- -0.685
-bm <- 0.006
+am <- parameterEstimates(fit1mg.c,standardized = TRUE)[20,14]
+bm <- parameterEstimates(fit1mg.c,standardized = TRUE)[18,14]
 dataset.m<- subset(dataset,climate_classification==1)
 plotrix::ablineclip(
   a = am,
   b = bm,
   x1 = min(dataset.m$vpd_log, na.rm = T),
-  x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2], lty=2
+  x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2], lty=ifelse(
+    parameterEstimates(fit1mg.c,standardized = TRUE)[18,10] <0.05, 1,2)
 )
 usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'c)',
+  labels = 'Mod.C',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
@@ -245,44 +248,46 @@ plot(
   dataset,
   xlab = 'VPD',
   ylab =  expression(FDis[WD]),
-  type = 'n', ylim=c(-1.5,2), cex.lab=1.1, cex.axis=1.1
+  type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
-       col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
-a <- -0.002
-b <-  -0.016
+a <- parameterEstimates(fit1.d,standardized = TRUE)[12,12]
+b <-parameterEstimates(fit1.d,standardized = TRUE)[5,12]
 plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$vpd_log, na.rm = T),
-  x2 = max(dataset$vpd_log, na.rm = T), lty=2
+  x2 = max(dataset$vpd_log, na.rm = T), lty=ifelse(
+    parameterEstimates(fit1.d,standardized = TRUE)[5,8] <0.05, 1,2)
 )
 
-at <- 0.112
-bt <- 0.091
+at <- parameterEstimates(fit1mg.d,standardized = TRUE)[7,14]
+bt <- parameterEstimates(fit1mg.d,standardized = TRUE)[5,14]
 dataset.t<- subset(dataset,climate_classification==0)
 plotrix::ablineclip(
   a = at,
   b = bt,
   x1 = min(dataset.t$vpd_log, na.rm = T),
-  x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1]
+  x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1], lty=ifelse(
+    parameterEstimates(fit1mg.d,standardized = TRUE)[5,10] <0.05, 1,2)
 )
 
-am <- -0.308
-bm <- -0.064
+am <- parameterEstimates(fit1mg.d,standardized = TRUE)[20,14]
+bm <- parameterEstimates(fit1mg.d,standardized = TRUE)[18,14]
 dataset.m<- subset(dataset,climate_classification==1)
 plotrix::ablineclip(
   a = am,
   b = bm,
   x1 = min(dataset.m$vpd_log, na.rm = T),
-  x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2]
+  x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2], lty=ifelse(
+    parameterEstimates(fit1mg.d,standardized = TRUE)[18,10] <0.05, 1,2)
 )
+
 usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'd)',
+  labels = 'Mod.D',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
@@ -320,44 +325,45 @@ plot(
   dataset,
   xlab = 'VPD',
   ylab =  expression(FDis[Xylem]),
-  type = 'n', ylim=c(-1.5,2), cex.lab=1.1, cex.axis=1.1
+  type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
-       col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
 
-a <- 0.002
-b <-  0.160
+a <- parameterEstimates(fit1.e,standardized = TRUE)[12,12]
+b <-parameterEstimates(fit1.e,standardized = TRUE)[5,12]
 plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$vpd_log, na.rm = T),
-  x2 = max(dataset$vpd_log, na.rm = T)
+  x2 = max(dataset$vpd_log, na.rm = T), lty=ifelse(
+    parameterEstimates(fit1.e,standardized = TRUE)[5,8] <0.05, 1,2)
 )
 
-at <- 0.051
-bt <- 0.207
+at <- parameterEstimates(fit1mg.e,standardized = TRUE)[7,14]
+bt <- parameterEstimates(fit1mg.e,standardized = TRUE)[5,14]
 dataset.t<- subset(dataset,climate_classification==0)
 plotrix::ablineclip(
   a = at,
   b = bt,
   x1 = min(dataset.t$vpd_log, na.rm = T),
-  x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1]
+  x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1], lty=ifelse(
+    parameterEstimates(fit1mg.e,standardized = TRUE)[5,10] <0.05, 1,2)
 )
 
-am <- -0.136
-bm <- 0.095
+am <- parameterEstimates(fit1mg.e,standardized = TRUE)[20,14]
+bm <- parameterEstimates(fit1mg.e,standardized = TRUE)[18,14]
 dataset.m<- subset(dataset,climate_classification==1)
 plotrix::ablineclip(
   a = am,
   b = bm,
   x1 = min(dataset.m$vpd_log, na.rm = T),
-  x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2]
+  x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2], lty=ifelse(
+    parameterEstimates(fit1mg.e,standardized = TRUE)[18,10] <0.05, 1,2)
 )
 usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'e)',
+  labels = 'Mod.E',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
@@ -395,44 +401,44 @@ plot(
   dataset,
   xlab = 'VPD',
   ylab =   expression(FDis[all]),
-  type = 'n', cex.lab=1.1, cex.axis=1.1
+  type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
 )
-legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
-       col=mycols, lty=1, cex=0.9, box.lty=0, inset=0.02)
-
-a <- -0.001
-b <-  0.005
+a <- parameterEstimates(fit1.f,standardized = TRUE)[12,12]
+b <-parameterEstimates(fit1.f,standardized = TRUE)[5,12]
 plotrix::ablineclip(
   a = a,
   b = b,
   x1 = min(dataset$vpd_log, na.rm = T),
-  x2 = max(dataset$vpd_log, na.rm = T), lty=2
+  x2 = max(dataset$vpd_log, na.rm = T), lty=ifelse(
+    parameterEstimates(fit1.f,standardized = TRUE)[5,8] <0.05, 1,2)
 )
 
-at <- 0.988
-bt <- 0.112
+at <- parameterEstimates(fit1mg.f,standardized = TRUE)[7,14]
+bt <- parameterEstimates(fit1mg.f,standardized = TRUE)[5,14]
 dataset.t<- subset(dataset,climate_classification==0)
 plotrix::ablineclip(
   a = at,
   b = bt,
   x1 = min(dataset.t$vpd_log, na.rm = T),
-  x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1]
+  x2 = max(dataset.t$vpd_log, na.rm = T),col=mycols[1], lty=ifelse(
+    parameterEstimates(fit1mg.f,standardized = TRUE)[5,10] <0.05, 1,2)
 )
 
-am <- -0.366
-bm <- -0.005
+am <- parameterEstimates(fit1mg.f,standardized = TRUE)[20,14]
+bm <- parameterEstimates(fit1mg.f,standardized = TRUE)[18,14]
 dataset.m<- subset(dataset,climate_classification==1)
 plotrix::ablineclip(
   a = am,
   b = bm,
   x1 = min(dataset.m$vpd_log, na.rm = T),
-  x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2], lty=2
+  x2 = max(dataset.m$vpd_log, na.rm = T),col=mycols[2], lty=ifelse(
+    parameterEstimates(fit1mg.f,standardized = TRUE)[18,10] <0.05, 1,2)
 )
 usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'f)',
+  labels = 'Mod.F',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
