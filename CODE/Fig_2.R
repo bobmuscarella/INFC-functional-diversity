@@ -3,13 +3,15 @@
 ####                        modA                        ####
 #                                                          #
 ##%######################################################%##
-png(
-  "output_plot/Fig_2.jpg",
-  width = 10,
-  height = 7,
-  units = 'in',
-  res = 300
-)
+# png(
+#   "output_plot/Fig_2.jpg",
+#   width = 10,
+#   height = 7,
+#   units = 'in',
+#   res = 300
+# )
+pdf('output_plot/Fig_2.pdf', width = 10, height = 6.5)
+
 op<- par(mfrow=c(2,3), mar=c(5,5,1,1))
 
 mycols<-c('dodgerblue', 'indianred', 'black')

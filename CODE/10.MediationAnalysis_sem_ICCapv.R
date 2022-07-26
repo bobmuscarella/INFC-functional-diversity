@@ -762,17 +762,14 @@ semTable(
 ##--- CFI (Comparative fit index) ---#
 # The Comparative Fit Index (CFI: Bentler, 1990) is a revised form of the NFI which takes into account sample size (Byrne, 1998) that performs well even when sample size is small (Tabachnick and Fidell, 2007). This index was first introduced by Bentler (1990) and subsequently included as part of the fit indices in his EQS program (Kline, 2005). Like the NFI, this statistic assumes that all latent variables are uncorrelated (null/independence model) and compares the sample covariance matrix with this null model. As with the NFI, values for this statistic range between 0.0 and 1.0 with values closer to 1.0 indicating good fit. A cut-off criterion of CFI ≥ 0.90 was initially advanced however, recent studies have shown that a value greater than 0.90 is needed in order to ensure that misspecified models are not accepted (Hu and Bentler, 1999). From this, a value of CFI ≥ 0.95 is presently recognised as indicative of good fit (Hu and Bentler, 1999). Today this index is included in all SEM programs and is one of the most popularly reported fit indices due to being one of the measures least effected by sample size (Fan et al, 1999).
 
-# pdf('Fig_cfa.pdf', width = 10, height = 7)
-# 
-# op<- par(mfrow=c(2,3))
-
-png(
-  "output_plot/Mod_a.jpg",
-  width = 5,
-  height = 5,
-  units = 'in',
-  res = 300
-)
+# png(
+#   "output_plot/Mod_a.jpg",
+#   width = 5,
+#   height = 5,
+#   units = 'in',
+#   res = 300
+# )
+pdf('output_plot/Mod_a.pdf', width = 5, height = 4.5)
 plot(p_pa2_moda)
 legend(
   'topright',
@@ -796,13 +793,14 @@ text(usr[1],
      cex = 1)
 dev.off()
 
-png(
-  "output_plot/Mod_b.jpg",
-  width = 5,
-  height = 5,
-  units = 'in',
-  res = 300
-)
+# png(
+#   "output_plot/Mod_b.jpg",
+#   width = 5,
+#   height = 5,
+#   units = 'in',
+#   res = 300
+# )
+pdf('output_plot/Mod_b.pdf', width = 5, height = 4.5)
 plot(p_pa2_modb)
 legend(
   'topright',
@@ -826,13 +824,14 @@ text(usr[1],
      cex = 1)
 dev.off()
 
-png(
-  "output_plot/Mod_c.jpg",
-  width = 5,
-  height = 5,
-  units = 'in',
-  res = 300
-)
+# png(
+#   "output_plot/Mod_c.jpg",
+#   width = 5,
+#   height = 5,
+#   units = 'in',
+#   res = 300
+# )
+pdf('output_plot/Mod_c.pdf', width = 5, height = 4.5)
 plot(p_pa2_modc)
 legend(
   'topright',
@@ -856,13 +855,14 @@ text(usr[1],
      cex = 1)
 dev.off()
 
-png(
-  "output_plot/Mod_d.jpg",
-  width = 5,
-  height = 5,
-  units = 'in',
-  res = 300
-)
+# png(
+#   "output_plot/Mod_d.jpg",
+#   width = 5,
+#   height = 5,
+#   units = 'in',
+#   res = 300
+# )
+pdf('output_plot/Mod_d.pdf', width = 5, height = 4.5)
 plot(p_pa2_modd)
 legend(
   'topright',
@@ -886,13 +886,14 @@ text(usr[1],
      cex = 1)
 dev.off()
 
-png(
-  "output_plot/Mod_e.jpg",
-  width = 5,
-  height = 5,
-  units = 'in',
-  res = 300
-)
+# png(
+#   "output_plot/Mod_e.jpg",
+#   width = 5,
+#   height = 5,
+#   units = 'in',
+#   res = 300
+# )
+pdf('output_plot/Mod_e.pdf', width = 5, height = 4.5)
 plot(p_pa2_mode)
 legend(
   'topright',
@@ -916,13 +917,14 @@ text(usr[1],
      cex = 1)
 dev.off()
 
-png(
-  "output_plot/Mod_f.jpg",
-  width = 5,
-  height = 5,
-  units = 'in',
-  res = 300
-)
+# png(
+#   "output_plot/Mod_f.jpg",
+#   width = 5,
+#   height = 5,
+#   units = 'in',
+#   res = 300
+# )
+pdf('output_plot/Mod_f.pdf', width = 5, height = 4.5)
 plot(p_pa2_modf)
 legend(
   'topright',

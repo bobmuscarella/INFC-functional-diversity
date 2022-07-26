@@ -305,6 +305,6 @@ par(resetPar())
 library("xtable")
 tab<- cbind(parameterEstimates(fit.PartConstrained, standardized=TRUE))
 table1<-xtable(tab,caption="Parameter Estimates from SEM Model.", label="tab:path-analysis-estimates")
-print.xtable(table1, type="html", file="output_tab/MultiGroup_Mod_f_Cai.html")
+print.xtable(table1, type="html", file="output_tab/MultiGroup_Mod_f_Ccai.html")
 
 fit1mg.f<-fit.PartConstrained
