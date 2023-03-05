@@ -19,8 +19,8 @@ plot(
   cwm_SeedMass_log ~ vpd_log,
   dataset,
   xlab = 'VPD',
-  ylab = expression(CWM[SeedMass]),
-  type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
+  ylab = expression(CWM),
+  type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1, pch='.', col='grey'
 )
 legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
        col=mycols, lty=1, cex=1.3, box.lty=0, inset=0.02)
@@ -60,7 +60,7 @@ usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'Mod.A',
+  labels = 'SeedMass',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
@@ -77,8 +77,8 @@ plot(
   cwm_Height_log ~ vpd_log,
   dataset,
   xlab = 'VPD',
-  ylab = expression(CWM[Height]),
-  type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
+  ylab = expression(CWM),
+  type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1, pch='.', col='grey'
 )
 
 a <- parameterEstimates(fit1.b,standardized = TRUE)[11,12]
@@ -116,7 +116,7 @@ usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'Mod.B',
+  labels = 'Height',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
@@ -132,8 +132,8 @@ plot(
   cwm_SLA_log ~ vpd_log,
   dataset,
   xlab = 'VPD',
-  ylab = expression(CWM[SLA]),
-  type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
+  ylab = expression(CWM),
+  type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1, pch='.', col='grey'
 )
 
 a <- parameterEstimates(fit1.c,standardized = TRUE)[11,12]
@@ -171,7 +171,7 @@ usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'Mod.C',
+  labels = 'SLA',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
@@ -186,8 +186,8 @@ plot(
   cwm_StemDensity_log ~ vpd_log,
   dataset,
   xlab = 'VPD',
-  ylab =  expression(CWM[WD]),
-  type = 'n', cex.lab=1.1, cex.axis=1.1
+  ylab =  expression(CWM),
+  type = 'n', cex.lab=1.1, cex.axis=1.1, pch='.', col='grey'
 )
 
 a <- parameterEstimates(fit1.d,standardized = TRUE)[11,12]
@@ -225,7 +225,7 @@ usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'Mod.D',
+  labels = 'WD',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
@@ -240,8 +240,8 @@ plot(
   cwm_XylemVulnerability_log  ~ vpd_log,
   dataset,
   xlab = 'VPD',
-  ylab =  expression(CWM[Xylem]),
-  type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
+  ylab =  expression(CWM),
+  type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1, pch='.', col='grey'
 )
 
 a <- parameterEstimates(fit1.e,standardized = TRUE)[11,12]
@@ -279,7 +279,7 @@ usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'Mod.E',
+  labels = 'Xylem',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
@@ -294,8 +294,8 @@ plot(
   cwm_Dim1_log ~ vpd_log,
   dataset,
   xlab = 'VPD',
-  ylab =   expression(CWM[Dim1]),
-  type = 'n', ylim=c(-2,2),cex.lab=1.1, cex.axis=1.1
+  ylab =   expression(CWM),
+  type = 'n', ylim=c(-2,2),cex.lab=1.1, cex.axis=1.1, pch='.', col='grey'
 )
 
 a <- parameterEstimates(fit1.f,standardized = TRUE)[11,12]
@@ -333,7 +333,7 @@ usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'Mod.F',
+  labels = 'Dim1',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1

@@ -19,7 +19,7 @@ plot(
   FDis_SeedMass_log ~ vpd_log,
   dataset,
   xlab = 'VPD',
-  ylab =  expression(FDis[SeedMass]),
+  ylab =  expression(FDis),
   type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
 )
 legend('topleft', legend=c("Temperate", "Mediterranean", "Pooled"),
@@ -60,7 +60,7 @@ usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'Mod.A',
+  labels = 'SeedMass',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
@@ -97,7 +97,7 @@ plot(
   FDis_Height_log ~ vpd_log,
   dataset,
   xlab = 'VPD',
-  ylab = expression(FDis[Height]),
+  ylab = expression(FDis),
   type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
 )
 
@@ -136,7 +136,7 @@ usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'Mod.B',
+  labels = 'Height',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
@@ -173,7 +173,7 @@ plot(
   FDis_SLA_log ~ vpd_log,
   dataset,
   xlab = 'VPD',
-  ylab = expression(FDis[SLA]),
+  ylab = expression(FDis),
   type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
 )
 
@@ -212,7 +212,7 @@ usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'Mod.C',
+  labels = 'SLA',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
@@ -249,7 +249,7 @@ plot(
   FDis_StemDensity_log ~ vpd_log,
   dataset,
   xlab = 'VPD',
-  ylab =  expression(FDis[WD]),
+  ylab =  expression(FDis),
   type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
 )
 
@@ -289,7 +289,7 @@ usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'Mod.D',
+  labels = 'WD',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
@@ -326,7 +326,7 @@ plot(
   FDis_XylemVulnerability_log  ~ vpd_log,
   dataset,
   xlab = 'VPD',
-  ylab =  expression(FDis[Xylem]),
+  ylab =  expression(FDis),
   type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
 )
 
@@ -365,7 +365,7 @@ usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'Mod.E',
+  labels = 'Xylem',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
@@ -402,7 +402,7 @@ plot(
   FDis_All_log ~ vpd_log,
   dataset,
   xlab = 'VPD',
-  ylab =   expression(FDis[all]),
+  ylab =   expression(FDis),
   type = 'n', ylim=c(-2,2), cex.lab=1.1, cex.axis=1.1
 )
 a <- parameterEstimates(fit1.f,standardized = TRUE)[12,12]
@@ -440,7 +440,7 @@ usr <- par("usr")
 text(
   usr[2],
   usr[4],
-  labels = 'Mod.F',
+  labels = 'All',
   adj = c(1.5, 1.5),
   col = 'black',
   cex = 1
