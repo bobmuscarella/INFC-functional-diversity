@@ -172,22 +172,22 @@ p_pa<-semPaths(
 p_pa[[1]]$graphAttributes$Nodes$labels
 p_pa[[1]]$graphAttributes$Nodes$labels <-
   c(list(
-    expression(C[cai]),
-    expression(CWM[Height]),
-    expression(FDis[Height]),
+    expression(Prod),
+    expression(CWM),
+    expression(FDis),
     expression(VPD)
   ))
 p_pa[[2]]$graphAttributes$Nodes$labels
 p_pa[[2]]$graphAttributes$Nodes$labels <-
   c(list(
-    expression(C[cai]),
-    expression(CWM[Height]),
-    expression(FDis[Height]),
+    expression(Prod),
+    expression(CWM),
+    expression(FDis),
     expression(VPD)
   ))
 
 png(
-  "output_plot/MultiGroup_Mod_b_Ccai.jpg",
+  "output_plot/MultiGroup_Mod_b_Height.jpg",
   width = 10,
   height = 4.5,
   units = 'in',
@@ -199,7 +199,7 @@ plot(
 usr <- par("usr")
 text(usr[1],
      usr[4]-0.1,
-     'Mod. B',
+     'Mod. Height',
      adj = c(-0.2, 1.5),
      col = 'black',
      cex = 1)
