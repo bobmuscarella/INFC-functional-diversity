@@ -100,7 +100,7 @@ p_pa <- semPaths(
 p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
-    expression(C[cai]),
+    expression(Cai),
     expression(CWM[SeedMass]),
     expression(FDis[SeedMass]),
     expression(VPD)
@@ -183,7 +183,7 @@ p_pa <- semPaths(
 p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
-    expression(C[cai]),
+    expression(Cai),
     expression(CWM[Height]),
     expression(FDis[Height]),
     expression(VPD)
@@ -268,7 +268,7 @@ p_pa <- semPaths(
 p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
-    expression(C[cai]),
+    expression(Cai),
         expression(CWM[SLA]),
 expression(FDis[SLA]),
     expression(VPD)
@@ -352,7 +352,7 @@ p_pa <- semPaths(
 p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
-    expression(C[cai]),
+    expression(Cai),
         expression(CWM[WD]),
 expression(FDis[WD]),
     expression(VPD)
@@ -435,7 +435,7 @@ p_pa <- semPaths(
 p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
-    expression(C[cai]),
+    expression(Cai),
        expression(CWM[Xylem]),
  expression(FDis[Xylem]),
     expression(VPD)
@@ -519,7 +519,7 @@ p_pa <- semPaths(
 p_pa$graphAttributes$Nodes$labels
 p_pa$graphAttributes$Nodes$labels <-
   c(list(
-    expression(C[cai]),
+    expression(Cai),
         expression(CWM[Dim1]),
 expression(FDis[all]),
     expression(VPD)

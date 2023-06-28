@@ -172,7 +172,7 @@ p_pa<-semPaths(
 p_pa[[1]]$graphAttributes$Nodes$labels
 p_pa[[1]]$graphAttributes$Nodes$labels <-
   c(list(
-    expression(Prod),
+    expression(Cai),
     expression(CWM),
     expression(FDis),
     expression(VPD)
@@ -180,7 +180,7 @@ p_pa[[1]]$graphAttributes$Nodes$labels <-
 p_pa[[2]]$graphAttributes$Nodes$labels
 p_pa[[2]]$graphAttributes$Nodes$labels <-
   c(list(
-    expression(Prod),
+    expression(Cai),
     expression(CWM),
     expression(FDis),
     expression(VPD)

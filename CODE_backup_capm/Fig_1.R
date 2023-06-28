@@ -153,3 +153,27 @@ plot(0,type='n',axes=FALSE,ann=FALSE)
 
 
 dev.off()
+
+
+##%######################################################%##
+#                                                          #
+####               Additional rigth panel               ####
+#                                                          #
+##%######################################################%##
+
+sr <- "+proj=longlat +datum=WGS84 +no_defs" 
+cc_proj <- projectRaster(cc, crs = sr)
+
+pdf(
+  "output_plot/Fig_S1_add.pdf",
+  width = 10,
+  height = 5
+)
+op<- par(mfrow=c(1,2), mar=c(5,5,1,1))
+pal <- colorRampPalette(c("dodgerblue","indianred"))
+plot(cc_proj,  xlab = "", col = pal(2),
+     ylab = "" ,
+     fg = "grey",
+     axes = T, legend=F)
+dev.off()
+par(op)
